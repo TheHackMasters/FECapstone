@@ -1,0 +1,23 @@
+{
+  "name": "fec",
+  "version": "1.0.0",
+  "description": "Capstone Front-End Project",
+  "main": "config.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Thistleman/FECapstone.git"
+  },
+  "author": "Duncan Ragsdale, Yachao Fan, Norman Fung, Dylan Kim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Thistleman/FECapstone/issues"
+  },
+  "homepage": "https://github.com/Thistleman/FECapstone#readme",
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}
