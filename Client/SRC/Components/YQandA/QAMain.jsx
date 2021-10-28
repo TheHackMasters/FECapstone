@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 
 const QAMain = () => {
   return (
-    <h1>Hello1</h1>
+    <h1>Hello World</h1>
   )
 };
 
