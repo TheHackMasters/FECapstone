@@ -8,4 +8,4 @@ node_modules
 coverage
 
 #compiled bundle
-Client\DIST\bundle.js
+Client/DIST/bundle.js
