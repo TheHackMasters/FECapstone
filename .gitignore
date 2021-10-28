@@ -3,3 +3,6 @@ config.js
 
 #module
 node_modules
+
+#compiled bundle
+Client/DIST/bundle.js
