@@ -5,4 +5,4 @@ config.js
 node_modules
 
 #compiled bundle
-Client/DIST/bundle.js
+Client\DIST\bundle.js
