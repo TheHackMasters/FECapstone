@@ -1,6 +1,6 @@
 module.exports = {
   mode: 'development',
-  entry: __dirname + '/client/src/index.jsx',
+  entry: `${__dirname}/client/src/index.jsx`,
   module: {
     rules: [
       {
@@ -9,14 +9,14 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-react', '@babel/preset-env']
-          }
-        }
-      }
-    ]
+            presets: ['@babel/preset-react', '@babel/preset-env'],
+          },
+        },
+      },
+    ],
   },
-   output: {
+  output: {
     filename: 'bundle.js',
-    path: __dirname + '/client/dist'
-  }
+    path: `${__dirname}/client/dist`,
+  },
 };

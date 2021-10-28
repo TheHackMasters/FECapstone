@@ -20,5 +20,6 @@ module.exports = {
   ],
   rules: {
     'linebreak-style': 0,
+    'import/extensions': ['error', 'ignorePackages'],
   },
 };
