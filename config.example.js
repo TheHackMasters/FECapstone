@@ -2,7 +2,7 @@
 
 const tokens = {
   campus: 'hr-sfo',
-  gitToken: 'fill_me_in',
+  gitToken: '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',
 };
 
 // export default tokens;
