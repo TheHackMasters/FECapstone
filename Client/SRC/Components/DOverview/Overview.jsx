@@ -7,12 +7,14 @@ import ProductInfo from './ProductInfo.jsx';
 
 function Overview(props) {
   return (
-    <div>
+    <div className="component">
       <div id="Overview">Hello World from the Overview</div>
-      <ImageBuilder />
-      <RatingName />
-      <StyleSelector />
-      <CartBuilder />
+      <span>
+        <ImageBuilder />
+        <RatingName />
+        <StyleSelector />
+        <CartBuilder />
+      </span>
       <ProductInfo />
     </div>
   );
