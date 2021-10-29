@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import Parse from '../Parse.js';
 
 import RatingsNReviews from './Components/RatingsNReviews/RatingsNReviews.jsx';
@@ -13,6 +14,9 @@ function App(props) {
   useEffect(() => {
     // testing parse
     // console.log(Parse);
+    axios.get('/products')
+      .then((data) => console.log(data))
+      .catch((err) => console.log(err));
     Parse.getStuff();
   });
 
