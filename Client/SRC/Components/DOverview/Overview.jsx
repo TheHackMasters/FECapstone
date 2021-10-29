@@ -8,13 +8,15 @@ import ProductInfo from './ProductInfo.jsx';
 function Overview(props) {
   return (
     <div className="component">
-      <div id="Overview">Hello World from the Overview</div>
-      <span>
+      <div id="overview">Hello World from the Overview</div>
+      <div className="orientation">
         <ImageBuilder />
-        <RatingName />
-        <StyleSelector />
-        <CartBuilder />
-      </span>
+        <div>
+          <RatingName />
+          <StyleSelector />
+          <CartBuilder />
+        </div>
+      </div>
       <ProductInfo />
     </div>
   );
