@@ -1,9 +1,18 @@
 import React from 'react';
+import Recommended from './Recommended.jsx';
+import Outfits from './Outfits.jsx';
 
-const RIAC = (props) => (
-  <div>
-    <h3>Hello werld from RIAC</h3>
-  </div>
-);
+function RIAC() {
+  const setMiddle = {
+    margin: 'auto',
+  };
+
+  return (
+    <div style={setMiddle}>
+      <Recommended />
+      <Outfits />
+    </div>
+  );
+}
 
 export default RIAC;
