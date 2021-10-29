@@ -1,6 +1,7 @@
 /*eslint-disable */
 import React, {useState} from 'react';
-import Input from './styles/SearchBar.style.js'
+import {Input, Form} from './styles/SearchBar.style.js'
+import SearchIcon from '@mui/icons-material/Search';
 
 const Search = () => {
 
@@ -12,14 +13,15 @@ const Search = () => {
 
   return (
     <>
-      <form>
+      <Form>
         <Input
           type='text'
           placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...'
           value={searchTerm}
           onChange={event=>handleSubmit(event)}
         />
-      </form>
+          <SearchIcon />
+      </Form>
     </>
   )
 }
