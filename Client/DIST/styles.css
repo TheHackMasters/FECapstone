@@ -1,0 +1,10 @@
+.component {
+  border: solid
+}
+
+.circle {
+  border: solid;
+  border-radius: 1em;
+  padding: 10px;
+  background-image: "http://placecorgi.com/100/100";
+}
