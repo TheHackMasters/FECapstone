@@ -5,8 +5,11 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../Client/SRC/App.jsx';
 import OverviewTest from '../Client/SRC/Components/DOverview/Overview.Test.js';
+//update with your test files
+// import OverviewTest from '../Client/SRC/Components/DOverview/Overview.Test.js';
+// import OverviewTest from '../Client/SRC/Components/DOverview/Overview.Test.js';
+// import OverviewTest from '../Client/SRC/Components/DOverview/Overview.Test.js';
 
-// update AppTest to include overall testing points
 
 const AppTest = () => {
   it('should display initial UI', () => {
@@ -28,4 +31,8 @@ const AppTest = () => {
 AppTest();
 
 OverviewTest();
+// update with your testing function call
+// OverviewTest();
+// OverviewTest();
+// OverviewTest();
 // how to make the file run tests from other testing files??
