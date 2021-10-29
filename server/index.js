@@ -9,7 +9,7 @@ app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/', express.static('../Client/DIST'));
+app.use('/', express.static('./Client/DIST'));
 
 app.get('/products', (req, res) => {
   models.getAll()

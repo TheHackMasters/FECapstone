@@ -20,9 +20,9 @@ function App(props) {
     <div>
       <div>Hello World</div>
       <Overview />
-      <RatingsNReviews />
       <RIAC />
       <QAMain />
+      <RatingsNReviews />
     </div>
   );
 }
