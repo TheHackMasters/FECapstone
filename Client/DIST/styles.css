@@ -8,3 +8,8 @@
   padding: 10px;
   background-image: "http://placecorgi.com/100/100";
 }
+
+.orientation {
+  display:flex;
+  flex-direction:row;
+}
