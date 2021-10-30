@@ -59,6 +59,16 @@ app.get('/products/:prodID/related', (req, res) => {
     });
 });
 
+app.get('/qa/questions', (req, res) => {
+  models.getAll()
+    .then((results) => {
+      res.status(200).send(results.data);
+    })
+    .catch((error) => {
+      res.status(400).send(error);
+    });
+});
+
 app.listen(port, () => {
   console.log(`App listening at port: ${port}`);
 });
