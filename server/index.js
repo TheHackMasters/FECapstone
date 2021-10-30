@@ -59,6 +59,32 @@ app.get('/products/:prodID/related', (req, res) => {
     });
 });
 
+app.get('/reviews', (req, res) => {
+  models.getProdReviews()
+    .then((results) => {
+      res.status(200).send(results.data);
+      console.log(results.data, 'Hello World! here is some data ');
+    })
+    .catch((error) => {
+      res.status(400).send(error);
+      console.log(error, '<-- There was an error in the get');
+    });
+});
+
+app.get('/reviews/meta', (req, res) => {
+  models.getProdReviews()
+    .then((results) => {
+      res.status(200).send(results.data);
+      console.log(results.data, 'Hello World! here is some data ');
+    })
+    .catch((error) => {
+      res.status(400).send(error);
+      console.log(error, '<-- There was an error in the get');
+    });
+});
+
+
+
 app.listen(port, () => {
   console.log(`App listening at port: ${port}`);
 });
