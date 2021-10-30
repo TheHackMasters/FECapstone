@@ -17,6 +17,7 @@ height: 100px;
 width: 100px;
 padding: 10px;
 background-repeat: no-repeat;
+background-position: center;
 `;
 
 function ImageBuilder(props) {
