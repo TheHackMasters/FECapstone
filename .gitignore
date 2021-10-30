@@ -9,5 +9,5 @@ expressconfig.js
 node_modules
 
 #bundled instance of page
-./Client/DIST/bundle.js
+Client/DIST/bundle.js
 
