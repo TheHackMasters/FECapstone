@@ -41,4 +41,17 @@ module.exports = {
 
     },
   }),
+
+  // Q&A
+
+  getAllQs: () => axios({
+    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions',
+    method: 'get',
+    headers: {
+      campus: git.tokens.campus,
+      Authorization: git.tokens.gitToken,
+
+    },
+  }),
+
 };
