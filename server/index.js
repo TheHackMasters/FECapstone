@@ -60,7 +60,7 @@ app.get('/products/:prodID/related', (req, res) => {
 });
 
 app.get('/qa/questions', (req, res) => {
-  models.getAll()
+  models.getAllQs()
     .then((results) => {
       res.status(200).send(results.data);
     })
