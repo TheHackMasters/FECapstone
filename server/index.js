@@ -24,6 +24,42 @@ app.get('/products', (req, res) => {
     });
 });
 
+app.get('/products/:prodID', (req, res) => {
+  models.getProdInfo(req.params.prodID)
+    .then((results) => {
+      res.status(200).send(results.data);
+      console.log(results.data, 'Hello World! here is some data ');
+    })
+    .catch((error) => {
+      res.status(400).send(error);
+      console.log(error, '<-- There was an error in the get');
+    });
+});
+
+app.get('/products/:prodID/styles', (req, res) => {
+  models.getProdStyles(req.params.prodID)
+    .then((results) => {
+      res.status(200).send(results.data);
+      console.log(results.data, 'Hello World! here is some data ');
+    })
+    .catch((error) => {
+      res.status(400).send(error);
+      console.log(error, '<-- There was an error in the get');
+    });
+});
+
+app.get('/products/:prodID/related', (req, res) => {
+  models.getProdRelated(req.params.prodID)
+    .then((results) => {
+      res.status(200).send(results.data);
+      console.log(results.data, 'Hello World! here is some data ');
+    })
+    .catch((error) => {
+      res.status(400).send(error);
+      console.log(error, '<-- There was an error in the get');
+    });
+});
+
 app.listen(port, () => {
   console.log(`App listening at port: ${port}`);
 });
