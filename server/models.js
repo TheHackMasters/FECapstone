@@ -41,7 +41,6 @@ module.exports = {
 
     },
   }),
-
   // Q&A
 
   getAllQs: () => axios({
@@ -54,4 +53,26 @@ module.exports = {
     },
   }),
 
+
+  getProdReviews: (product_id = 61575) => axios({
+    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/reviews',
+    method: 'get',
+    headers: {
+      campus: git.tokens.campus,
+      Authorization: git.tokens.gitToken,
+
+    },
+    params: {page, count, sort, product_id },
+  }),
+
+  getProdReviewsMeta: (product_id = 61575) => axios({
+    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/reviews/meta',
+    method: 'get',
+    headers: {
+      campus: git.tokens.campus,
+      Authorization: git.tokens.gitToken,
+
+    },
+    params: { product_id },
+  }),
 };
