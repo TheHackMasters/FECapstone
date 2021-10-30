@@ -1,5 +1,6 @@
 #config files
 config.js
+expressconfig.js
 
 #module
 node_modules

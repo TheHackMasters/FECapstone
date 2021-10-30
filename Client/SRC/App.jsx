@@ -10,23 +10,25 @@ import QAMain from './Components/YQandA/QAMain.jsx';
 function App(props) {
   // example of using a hook for state
   const [count, setCount] = useState(0);
+  const [allData, setAllData] = useState([]);
 
   useEffect(() => {
     // testing parse
     // console.log(Parse);
-    axios.get('/products')
-      .then((data) => console.log(data))
-      .catch((err) => console.log(err));
-    Parse.getStuff();
+    // axios.get('/products')
+    //   .then((data) => setAllData(data.data))
+    //   .catch((err) => console.log(err));
+
+    //Parse.getStuff();
   });
 
   return (
     <div>
       <div>Hello World</div>
       <Overview />
-      <RatingsNReviews />
       <RIAC />
       <QAMain />
+      <RatingsNReviews />
     </div>
   );
 }

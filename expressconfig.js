@@ -1,4 +1,4 @@
 module.exports.tokens = {
   campus: 'hr-sfo',
-  gitToken: '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'
-}
+  gitToken: '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',
+};

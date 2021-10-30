@@ -1,8 +1,12 @@
 import React, {useState} from 'react';
+import Search from './Search.jsx';
 
 const QAMain = () => {
   return (
-    <h1>Hello World</h1>
+    <div>
+      <h3>Questions & Answers</h3>
+      <Search />
+    </div>
   )
 };
 
