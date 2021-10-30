@@ -48,8 +48,6 @@ function Card() {
 
   const buttonStyle = {
     position: 'absolute',
-    top: '10%',
-    left: '90%',
     backgroundColor: 'transparent',
     borderColor: 'transparent',
   };
