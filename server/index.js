@@ -16,6 +16,7 @@ app.get('/products', (req, res) => {
     .then((results) => {
       res.status(200).send(results.data);
       console.log(results.data, 'Hello World! here is some data ');
+      // res.render('./Client/DIST', { retrievedData: results });
     })
     .catch((error) => {
       res.status(400).send(error);

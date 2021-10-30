@@ -1,24 +1,35 @@
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
+
 import RatingName from './RandNBuilder.jsx';
 import ImageBuilder from './ImageBuilder.jsx';
 import StyleSelector from './StyleSelector.jsx';
 import CartBuilder from './CartBuilder.jsx';
 import ProductInfo from './ProductInfo.jsx';
 
+const ComponentWrapper = styled.section`
+  border: solid
+`;
+
+const ComponentOrientation = styled.section`
+display:flex;
+flex-direction:row;
+`;
+
 function Overview(props) {
   return (
-    <div className="component">
+    <ComponentWrapper>
       <div id="overview">Hello World from the Overview</div>
-      <div className="orientation">
+      <ComponentOrientation>
         <ImageBuilder />
         <div>
           <RatingName />
           <StyleSelector />
           <CartBuilder />
         </div>
-      </div>
+      </ComponentOrientation>
       <ProductInfo />
-    </div>
+    </ComponentWrapper>
   );
 }
 
