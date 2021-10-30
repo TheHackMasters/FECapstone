@@ -1,3 +1,6 @@
+#mac ds files
+.DS_Store
+
 #config files
 config.js
 expressconfig.js
@@ -8,5 +11,6 @@ node_modules
 ## test coverage reports
 coverage
 
-#compiled bundle
+#bundled instance of page
 Client/DIST/bundle.js
+
