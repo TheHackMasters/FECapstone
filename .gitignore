@@ -8,6 +8,9 @@ expressconfig.js
 #module
 node_modules
 
+## test coverage reports
+coverage
+
 #bundled instance of page
 Client/DIST/bundle.js
 
