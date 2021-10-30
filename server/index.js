@@ -59,6 +59,17 @@ app.get('/products/:prodID/related', (req, res) => {
     });
 });
 
+app.get('/qa/questions', (req, res) => {
+  models.getAllQs()
+    .then((results) => {
+      res.status(200).send(results.data);
+    })
+    .catch((error) => {
+      res.status(400).send(error);
+    });
+});
+
+
 app.get('/reviews', (req, res) => {
   models.getProdReviews()
     .then((results) => {
@@ -72,7 +83,7 @@ app.get('/reviews', (req, res) => {
 });
 
 app.get('/reviews/meta', (req, res) => {
-  models.getProdReviews()
+  models.getProdReviewsMeta()
     .then((results) => {
       res.status(200).send(results.data);
       console.log(results.data, 'Hello World! here is some data ');
@@ -82,8 +93,6 @@ app.get('/reviews/meta', (req, res) => {
       console.log(error, '<-- There was an error in the get');
     });
 });
-
-
 
 app.listen(port, () => {
   console.log(`App listening at port: ${port}`);
