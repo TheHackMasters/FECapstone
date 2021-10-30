@@ -5,7 +5,6 @@ const CircledStyles = styled.img`
 border: solid;
 border-radius: 1em;
 padding: 10px;
-background-image: "http://placecorgi.com/100/100";
 `;
 
 function StyleSelector(props) {

@@ -16,10 +16,10 @@ function App(props) {
     // testing parse
     // console.log(Parse);
     // axios.get('/products')
-    //   .then((data) => setAllData(data.data))
+    //   .then((data) => console.log(data))
     //   .catch((err) => console.log(err));
 
-    //Parse.getStuff();
+    // Parse.getStuff();
   });
 
   return (
