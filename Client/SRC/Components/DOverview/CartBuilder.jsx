@@ -17,9 +17,8 @@ function CartBuilder(props) {
           </select>
         </label>
       </form>
-      <span>Add a size drop down and a quantity drop down</span>
       <span>Add the add to cart functionality</span>
-      <span>Add a star button that adds an item to the outfit</span>
+      <span>☆</span>
     </div>
   );
 }

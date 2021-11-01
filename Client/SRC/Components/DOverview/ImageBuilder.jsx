@@ -11,11 +11,17 @@ height: 400px;
 width: 400px;
 `;
 
+const MiniImageWrapper = styled.div`
+height: 100px;
+width: 100px;
+padding: 10px;
+`;
+
 const MiniImage = styled.div`
 background-image: url("http://placecorgi.com/100/100");
 height: 100px;
 width: 100px;
-padding: 10px;
+border: solid;
 background-repeat: no-repeat;
 background-position: center;
 `;
@@ -24,9 +30,15 @@ function ImageBuilder(props) {
   return (
     <div>
       <ProdImage>
-        <MiniImage />
-        <MiniImage />
-        <MiniImage />
+        <MiniImageWrapper>
+          <MiniImage />
+        </MiniImageWrapper>
+        <MiniImageWrapper>
+          <MiniImage />
+        </MiniImageWrapper>
+        <MiniImageWrapper>
+          <MiniImage />
+        </MiniImageWrapper>
       </ProdImage>
     </div>
   );
