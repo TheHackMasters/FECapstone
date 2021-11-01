@@ -14,6 +14,11 @@ const ComponentWrapper = styled.section`
 const ComponentOrientation = styled.section`
 display:flex;
 flex-direction:row;
+padding-bottom: 1em;
+`;
+
+const SubComponentOrientation = styled.section`
+padding-left: 1em;
 `;
 
 function Overview(props) {
@@ -23,9 +28,15 @@ function Overview(props) {
       <ComponentOrientation>
         <ImageBuilder />
         <div>
-          <RatingName />
-          <StyleSelector />
-          <CartBuilder />
+          <SubComponentOrientation>
+            <RatingName />
+          </SubComponentOrientation>
+          <SubComponentOrientation>
+            <StyleSelector />
+          </SubComponentOrientation>
+          <SubComponentOrientation>
+            <CartBuilder />
+          </SubComponentOrientation>
         </div>
       </ComponentOrientation>
       <ProductInfo />
