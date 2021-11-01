@@ -14,7 +14,9 @@ const Search = () => {
   const filteredList = posts.filter(post => {
     if (search === '') {
       return post
-    } else if (post.name.toLowerCase().includes(search.toLowerCase())) {
+    } else if (post.question.toLowerCase().includes(search.toLowerCase())) {
+      return post
+    } else if (post.answer.toLowerCase().includes(search.toLowerCase())) {
       return post
     }
   })
@@ -33,7 +35,12 @@ const Search = () => {
       </Container>
       <ul>
           {
-            filteredList.map(post => <li key={post.id}> {post.name} </li>)
+            filteredList.map(post =>
+              <li key={post.id}>
+                Q: {post.question}
+                <br></br>
+                A: {post.answer}
+              </li>)
           }
       </ul>
     </>
