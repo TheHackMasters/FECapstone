@@ -1,27 +1,41 @@
 /*eslint-disable */
 import React, {useState} from 'react';
-import {Input, Form} from './styles/SearchBar.style.js'
+import {Input, Container} from './styles/SearchBar.style.js'
 import SearchIcon from '@mui/icons-material/Search';
+import posts from './data/data.js';
 
 const Search = () => {
 
-  const [searchTerm, setSearchTerm] = useState('');
+  const [search, setSearch] = useState('');
 
-  const handleSubmit = (event) => {
-    setSearchTerm(event.target.value)
-  }
+  // const handleSubmit = (event) => {
+  //   setSearchTerm(event.target.value)
+  // }
+  const filteredList = posts.filter(post => {
+    if (search === '') {
+      return post
+    } else if (post.name.toLowerCase().includes(search.toLowerCase())) {
+      return post
+    }
+  })
 
   return (
     <>
-      <Form>
+      <Container>
         <Input
           type='text'
           placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...'
-          value={searchTerm}
-          onChange={event=>handleSubmit(event)}
+          onChange={event=>setSearch(event.target.value)}
         />
-          <SearchIcon />
-      </Form>
+          <SearchIcon
+           style={{ color: '#6495ed' }}
+        />
+      </Container>
+      <ul>
+          {
+            filteredList.map(post => <li key={post.id}> {post.name} </li>)
+          }
+      </ul>
     </>
   )
 }

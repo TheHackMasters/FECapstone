@@ -4,14 +4,16 @@ import styled from 'styled-components';
 
 const Input = styled.input`
   font-size: 1em;
-  height: 25x;
+  position: relative;
+  bottom: 5px;
   width: 700px;
+  padding: 1px;
   border: none
 `
-const Form = styled.form`
+const Container = styled.div`
   border: 1px solid black;
   width: 730px;
   height: 29px
 `
 
-export {Input, Form};
+export {Input, Container};
