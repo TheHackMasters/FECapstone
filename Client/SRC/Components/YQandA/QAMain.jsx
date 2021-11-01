@@ -3,7 +3,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import Search from './Search.jsx';
-import posts from './data/data.js';
 import {Header, Paragraph} from './styles/Header.style.js'
 
 const QAMain = () => {
