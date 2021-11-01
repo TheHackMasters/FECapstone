@@ -28,6 +28,7 @@ function App(props) {
       <Overview />
       <RIAC />
       <QAMain />
+      <a name="Ratings" />
       <RatingsNReviews />
     </div>
   );
