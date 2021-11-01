@@ -3,12 +3,13 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import Search from './Search.jsx';
+import {Header, Paragraph} from './styles/Header.style.js'
 
 const QAMain = () => {
-  const [questionList, setQuestionList] = useState([])
+  // const [questionList, setQuestionList] = useState([])
 
   // useEffect(()=> {
-  //   axios.get('qa/questions')
+  //   axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions')
   //     .then(res => {
   //       setQuestionList(res.data)
   //     })
@@ -17,13 +18,10 @@ const QAMain = () => {
 
   return (
     <div>
-      <h3>Questions & Answers</h3>
+      <Header>Questions & Answers</Header>
+      <Paragraph>Find answers in Q&As</Paragraph>
       <Search />
-      <ul>
-        {
-          questionList.map(question => <li key={question.id}>Name: {question.name}. Description: {question.description}</li>)
-        }
-      </ul>
+
     </div>
   )
 };

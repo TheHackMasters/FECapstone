@@ -53,7 +53,6 @@ module.exports = {
     },
   }),
 
-
   getProdReviews: (product_id = 61575) => axios({
     url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/reviews',
     method: 'get',

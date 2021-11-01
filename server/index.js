@@ -70,7 +70,6 @@ app.get('/qa/questions', (req, res) => {
     });
 });
 
-
 app.get('/reviews', (req, res) => {
   models.getProdReviews()
     .then((results) => {
