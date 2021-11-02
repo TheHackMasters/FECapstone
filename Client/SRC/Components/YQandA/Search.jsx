@@ -6,7 +6,7 @@ import {Input, Container} from './styles/SearchBar.style.js'
 import {LoadMoreButton, AddMoreQuestion} from './styles/Button.style.js';
 import posts from './data/data.js';
 
-Modal.setAppElement('#app');
+if (process.env.NODE_ENV !== 'test') ReactModal.setAppElement('#app');
 
 const Search = () => {
 

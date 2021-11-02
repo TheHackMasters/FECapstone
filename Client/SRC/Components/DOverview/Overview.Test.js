@@ -30,8 +30,11 @@ const OverviewTest = () => {
   });
 
   it('should create selectors, checkboxes, and buttons', () => {
-    render(<ImageBuilder />);
+    render(<Overview />);
     expect(screen.getAllByRole('button')).toBeTruthy();
+    // expect(screen.getAllByRole('select')).toBeTruthy();
+    // expect(screen.getAllByRole('input')).toBeTruthy();
+    // expect(screen.getAllByRole('a')).toBeTruthy();
   });
 
   it('should allow selecting size and quantity', () => {
