@@ -9,6 +9,7 @@ import QATest from '../Client/SRC/Components/YQandA/test/QA.test.js';
 //update with your test files
 // import OverviewTest from '../Client/SRC/Components/DOverview/Overview.Test.js';
 // import OverviewTest from '../Client/SRC/Components/DOverview/Overview.Test.js';
+import RatingsNReviewsTest from '../Client/SRC/Components/RatingsNReviews/RatingsNReviews.Test.js';
 
 
 const AppTest = () => {
@@ -32,6 +33,7 @@ AppTest();
 
 OverviewTest();
 QATest();
+RatingsNReviewsTest();
 // update with your testing function call
 // OverviewTest();
 // OverviewTest();
