@@ -14,6 +14,7 @@ const QATest = () => {
 
   it('should display initial UI', () => {
     render(<QAMain />);
+    expect(screen.getByDisplayValue('Questions & Answers')).toBeInTheDocument();
     expect(screen.getByDisplayValue('Find answers in Q&As')).toBeInTheDocument();
   });
 };
