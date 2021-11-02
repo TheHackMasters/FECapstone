@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
 
-const Ratings = () => {
+const Ratings = () => (
+  <>
+    <RatingsDiv>
 
-
-
-  return (
-    <>
       <h1>Hello from ratings</h1>
 
       <div>
-
 
         <div className="ratings">
           <div>RATINGS </div>
@@ -26,8 +24,20 @@ const Ratings = () => {
 
       </div>
 
-    </>
-  )
-}
+    </RatingsDiv>
+
+  </>
+);
 
 export default Ratings;
+
+const RatingsDiv = styled.div`
+display: grid;
+background-color: white;
+width: 100%;
+grid-column: 1;
+grid-row: 1/6;
+padding: 20px;
+margin-left: 30px;
+
+`;

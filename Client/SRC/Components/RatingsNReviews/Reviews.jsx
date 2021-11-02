@@ -1,52 +1,65 @@
 import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import dummydata from './dummydata.js';
+import ReviewCard from './ReviewCard.jsx';
 
 const Reviews = () => {
-
-
+  const [data, setData] = useState(dummydata);
 
   return (
+
     <>
-      <h1>Hello from Reviews</h1>
 
-      <div className="reviews">
-        <div>248 reviews, sorted by relevance</div>
-        <div>
-          <div>*****</div>
-          <header>Review title ------------------------------------ </header>
-          <p> | </p>
-          <p>Review text here is a bunch of review text that
-            reviews an item and tells how good or terrible it is.
-            Or you can use this area to troll about how
-            excellent the napkin quality is.. Maybe comment
-            on the exquisite taste of the ketchup or something
-            like that. God I love it when doors open both ways.</p>
-          <span>Helpful | ?</span>
-          <span> | Yes (7)</span>
-          <span> | No (3)</span>
-          |
-          <span>Report</span>
-        </div>
-        <div>
-          <div>****</div>
-          <header>Review title ------------------------------------ </header>
-          <p> | </p>
-          <p>Review text here is a bunch of review text that
-            reviews an item and tells how good or terrible it is.
-            Or you can use this area to troll about how
-            excellent the napkin quality is.. Maybe comment
-            on the exquisite taste of the ketchup or something
-            like that. God I love it when doors open both ways.</p>
-            <span>Helpful | ?</span>
-          <span> | Yes (7)</span>
-          <span> | No (3)</span>
-          |
-          <span>Report</span>
-        </div>
-      </div>
+      <ReviewsSection>
 
+        <h1>Hello from Reviews</h1>
+
+        <div className="reviews">
+          <div>248 reviews, sorted by relevance</div>
+
+          {data.dummydata.results.map((review, index) => (
+
+            <ReviewCard
+              review={review}
+              index={index}
+            />
+
+          ))}
+
+          <div>
+            <MoreReviews>MORE REVIEWS</MoreReviews>
+            <AddReview>ADD A REVIEW +</AddReview>
+          </div>
+
+        </div>
+      </ReviewsSection>
 
     </>
-  )
-}
+  );
+};
 
 export default Reviews;
+
+const ReviewsSection = styled.section`
+display: grid;
+background-color: white;
+width: 100%;
+grid-column: ;
+grid-row: 1 / 10;
+grid-template-rows: 50px repeat(auto, 200px) repeat(2, 50px);
+padding: 20px;
+`;
+
+const MoreReviews = styled.button`
+grid-column: 1 / 4;
+width: 130px;
+height: 70px;
+margin: 2%;
+`;
+
+const AddReview = styled.button`
+grid-column: 4 / 4;
+width: 130px;
+height: 70px;
+margin: 2%;
+`;
