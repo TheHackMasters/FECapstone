@@ -22,24 +22,28 @@ padding-left: 1em;
 `;
 
 function Overview(props) {
+  console.log('should change', props);
+  let {data, styles} = props;
+  console.log(data);
+
   return (
     <ComponentWrapper id="overview">
       <div className="overview">Hello World from the Overview</div>
       <ComponentOrientation id="componentorient">
-        <ImageBuilder />
+        <ImageBuilder styles={styles} />
         <div>
           <SubComponentOrientation id="ratingname">
-            <RatingName />
+            <RatingName details={data} />
           </SubComponentOrientation>
           <SubComponentOrientation id="styleselector">
-            <StyleSelector />
+            <StyleSelector styles={styles} />
           </SubComponentOrientation>
           <SubComponentOrientation id="cartbuilder">
             <CartBuilder />
           </SubComponentOrientation>
         </div>
       </ComponentOrientation>
-      <ProductInfo />
+      <ProductInfo details={data} />
     </ComponentWrapper>
   );
 }
