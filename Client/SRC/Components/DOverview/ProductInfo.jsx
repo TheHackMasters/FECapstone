@@ -32,7 +32,7 @@ padding-left: 10px;
 
 function ProductInfo(props) {
   return (
-    <ProdInfoOrient>
+    <ProdInfoOrient id="prodinfo">
       <Seperator1>
         <StyledHeading>
           Child's Ice Cream Cone melts due to Long-Winded Speech

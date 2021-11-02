@@ -23,18 +23,18 @@ padding-left: 1em;
 
 function Overview(props) {
   return (
-    <ComponentWrapper>
-      <div id="overview">Hello World from the Overview</div>
-      <ComponentOrientation>
+    <ComponentWrapper id="overview">
+      <div className="overview">Hello World from the Overview</div>
+      <ComponentOrientation id="componentorient">
         <ImageBuilder />
         <div>
-          <SubComponentOrientation>
+          <SubComponentOrientation id="ratingname">
             <RatingName />
           </SubComponentOrientation>
-          <SubComponentOrientation>
+          <SubComponentOrientation id="styleselector">
             <StyleSelector />
           </SubComponentOrientation>
-          <SubComponentOrientation>
+          <SubComponentOrientation id="cartbuilder">
             <CartBuilder />
           </SubComponentOrientation>
         </div>
