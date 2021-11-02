@@ -1,6 +1,6 @@
 import React from 'react';
 
-function AddToOutfits(props) {
+function AddToOutfitsCard(props) {
   // STYLES -----------------------------------------------------
   const greyPlus = 'https://lh3.googleusercontent.com/proxy/zhMnmKp7jLBkDa-NjavKzVj9PTD6US2EKS0ToDPvRkNks-Yi-DY45x-g80tsXkbLKbo0diJ3gmqr2FGqHV6bQRN-GiczniubJbExT35AvUUrw4qT_h3wiN9Tsz1bOlftWPW5';
   const cardT2 = {
@@ -44,4 +44,4 @@ function AddToOutfits(props) {
   );
 }
 
-export default AddToOutfits;
+export default AddToOutfitsCard;

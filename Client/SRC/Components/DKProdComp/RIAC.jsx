@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Card from './Card.jsx';
-import AddToOutfits from './AddToOutfits.jsx';
+import AddToOutfitsCard from './AddToOutfitsCard.jsx';
 import EmptyOutfit from './EmptyOutfit.jsx';
 
 function RIAC() {
@@ -93,12 +93,23 @@ function RIAC() {
     },
   ]);
 
+  const outfits = [];
+  for (let n = idxOutfit; n < (outfitList.length < 3 ? 3 : outfitList.length); n++) {
+    if (outfitList[n] === undefined) {
+      outfits.push(<EmptyOutfit />);
+    } else {
+      outfits.push(
+        <Card key={outfitList[n].id} product={outfitList[n]} isRecc={false} />
+      );
+    }
+  }
+
   const nextSlideRecc = () => {
     setIdxRecc(idxRecc + 3 === reccList.length - 1 ? idxRecc : idxRecc + 1);
   };
 
   const nextSlideOutfit = () => {
-    setIdxOutfit(idxOutfit + 2 === outfitList.length - 1 ? idxOutfit : idxOutfit + 1);
+    setIdxOutfit(idxOutfit + 2 >= outfitList.length - 1 ? idxOutfit : idxOutfit + 1);
   };
 
   const prevSlideRecc = () => {
@@ -154,17 +165,6 @@ function RIAC() {
     borderColor: 'transparent',
   };
 
-  const outfits = [];
-  for (let n = idxOutfit; n < idxOutfit + 3; n++) {
-    if (outfitList[n] === undefined) {
-      outfits.push(<EmptyOutfit />);
-    } else {
-      outfits.push(
-        <Card key={outfitList[n].id} product={outfitList[n]} isRecc={false} />
-      );
-    }
-  }
-
   return (
     <div style={setMiddle}>
       <div className="recommended">
@@ -196,7 +196,7 @@ function RIAC() {
             src={leftArrow}
             onClick={prevSlideOutfit}
           /></button>
-          <AddToOutfits currProduct={currProduct} outfitList={outfitList} />
+          <AddToOutfitsCard currProduct={currProduct} outfitList={outfitList} />
           {outfits}
           <button style={arrowButtonStyle}><img
             style={arrowRightStyle}
