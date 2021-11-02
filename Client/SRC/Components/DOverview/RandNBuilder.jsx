@@ -8,7 +8,7 @@ padding-bottom: 1em;
 `;
 
 const StyleName = styled.span`
-font-size: 3em;
+font-size: 2em;
 font-weight: bolder;
 `;
 
