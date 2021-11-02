@@ -1,11 +1,12 @@
 /*eslint-disable */
 import React, {useState} from 'react';
-import {Input, Container} from './styles/SearchBar.style.js'
 import SearchIcon from '@mui/icons-material/Search';
-import posts from './data/data.js';
-import {LoadMoreButton, AddMoreQuestion} from './styles/Button.style.js';
 import Modal from 'react-modal';
+import {Input, Container} from './styles/SearchBar.style.js'
+import {LoadMoreButton, AddMoreQuestion} from './styles/Button.style.js';
+import posts from './data/data.js';
 
+Modal.setAppElement('#app');
 
 const Search = () => {
 
@@ -64,7 +65,20 @@ const Search = () => {
         <React.Fragment>
           <LoadMoreButton onClick={handleClick}>MORE ANSWERED QUESTIONS</LoadMoreButton>
           <AddMoreQuestion onClick={() => setModalIsOpen(true)}>ADD A QUESTION</AddMoreQuestion>
-          <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
+          <Modal
+            isOpen={modalIsOpen}
+            onRequestClose={() => setModalIsOpen(false)}
+            style={
+              {
+                overlay: {
+                  backgroundColor: 'grey'
+                },
+                content: {
+                  color: 'red'
+                }
+              }
+            }
+          >
             <h2>Modal title</h2>
             <p>Modal body</p>
             <div>
