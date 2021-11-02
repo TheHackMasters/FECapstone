@@ -6,21 +6,22 @@ import EmptyOutfit from './EmptyOutfit.jsx';
 function RIAC() {
   //recieve current item from props
   //recieve outfitlist from props or from db
-  const [idx, setIdx] = useState(0);
+  const [idxRecc, setIdxRecc] = useState(0);
+  const [idxOutfit, setIdxOutfit] = useState(0);
   const [currProduct, setCurrProduct] = useState({
-    imageSrc: 'https://images.unsplash.com/photo-1532332248682-206cc786359f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=689&q=80',
+    imageSrc: 'https://images.unsplash.com/photo-1618453292459-53424b66bb6a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=764&q=80',
     imgAlt: './',
-    category: 'JACKETS',
-    name: 'Lightweight Weather-Resist Bomber',
-    price: '$64',
+    category: 'TEES',
+    name: 'LSKD.CO Collab Tee',
+    price: '$32',
   });
 
   const [reccData, setReccData] = useState([{
-    imageSrc: 'https://images.unsplash.com/photo-1532332248682-206cc786359f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=689&q=80',
+    imageSrc: 'https://images.unsplash.com/photo-1618453292459-53424b66bb6a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=764&q=80',
     imgAlt: './',
-    category: 'JACKETS',
-    name: 'Lightweight Feather-Resist Bomber',
-    price: '$64',
+    category: 'TEES',
+    name: 'LSKD.CO Collab Tee',
+    price: '$32',
   }, {
     imageSrc: 'https://images.unsplash.com/photo-1532332248682-206cc786359f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=689&q=80',
     imgAlt: './',
@@ -28,11 +29,11 @@ function RIAC() {
     name: 'Lightweight Tether-Resist Bomber',
     price: '$64',
   }, {
-    imageSrc: 'https://images.unsplash.com/photo-1532332248682-206cc786359f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=689&q=80',
+    imageSrc: 'https://images.unsplash.com/photo-1618453292459-53424b66bb6a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=764&q=80',
     imgAlt: './',
-    category: 'JACKETS',
-    name: 'Lightweight Sweater-Resist Bomber',
-    price: '$64',
+    category: 'TEES',
+    name: 'LSKD.CO Collab Tee',
+    price: '$32',
   },
   {
     imageSrc: 'https://images.unsplash.com/photo-1532332248682-206cc786359f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=689&q=80',
@@ -40,6 +41,20 @@ function RIAC() {
     category: 'JACKETS',
     name: 'Lightweight Weather-Resist Bomber',
     price: '$64',
+  },
+  {
+    imageSrc: 'https://images.unsplash.com/photo-1618453292459-53424b66bb6a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=764&q=80',
+    imgAlt: './',
+    category: 'TEES',
+    name: 'LSKD.CO Collab Tee',
+    price: '$32',
+  },
+  {
+    imageSrc: 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80',
+    imgAlt: './',
+    category: 'JEANS',
+    name: 'Hol-B Jeans',
+    price: '$98',
   }]);
 
   const [outfitList, setOutfitList] = useState([{
@@ -48,6 +63,12 @@ function RIAC() {
     category: 'JACKETS',
     name: 'Lightweight Weather-Resist Bomber',
     price: '$64',
+  }, {
+    imageSrc: 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80',
+    imgAlt: './',
+    category: 'JEANS',
+    name: 'Hol-B Jeans',
+    price: '$98',
   }]);
 
   //STYLES ----------------------------------------------------------
@@ -91,14 +112,23 @@ function RIAC() {
 
   let numTime = 0;
 
+  let outfits = [];
+  for (var n = idxOutfit; n < idxOutfit + 3; n++) {
+    if (outfitList[n] === undefined) {
+      outfits.push(<EmptyOutfit/>)
+    } else {
+      outfits.push(<Card key={outfitList[n].key} product={outfitList[n]} isRecc={false}/>)
+    }
+  }
   return (
+
     <div style={setMiddle}>
       <div className="recommended">
         <div style={title1}>RECOMMENDED</div>
         <div style={carouselStyle}>
           <img style={arrowLeftStyle} src={leftArrow} />
 
-          {reccData.slice(idx, idx+4).map(reccProduct => (
+          {reccData.slice(idxRecc, idxRecc+4).map(reccProduct => (
             <Card product={reccProduct} isRecc={true}/>
           ))}
           <img style={arrowRightStyle} src={rightArrow} />
@@ -112,12 +142,7 @@ function RIAC() {
             currProduct={currProduct}
             outfitList={outfitList}
           />
-          {outfitList.map((item) =>
-            (item === undefined ? <EmptyOutfit/> : <Card key={item.key}product={item} isRecc={false}/>
-          ))}
-          {outfitList.length < 1 ? <EmptyOutfit/>: null}
-          {outfitList.length < 2 ? <EmptyOutfit/>: null}
-          {outfitList.length < 3 ? <EmptyOutfit/>: null}
+          {outfits}
           <img style={arrowRightStyle} src={rightArrow} />
         </div>
       </div>
