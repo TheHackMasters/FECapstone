@@ -1,20 +1,23 @@
 import React, { useState } from 'react';
 
-function Card() {
-  const [product, productChange] = useState({
-    imageSrc: 'https://images.unsplash.com/photo-1532332248682-206cc786359f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=689&q=80',
-    imgAlt: './',
-    category: 'JACKETS',
-    name: 'Lightweight Weather-Resist Bomber',
-    price: '$64',
-  });
+function Card(props) {
+  const [product, productChange] = useState(props.product);
+  //console.log(props.product);
 
+  //to be passed in a props, isRecommended will be star, outfits will be x
+  var isRecommended = props.isRecc;
+  const [topRightIcon, setTopRightIcon] = useState(isRecommended ? '☆' : 'X');
+  const [topRightClicked, setTopRightClicked] = useState(false);
+
+
+  //Styles ----------------------------------------------
   const cardStyle = {
     border: '2px solid #D3D3D3',
-    marginRight: '24px',
+    marginRight: '36px',
   };
 
   const cardImgStyle = {
+    position: 'relative',
     width: '235px',
     height: '225px',
     objectFit: 'cover',
@@ -41,22 +44,39 @@ function Card() {
   };
 
   const imageStyle = {
+    display: 'flex',
     width: '235px',
     height: '225px',
     objectFit: 'cover',
   };
 
-  const buttonStyle = {
-    position: 'absolute',
+  const buttonStyleDefault = {
     backgroundColor: 'transparent',
     borderColor: 'transparent',
+    position: 'absolute',
+    top: '3%',
+    right: '3%',
+    color: 'white',
+    fontSize: '12px',
+    fontWeight: 'bold',
+  };
+
+  const buttonStyleClicked = {
+    backgroundColor: 'transparent',
+    borderColor: 'transparent',
+    position: 'absolute',
+    top: '3%',
+    right: '3%',
+    color: 'pink',
+    fontSize: '12px',
+    fontWeight: 'bold',
   };
 
   return (
     <div className="card" style={cardStyle}>
       <div style={cardImgStyle}>
         <img style={imageStyle} src={product.imageSrc} alt={product.imgAlt} />
-        <button type="submit" style={buttonStyle}>☆</button>
+        <button type="submit" onClick={(e)=> setTopRightClicked(!topRightClicked)} style={topRightClicked ? buttonStyleClicked : buttonStyleDefault}>{topRightIcon}</button>
       </div>
       <div style={cardInfo}>
         <div style={cardT2}>{product.category}</div>
