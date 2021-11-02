@@ -72,7 +72,13 @@ function Card(props) {
     <div className="card" style={cardStyle}>
       <div style={cardImgStyle}>
         <img style={imageStyle} src={product.imageSrc} alt={product.imgAlt} />
-        <button type="submit" onClick={(e) => setTopRightClicked(!topRightClicked)} style={topRightClicked ? buttonStyleClicked : buttonStyleDefault}>{topRightIcon}</button>
+        {topRightClicked
+        ? <button type="submit"
+        onClick={(e, id) => setTopRightClicked(!topRightClicked)}
+        style={buttonStyleClicked} >{topRightIcon}</button>
+        : <button type="submit"
+        onClick={(e, id) => setTopRightClicked(!topRightClicked)}
+        style={buttonStyleDefault} >{topRightIcon}</button>}
       </div>
       <div style={cardInfo}>
         <div style={cardT2}>{product.category}</div>
