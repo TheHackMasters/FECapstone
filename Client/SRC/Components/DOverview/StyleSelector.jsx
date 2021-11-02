@@ -25,6 +25,7 @@ height: 100px;
 width: 100px;
 background-repeat: no-repeat;
 background-position: center;
+cursor:pointer;
 `;
 
 function StyleSelector(props) {
