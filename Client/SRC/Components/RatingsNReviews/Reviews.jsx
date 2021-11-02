@@ -3,8 +3,15 @@ import styled from 'styled-components';
 import dummydata from './dummydata.js';
 import ReviewCard from './ReviewCard.jsx';
 
-const Reviews = () => {
+const Reviews = (props) => {
   const [data, setData] = useState(dummydata);
+
+  let reviewsArray = [];
+  if (props.reviews !== undefined) {
+    const { reviews } = props;
+    console.log(reviews.reviews, 'inside');
+    reviewsArray = reviews.reviews
+  }
 
   return (
 
@@ -17,7 +24,7 @@ const Reviews = () => {
         <div className="reviews">
           <div>248 reviews, sorted by relevance</div>
 
-          {data.dummydata.results.map((review, index) => (
+          {reviewsArray.map((review, index) => (
 
             <ReviewCard
               review={review}
