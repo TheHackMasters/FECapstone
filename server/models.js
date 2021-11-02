@@ -61,7 +61,7 @@ module.exports = {
       Authorization: git.tokens.gitToken,
 
     },
-    params: {page, count, sort, product_id },
+    params: { product_id },
   }),
 
   getProdReviewsMeta: (product_id = 61575) => axios({
