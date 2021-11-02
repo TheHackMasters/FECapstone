@@ -6,7 +6,7 @@ import {Input, Container} from './styles/SearchBar.style.js'
 import {LoadMoreButton, AddMoreQuestion} from './styles/Button.style.js';
 import posts from './data/data.js';
 
-if (process.env.NODE_ENV !== 'test') ReactModal.setAppElement('#app');
+if (process.env.NODE_ENV !== 'test') Modal.setAppElement('#app');
 
 const Search = () => {
 
@@ -74,15 +74,17 @@ const Search = () => {
                   backgroundColor: 'grey'
                 },
                 content: {
-                  color: 'red'
-                }
+                  position: 'fixed',
+                  height: '500px',
+                  width: '500px'
+                },
               }
             }
           >
             <h2>Modal title</h2>
             <p>Modal body</p>
             <div>
-              <button onClick={() => setModalIsOpen(false)}>Close</button>
+              <button onClick={() => setModalIsOpen(false)}>X</button>
             </div>
           </Modal>
         </React.Fragment>
