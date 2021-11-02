@@ -11,9 +11,8 @@ const Search = () => {
   const [search, setSearch] = useState('');
   let isFull = true;
 
-  // const handleSubmit = (event) => {
-  //   setSearchTerm(event.target.value)
-  // }
+  const [questionList, setQuestionList] = useState([]);
+
   const filteredList = posts.filter(post => {
     if (search === '') {
       isFull = false;
@@ -25,13 +24,23 @@ const Search = () => {
     }
   })
 
-  const newList = filteredList.map(post =>
+  const newList = filteredList.slice(0,2).map(post =>
       <li key={post.id}>
         Q: {post.question}
         <br></br>
         A: {post.answer}
       </li>
     )
+
+  const restList = filteredList.slice(2).map(post =>
+      <li key={post.id}>
+        Q: {post.question}
+        <br></br>
+        A: {post.answer}
+      </li>
+  )
+
+  const handleClick = () => setQuestionList(restList);
 
   return (
     <>
@@ -51,11 +60,13 @@ const Search = () => {
         }
         <div>
         {
-          isFull && <LoadMoreButton>LOAD MORE QUESTIONS</LoadMoreButton>
+          isFull ? questionList : ''
+        }
+        {
+          isFull && <LoadMoreButton onClick={handleClick}>LOAD MORE QUESTIONS</LoadMoreButton>
         }
         </div>
       </ul>
-      {/* <LoadMoreButton>LOAD MORE QUESTIONS</LoadMoreButton> */}
     </>
   )
 }
