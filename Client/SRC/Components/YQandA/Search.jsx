@@ -64,7 +64,7 @@ const Search = () => {
         <React.Fragment>
           <LoadMoreButton onClick={handleClick}>MORE ANSWERED QUESTIONS</LoadMoreButton>
           <AddMoreQuestion onClick={() => setModalIsOpen(true)}>ADD A QUESTION</AddMoreQuestion>
-          <Modal isOpen={modalIsOpen}>
+          <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
             <h2>Modal title</h2>
             <p>Modal body</p>
             <div>
