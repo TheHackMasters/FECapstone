@@ -31,13 +31,10 @@ padding-left: 10px;
 `;
 
 function ProductInfo(props) {
-  console.log(props);
   const { details } = props;
-  const {
+  let {
     id, slogan, description, features,
   } = details;
-  console.log(details);
-  console.log(features);
 
   return (
     <ProdInfoOrient id="prodinfo">
@@ -50,14 +47,17 @@ function ProductInfo(props) {
         </StyledParagraph>
       </Seperator1>
       <Seperator2>
-        {features.map((feature) => (
-          <StyledList>
-            {feature.feature}
-            :
-            {' '}
-            {feature.value}
-          </StyledList>
-        ))}
+        {features.map((feature) => {
+          id += 1;
+          return (
+            <StyledList key={id}>
+              {feature.feature}
+              :
+              {' '}
+              {feature.value}
+            </StyledList>
+          );
+        })}
       </Seperator2>
     </ProdInfoOrient>
   );

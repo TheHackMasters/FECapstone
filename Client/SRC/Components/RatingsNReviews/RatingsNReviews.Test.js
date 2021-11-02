@@ -15,7 +15,9 @@ const RatingsNReviewsTest = () => {
   it('should display a Review Card', () => {
     render(<RatingsNReviews />);
 
-    expect(screen.getByDisplayValue('review')).toBeInTheDocument();
+    expect(screen.getByDisplayValue('Reviews')).toBeInTheDocument();
+    expect(screen.getByDisplayValue('Ratings')).toBeInTheDocument();
+
   });
 };
 

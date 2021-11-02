@@ -1,23 +1,44 @@
+/* eslint-disable no-unused-expressions */
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 import Ratings from './Ratings.jsx';
 import Reviews from './Reviews.jsx';
 
-const RatingsNReviews = () => (
-  <>
-    <h1> Hello From Ratings And Reviews </h1>
+const RatingsNReviews = () => {
+  const [meta, setMeta] = useState();
+  const [reviews, setReviews] = useState();
 
-    <div className="RatingsNReviews">
-      <MainSection>
+  useEffect(() => {
+    axios.get('/reviews/meta')
+      .then((results) => {
+        setMeta({ data: results.data });
+      })
+      .catch((error) => { console.log(error); }),
 
-        <Ratings />
-        <Reviews />
-      </MainSection>
+    axios.get('/reviews')
+      .then((results) => {
+        setReviews({ reviews: results.data.results });
+      })
+      .catch((error) => { console.log(error); });
+  }, []);
 
-    </div>
+  return (
+    <>
 
-  </>
-);
+      <div className="RatingsNReviews">
+        <MainSection>
+
+          <Ratings meta={meta} />
+          <Reviews reviews={reviews} />
+        </MainSection>
+
+      </div>
+
+    </>
+
+  );
+};
 
 export default RatingsNReviews;
 
@@ -30,4 +51,3 @@ grid-template-rows: repeat(8, 100px);
 justify-items: center;
 
 `;
-

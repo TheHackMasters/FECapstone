@@ -2,15 +2,11 @@ import React, { useState } from 'react';
 
 function Card(props) {
   const [product, productChange] = useState(props.product);
-  //console.log(props.product);
 
-  //to be passed in a props, isRecommended will be star, outfits will be x
   var isRecommended = props.isRecc;
   const [topRightIcon, setTopRightIcon] = useState(isRecommended ? '☆' : 'X');
   const [topRightClicked, setTopRightClicked] = useState(false);
 
-
-  //Styles ----------------------------------------------
   const cardStyle = {
     border: '2px solid #D3D3D3',
     marginRight: '36px',
@@ -76,7 +72,7 @@ function Card(props) {
     <div className="card" style={cardStyle}>
       <div style={cardImgStyle}>
         <img style={imageStyle} src={product.imageSrc} alt={product.imgAlt} />
-        <button type="submit" onClick={(e)=> setTopRightClicked(!topRightClicked)} style={topRightClicked ? buttonStyleClicked : buttonStyleDefault}>{topRightIcon}</button>
+        <button type="submit" onClick={(e) => setTopRightClicked(!topRightClicked)} style={topRightClicked ? buttonStyleClicked : buttonStyleDefault}>{topRightIcon}</button>
       </div>
       <div style={cardInfo}>
         <div style={cardT2}>{product.category}</div>

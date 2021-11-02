@@ -22,9 +22,8 @@ padding-left: 1em;
 `;
 
 function Overview(props) {
-  console.log('should change', props);
+  // console.log('should change', props);
   let {data, styles} = props;
-  console.log(data);
 
   return (
     <ComponentWrapper id="overview">

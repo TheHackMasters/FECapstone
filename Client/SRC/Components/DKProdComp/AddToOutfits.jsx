@@ -1,8 +1,8 @@
 import React from 'react';
 
 function AddToOutfits(props) {
-  //STYLES -----------------------------------------------------
-  const greyPlus = 'https://lh3.googleusercontent.com/proxy/YI7mxgIyxxEPNe6yYJeXVzcZBDItYF_P4QJybclZiNrE2Y7Xga88ONbNyxroqLBAlyD_nizK4rrKTOpGKKqinZkQ37MWEDE';
+  // STYLES -----------------------------------------------------
+  const greyPlus = 'https://lh3.googleusercontent.com/proxy/zhMnmKp7jLBkDa-NjavKzVj9PTD6US2EKS0ToDPvRkNks-Yi-DY45x-g80tsXkbLKbo0diJ3gmqr2FGqHV6bQRN-GiczniubJbExT35AvUUrw4qT_h3wiN9Tsz1bOlftWPW5';
   const cardT2 = {
     textAlign: 'center',
     color: 'grey',
@@ -32,10 +32,10 @@ function AddToOutfits(props) {
     margin: 'auto',
   };
 
-  return(
+  return (
     <div className="card" style={cardStyle}>
       <div style={cardImgStyle}>
-        <img style={imageStyle} src={greyPlus} alt='grey plus' />
+        <img style={imageStyle} src={greyPlus} alt="grey plus" />
       </div>
       <div style={cardInfo}>
         <div style={cardT2}>Add to your outfits</div>

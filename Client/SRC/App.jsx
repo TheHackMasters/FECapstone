@@ -9,8 +9,6 @@ import QAMain from './Components/YQandA/QAMain.jsx';
 
 import dummyOverview from './Components/DOverview/dummydata.js';
 
-console.log(dummyOverview);
-
 function App(props) {
   // example of using a hook for state
   const [count, setCount] = useState(0);
