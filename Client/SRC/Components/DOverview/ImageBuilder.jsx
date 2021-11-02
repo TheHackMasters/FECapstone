@@ -96,7 +96,7 @@ width: 100px;
 function ImageBuilder(props) {
   return (
     <div>
-      <ProdImage>
+      <ProdImage id="imagebuilder">
         <StyledButton />
         <StyledLeftA>🡸</StyledLeftA>
         <StyledRightA>🡺</StyledRightA>
