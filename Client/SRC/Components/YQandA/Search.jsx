@@ -3,15 +3,17 @@ import React, {useState} from 'react';
 import {Input, Container} from './styles/SearchBar.style.js'
 import SearchIcon from '@mui/icons-material/Search';
 import posts from './data/data.js';
-import {LoadMoreButton} from './styles/LoadMoreQ.style.js'
+import {LoadMoreButton, AddMoreQuestion} from './styles/Button.style.js';
+import Modal from 'react-modal';
 
 
 const Search = () => {
 
   const [search, setSearch] = useState('');
-  let isFull = true;
-
   const [questionList, setQuestionList] = useState([]);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  let isFull = true;
 
   const filteredList = posts.filter(post => {
     if (search === '') {
@@ -55,15 +57,21 @@ const Search = () => {
         />
       </Container>
       <ul>
-        {
-          isFull && newList
-        }
+        {isFull && newList}
         <div>
-        {
-          isFull ? questionList : ''
-        }
-        {
-          isFull && <LoadMoreButton onClick={handleClick}>LOAD MORE QUESTIONS</LoadMoreButton>
+        {isFull ? questionList : ''}
+        {isFull &&
+        <React.Fragment>
+          <LoadMoreButton onClick={handleClick}>MORE ANSWERED QUESTIONS</LoadMoreButton>
+          <AddMoreQuestion onClick={() => setModalIsOpen(true)}>ADD A QUESTION</AddMoreQuestion>
+          <Modal isOpen={modalIsOpen}>
+            <h2>Modal title</h2>
+            <p>Modal body</p>
+            <div>
+              <button onClick={() => setModalIsOpen(false)}>Close</button>
+            </div>
+          </Modal>
+        </React.Fragment>
         }
         </div>
       </ul>
