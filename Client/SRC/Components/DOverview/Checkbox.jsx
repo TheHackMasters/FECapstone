@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 const StyledCheckbox = styled.input`
 position: absolute;
-top: 10px;
-right: 10px;
+top: 1em;
+right: 1em;
 cursor:pointer;
 `;
 

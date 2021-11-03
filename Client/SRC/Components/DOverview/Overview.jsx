@@ -23,7 +23,8 @@ padding-left: 1em;
 
 function Overview(props) {
   // console.log('should change', props);
-  let {data, styles} = props;
+  const {data, styles} = props;
+  // console.log('s', styles);
 
   return (
     <ComponentWrapper id="overview">
@@ -32,13 +33,13 @@ function Overview(props) {
         <ImageBuilder styles={styles} />
         <div>
           <SubComponentOrientation id="ratingname">
-            <RatingName details={data} />
+            <RatingName data={data} styles={styles} />
           </SubComponentOrientation>
           <SubComponentOrientation id="styleselector">
             <StyleSelector styles={styles} />
           </SubComponentOrientation>
           <SubComponentOrientation id="cartbuilder">
-            <CartBuilder />
+            <CartBuilder styles={styles} />
           </SubComponentOrientation>
         </div>
       </ComponentOrientation>

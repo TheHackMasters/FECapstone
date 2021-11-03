@@ -35,6 +35,7 @@ function ProductInfo(props) {
   let {
     id, slogan, description, features,
   } = details;
+  // console.log(id);
 
   return (
     <ProdInfoOrient id="prodinfo">

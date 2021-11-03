@@ -13,6 +13,16 @@ font-weight: bolder;
 `;
 
 function RatingName(props) {
+  // console.log('RnN', props);
+  const { data, styles } = props;
+  const [prodName, setProdName] = useState(data.name);
+  const [stylePrice, setStylePrice] = useState(data.default_price);
+
+  useEffect(() => {
+    setProdName(data.name);
+    setStylePrice(data.default_price);
+  }, [props]);
+
   return (
     <div>
       <div>
@@ -20,9 +30,12 @@ function RatingName(props) {
         <a href="#Ratings">Read All Reviews</a>
       </div>
       <StyleOrientation>
-        <span>Scattergories</span>
-        <StyleName>This will be a Styled Product Name</StyleName>
-        <span>$1,000,000</span>
+        <span>{data.category}</span>
+        <StyleName>{prodName}</StyleName>
+        <span>
+          $
+          {stylePrice}
+        </span>
       </StyleOrientation>
     </div>
   );
