@@ -72,7 +72,7 @@ function RIAC() {
       category: 'TEES',
       name: 'LSKD.CO Collab Tee - FIRST',
       price: '$32',
-      id: 1,
+      id: 11,
     },
     {
       imageSrc:
@@ -81,30 +81,21 @@ function RIAC() {
       category: 'JACKETS',
       name: 'Lightweight Tether-Resist Bomber - SECOND',
       price: '$64',
-      id: 2,
+      id: 12,
     },
   ]);
 
-  const outfits = [];
-  for (let n = idxOutfit; n < (outfitList.length < 3 ? 3 : outfitList.length); n++) {
-    if (outfitList[n] === undefined) {
-      outfits.push(<EmptyOutfit />);
-    } else {
-      outfits.push(
-        <Card key={outfitList[n].id} products={outfitList[n]} isRecc={false} />
-      );
-    }
-  }
 
   const clickX = (product) => {
     let idx = -1;
+    console.log('clicked ', product);
     for (let n = 0; n < outfitList.length; n++) {
       if (product.id === outfitList[n].id) {
         idx = n;
       }
     }
     if (idx > -1) {
-      setOutfitList([...outfitList.slice(0, idx), ...outfitList(idx + 1, outfitList.length)]);
+      setOutfitList([...outfitList.slice(0, idx), ...outfitList.slice(idx + 1, outfitList.length)]);
       if (idx > idxOutfit) {
         setIdxOutfit(idxOutfit - 1);
       }
@@ -112,12 +103,39 @@ function RIAC() {
   };
 
   const clickStar = (product) => {
+    console.log('clicked star', product);
+    console.log('product id, ', product.id);
+    let notAlready = true;
     outfitList.forEach((item) => {
+      console.log('item id', item.id);
       if (item.id === product.id) {
-        setOutfitList([item, ...outfitList]);
+        notAlready = false;
       }
     });
+    if (notAlready) {
+      setOutfitList([product, ...outfitList]);
+      if (idxOutfit > 0) {
+        setIdxOutfit(idxOutfit - 1);
+      }
+    }
   };
+
+  const outfits = [];
+  for (let n = idxOutfit; n < (outfitList.length < 3 ? 3 : outfitList.length); n++) {
+    if (outfitList[n] === undefined) {
+      outfits.push(<EmptyOutfit />);
+    } else {
+      outfits.push(
+        <Card
+          key={outfitList[n].id}
+          products={outfitList[n]}
+          isRecc={false}
+          clickX={clickX}
+          clickStar={clickStar}
+        />,
+      );
+    }
+  }
 
   const nextSlideRecc = () => {
     setIdxRecc(idxRecc + 3 === reccList.length - 1 ? idxRecc : idxRecc + 1);

@@ -5,7 +5,7 @@ function Card(props) {
 
   var isRecommended = props.isRecc;
   const [topRightIcon, setTopRightIcon] = useState(isRecommended ? '☆' : 'X');
-  const [topRightClicked, setTopRightClicked] = useState(false);
+  const [topRightClicked, setTopRightClicked] = useState(props.isRecc);
 
   const cardStyle = {
     border: '2px solid #D3D3D3',
@@ -74,10 +74,18 @@ function Card(props) {
         <img style={imageStyle} src={product.imageSrc} alt={product.imgAlt} />
         {topRightClicked
         ? <button type="submit"
-        onClick={(e, id) => setTopRightClicked(!topRightClicked)}
+        onClick={() => {
+          setTopRightClicked(!topRightClicked)
+          props.clickStar(product);
+        }
+      }
         style={buttonStyleClicked} >{topRightIcon}</button>
         : <button type="submit"
-        onClick={(e, id) => setTopRightClicked(!topRightClicked)}
+        onClick={(e, id) => {
+          setTopRightClicked(!topRightClicked)
+          props.clickX(product);
+        }
+      }
         style={buttonStyleDefault} >{topRightIcon}</button>}
       </div>
       <div style={cardInfo}>
