@@ -4,13 +4,14 @@ import dummydata from './dummydata.js';
 import ReviewCard from './ReviewCard.jsx';
 
 const Reviews = (props) => {
-  const [data, setData] = useState(dummydata);
+  // const [data, setData] = useState(dummydata);
+  const [reviewCount, setReviewCount] = useState(2);
 
   let reviewsArray = [];
   if (props.reviews !== undefined) {
     const { reviews } = props;
-    console.log(reviews.reviews, 'inside');
-    reviewsArray = reviews.reviews
+    // console.log(reviews.reviews, 'inside');
+    reviewsArray = reviews.reviews;
   }
 
   return (
@@ -25,16 +26,20 @@ const Reviews = (props) => {
           <div>248 reviews, sorted by relevance</div>
 
           {reviewsArray.map((review, index) => (
+            (index < reviewCount
+              && (
+              <ReviewCard
+                review={review}
+                index={index}
+              />
+              )
 
-            <ReviewCard
-              review={review}
-              index={index}
-            />
+            )
 
           ))}
 
           <div>
-            <MoreReviews>MORE REVIEWS</MoreReviews>
+            <MoreReviews onClick={()=>{setReviewCount(reviewCount + 2)}}>MORE REVIEWS</MoreReviews>
             <AddReview>ADD A REVIEW +</AddReview>
           </div>
 
