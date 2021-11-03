@@ -165,45 +165,58 @@ function RIAC() {
     borderColor: 'transparent',
   };
 
+  const spacer = {
+    width: '50px',
+    padding: '48px',
+  };
+
   return (
     <div style={setMiddle}>
       <div className="recommended">
         <div style={title1}>RECOMMENDED</div>
         <div style={carouselStyle}>
-        <button style={arrowButtonStyle}><img
-            style={arrowLeftStyle}
-            alt="left arrow"
-            src={leftArrow}
-            onClick={prevSlideRecc}
+        {idxRecc === 0 ? <div style={spacer}></div> :
+          <button style={arrowButtonStyle}><img
+          style={arrowLeftStyle}
+          alt="left arrow"
+          src={leftArrow}
+          onClick={prevSlideRecc}
           /></button>
+        }
           {reccList.slice(idxRecc, idxRecc + 4).map((reccProduct) => (
             <Card key={reccProduct.id} product={reccProduct} isRecc={true} />
           ))}
+          {idxRecc === reccList.length - 4 ? null :
           <button style={arrowButtonStyle}><img
             style={arrowRightStyle}
             alt="right arrow"
             src={rightArrow}
             onClick={nextSlideRecc}
           /></button>
+          }
         </div>
       </div>
       <div className="outfits">
         <div style={title1}>OUTFITS</div>
         <div style={carouselStyle}>
+        {idxOutfit === 0 ? <div style={spacer}/> :
         <button style={arrowButtonStyle}><img
             style={arrowLeftStyle}
             alt="left arrow"
             src={leftArrow}
             onClick={prevSlideOutfit}
           /></button>
+        }
           <AddToOutfitsCard currProduct={currProduct} outfitList={outfitList} />
           {outfits}
+          {idxOutfit >= outfitList.length - 3 ? <div style={spacer}/> :
           <button style={arrowButtonStyle}><img
             style={arrowRightStyle}
             alt="right arrow"
             src={rightArrow}
             onClick={nextSlideOutfit}
           /></button>
+          }
         </div>
       </div>
     </div>
