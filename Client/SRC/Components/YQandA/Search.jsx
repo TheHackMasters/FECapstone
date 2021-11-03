@@ -13,7 +13,7 @@ const Search = () => {
   const [search, setSearch] = useState('');
   const [questionList, setQuestionList] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
-
+  const [modalInput, setModalInput] = useState('')
   let isFull = true;
 
   const filteredList = posts.filter(post => {
@@ -45,9 +45,7 @@ const Search = () => {
 
   const handleClick = () => setQuestionList(restList);
 
-  const openModal = () => {
-    setModalIsOpen(prev => !prev)
-  }
+  const openModal = () => setModalIsOpen(prev => !prev);
 
   return (
     <>
