@@ -7,16 +7,16 @@ function RIAC() {
   let [idxRecc, setIdxRecc] = useState(0);
   let [idxOutfit, setIdxOutfit] = useState(0);
 
+
   const [currProduct, setCurrProduct] = useState({
     imageSrc:
-      'https://images.unsplash.com/photo-1618453292459-53424b66bb6a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=764&q=80',
+      'https://images.unsplash.com/photo-1572495673508-62a6b369c380?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80',
     imgAlt: './',
-    category: 'TEES',
-    name: 'LSKD.CO Collab Tee - FIRST',
-    price: '$32',
-    id: 1,
+    category: 'JACKETS',
+    name: 'LOCATION FOUND Hoodie - FIRST',
+    price: '$92',
+    id: 111,
   });
-
   const [reccList, setReccList] = useState([
     {
       imageSrc:
@@ -47,16 +47,16 @@ function RIAC() {
     },
     {
       imageSrc:
-        'https://images.unsplash.com/photo-1618453292459-53424b66bb6a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=764&q=80',
+        'https://images.unsplash.com/photo-1552337557-45792b252a2e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80',
       imgAlt: './',
       category: 'TEES',
-      name: 'LSKD.CO Collab Tee - FOURTH',
-      price: '$32',
+      name: 'Deep-Dive, Reflective Sunglasses - FOURTH',
+      price: '$52',
       id: 4,
     },
     {
       imageSrc:
-        'https://images.unsplash.com/photo-1532332248682-206cc786359f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=689&q=80',
+        'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80',
       imgAlt: './',
       category: 'JACKETS',
       name: 'Lightweight Tether-Resist Bomber - LAST',
@@ -67,10 +67,10 @@ function RIAC() {
   const [outfitList, setOutfitList] = useState([
     {
       imageSrc:
-        'https://images.unsplash.com/photo-1618453292459-53424b66bb6a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=764&q=80',
+        'https://images.unsplash.com/photo-1552337557-45792b252a2e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80',
       imgAlt: './',
       category: 'TEES',
-      name: 'LSKD.CO Collab Tee - FIRST',
+      name: 'Reflective Sunglasses - FIRST',
       price: '$32',
       id: 11,
     },
@@ -85,6 +85,15 @@ function RIAC() {
     },
   ]);
 
+  let [addedCurrentOutfit, setAddedCurrentOutfit] = useState(() => {
+    let isIncluded = false;
+    outfitList.forEach((item) => {
+      if (currProduct.id === item.id) {
+        isIncluded = true;
+      }
+    });
+    return isIncluded;
+  });
 
   const clickX = (product) => {
     let idx = -1;
@@ -95,19 +104,22 @@ function RIAC() {
       }
     }
     if (idx > -1) {
+      console.log('removing from idx: ', idx);
+      console.log('idxOutfit is :', idxOutfit);
       setOutfitList([...outfitList.slice(0, idx), ...outfitList.slice(idx + 1, outfitList.length)]);
-      if (idx > idxOutfit) {
+      if (idxOutfit > idx) {
         setIdxOutfit(idxOutfit - 1);
       }
+      // setOutfitList(outfitList.filter((item) => item !== undefined));
     }
   };
 
   const clickStar = (product) => {
-    console.log('clicked star', product);
-    console.log('product id, ', product.id);
+    //console.log('clicked star', product);
+    //console.log('product id, ', product.id);
     let notAlready = true;
     outfitList.forEach((item) => {
-      console.log('item id', item.id);
+      //console.log('item id', item.id);
       if (item.id === product.id) {
         notAlready = false;
       }
@@ -119,9 +131,9 @@ function RIAC() {
       }
     }
   };
-
+// (outfitList.length < 3 ? 3 : outfitList.length)
   const outfits = [];
-  for (let n = idxOutfit; n < (outfitList.length < 3 ? 3 : outfitList.length); n++) {
+  for (let n = idxOutfit; n < 3; n++) {
     if (outfitList[n] === undefined) {
       outfits.push(<EmptyOutfit />);
     } else {
@@ -246,7 +258,17 @@ function RIAC() {
             onClick={prevSlideOutfit}
           /></button>
         }
-          <AddToOutfitsCard currProduct={currProduct} outfitList={outfitList} />
+          {addedCurrentOutfit ? <Card
+              key={reccProduct.id}
+              products={reccProduct}
+              isRecc={true}
+              clickX={clickX}
+              clickStar={clickStar}
+            /> :
+          <AddToOutfitsCard
+          currProduct={currProduct}
+          clickStar={clickStar}
+          />}
           {outfits}
           {idxOutfit >= outfitList.length - 3 ? <div style={spacer} /> :
           <button style={arrowButtonStyle}><img

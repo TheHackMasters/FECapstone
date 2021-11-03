@@ -3,8 +3,7 @@ import React, { useState } from 'react';
 function Card(props) {
   const [product, productChange] = useState(props.products);
 
-  var isRecommended = props.isRecc;
-  const [topRightIcon, setTopRightIcon] = useState(isRecommended ? '☆' : 'X');
+  const [topRightIcon, setTopRightIcon] = useState(props.isRecc ? '☆' : 'X');
   const [topRightClicked, setTopRightClicked] = useState(props.isRecc);
 
   const cardStyle = {
@@ -79,14 +78,14 @@ function Card(props) {
           props.clickStar(product);
         }
       }
-        style={buttonStyleClicked} >{topRightIcon}</button>
+        style={buttonStyleDefault} >{topRightIcon}</button>
         : <button type="submit"
         onClick={(e, id) => {
           setTopRightClicked(!topRightClicked)
           props.clickX(product);
         }
       }
-        style={buttonStyleDefault} >{topRightIcon}</button>}
+        style={buttonStyleClicked} >{topRightIcon}</button>}
       </div>
       <div style={cardInfo}>
         <div style={cardT2}>{product.category}</div>

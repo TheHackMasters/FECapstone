@@ -2,7 +2,7 @@ import React from 'react';
 
 function AddToOutfitsCard(props) {
   // STYLES -----------------------------------------------------
-  const greyPlus = 'https://lh3.googleusercontent.com/proxy/zhMnmKp7jLBkDa-NjavKzVj9PTD6US2EKS0ToDPvRkNks-Yi-DY45x-g80tsXkbLKbo0diJ3gmqr2FGqHV6bQRN-GiczniubJbExT35AvUUrw4qT_h3wiN9Tsz1bOlftWPW5';
+  const greyPlus = 'https://images.squarespace-cdn.com/content/v1/56e19ec5e3214084d69d4b7d/1473524254173-BGV5W2Z5FM46F67SYZHJ/PlusIcon_Small_Gray.png';
   const cardT2 = {
     textAlign: 'center',
     color: 'grey',
@@ -17,7 +17,7 @@ function AddToOutfitsCard(props) {
   };
   const cardImgStyle = {
     width: '235px',
-    height: '225px',
+    height: '235px',
     objectFit: 'cover',
     marginTop: '80px',
   };
@@ -33,7 +33,11 @@ function AddToOutfitsCard(props) {
   };
 
   return (
-    <div className="card" style={cardStyle}>
+    <div
+      className="card"
+      style={cardStyle}
+      onClick={()=> props.clickStar(props.currProduct)}
+      >
       <div style={cardImgStyle}>
         <img style={imageStyle} src={greyPlus} alt="grey plus" />
       </div>
