@@ -1,22 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import MiniImageBuilder from './MiniImageBuilder.jsx';
 
-const ProdImage = styled.div`
-position: relative;
-display:flex;
-flex-direction:column;
-border: solid;
-background-image: url("http://placecorgi.com/600/600");
-background-repeat: no-repeat;
-width: 600px;
-height: 600px;
-`;
-
-const MiniImageWrapper = styled.div`
-position: relative;
-height: 100px;
-width: 100px;
-padding: 10px;
+const ScrollWrapper = styled.div`
+position: relative,
+display: flex,
+flexDirection: column,
+height: 30em;
+overflow: auto;
 `;
 
 const UpDownWrapper = styled.div`
@@ -24,15 +15,6 @@ position: relative;
 height: 30px;
 width: 100px;
 padding: 10px;
-`;
-
-const MiniImage = styled.div`
-background-image: url("http://placecorgi.com/100/100");
-height: 100px;
-width: 100px;
-border: solid;
-background-repeat: no-repeat;
-background-position: center;
 `;
 
 const StyledButton = styled.button`
@@ -94,28 +76,48 @@ width: 100px;
 `;
 
 function ImageBuilder(props) {
+  const { styles } = props;
+  const { results } = styles;
+  // console.log(styles);
+
+  const ProdImage = {
+    position: 'relative',
+    display: 'flex',
+    flexDirection: 'column',
+    border: 'solid',
+    backgroundImage: `url(${results[0].photos[0].url})`,
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    width: '40em',
+    height: '40em',
+  };
+
+  let tempKey = 0;
+
   return (
     <div>
-      <ProdImage id="imagebuilder">
+      <div id="imagebuilder" style={ProdImage}>
         <StyledButton />
         <StyledLeftA>🡸</StyledLeftA>
         <StyledRightA>🡺</StyledRightA>
         <UpDownWrapper>
           <StyledUpDownA>˄</StyledUpDownA>
         </UpDownWrapper>
-        <MiniImageWrapper>
-          <MiniImage />
-        </MiniImageWrapper>
-        <MiniImageWrapper>
-          <MiniImage />
-        </MiniImageWrapper>
-        <MiniImageWrapper>
-          <MiniImage />
-        </MiniImageWrapper>
+        <ScrollWrapper class="scrollable">
+          {results[0].photos.map((style) => {
+            tempKey += 1;
+            return (
+              <MiniImageBuilder
+                style={style}
+                key={tempKey}
+              />
+            );
+          })}
+        </ScrollWrapper>
         <UpDownWrapper>
           <StyledUpDownA>˅</StyledUpDownA>
         </UpDownWrapper>
-      </ProdImage>
+      </div>
     </div>
   );
 }

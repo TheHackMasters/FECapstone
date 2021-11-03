@@ -17,6 +17,7 @@ function StyleSelectorBuilder(props) {
     border: 'solid',
     borderRadius: '5em',
     backgroundImage: `url(${style.photos[0].thumbnail_url})`,
+    backgroundSize: 'cover',
     height: '100%',
     width: '100%',
     backgroundRepeat: 'no-repeat',

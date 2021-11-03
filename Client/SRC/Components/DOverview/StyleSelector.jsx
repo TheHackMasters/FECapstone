@@ -9,11 +9,20 @@ flex-wrap: wrap;
 padding-bottom: 1em;
 `;
 
+const StyledSpan = styled.span`
+font-size: 1em;
+font-weight: bolder;
+padding-right: 1em;
+`;
+
 function StyleSelector(props) {
   const { styles } = props;
   const { results } = styles;
   // console.log('ss', styles);
   return (
+    <div>
+      <StyledSpan> STYLE > </StyledSpan>
+      <span className="selectedStyle">{results[0].name}</span>
     <StyleOrientation>
       {results.map((style) => (
         <StyleSelectorBuilder
@@ -22,6 +31,7 @@ function StyleSelector(props) {
         />
       ))}
     </StyleOrientation>
+    </div>
   );
 }
 
