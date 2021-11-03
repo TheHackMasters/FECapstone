@@ -31,21 +31,33 @@ padding-left: 10px;
 `;
 
 function ProductInfo(props) {
+  const { details } = props;
+  let {
+    id, slogan, description, features,
+  } = details;
+
   return (
     <ProdInfoOrient id="prodinfo">
       <Seperator1>
         <StyledHeading>
-          Child's Ice Cream Cone melts due to Long-Winded Speech
+          {slogan}
         </StyledHeading>
         <StyledParagraph>
-          Today, in the Ninth inning of the third round of the squeal-ball constest,
-          Lord Mayor Constantine the Third, Esquire, King, and Knight,
-          offered his condolences for wasting everybody's time.
+          {description}
         </StyledParagraph>
       </Seperator1>
       <Seperator2>
-        <StyledList>1000% GMO</StyledList>
-        <StyledList>Made with REAL Genuine Leather Substitute</StyledList>
+        {features.map((feature) => {
+          id += 1;
+          return (
+            <StyledList key={id}>
+              {feature.feature}
+              :
+              {' '}
+              {feature.value}
+            </StyledList>
+          );
+        })}
       </Seperator2>
     </ProdInfoOrient>
   );

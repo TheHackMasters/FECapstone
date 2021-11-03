@@ -15,8 +15,8 @@ const ReviewCard = ({ review, index }) => {
           {body}
         </p>
         <span> Helpful | ? </span>
-        <span> | Yes (7) </span>
-        <span> | No (3) </span>
+        <button> | Yes (7) </button>
+        <button> | No (3) </button>
         |
         <span> Report</span>
       </div>
