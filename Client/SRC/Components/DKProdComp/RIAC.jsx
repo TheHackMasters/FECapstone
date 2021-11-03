@@ -12,17 +12,18 @@ function RIAC() {
       'https://images.unsplash.com/photo-1618453292459-53424b66bb6a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=764&q=80',
     imgAlt: './',
     category: 'TEES',
-    name: 'LSKD.CO Collab Tee',
+    name: 'LSKD.CO Collab Tee - FIRST',
     price: '$32',
-    id: 0,
+    id: 1,
   });
+
   const [reccList, setReccList] = useState([
     {
       imageSrc:
         'https://images.unsplash.com/photo-1618453292459-53424b66bb6a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=764&q=80',
       imgAlt: './',
       category: 'TEES',
-      name: 'FIRST',
+      name: 'LSKD.CO Collab Tee - FIRST',
       price: '$32',
       id: 1,
     },
@@ -31,7 +32,7 @@ function RIAC() {
         'https://images.unsplash.com/photo-1532332248682-206cc786359f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=689&q=80',
       imgAlt: './',
       category: 'JACKETS',
-      name: 'SECOND',
+      name: 'Lightweight Tether-Resist Bomber - SECOND',
       price: '$64',
       id: 2,
     },
@@ -40,38 +41,29 @@ function RIAC() {
         'https://images.unsplash.com/photo-1618453292459-53424b66bb6a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=764&q=80',
       imgAlt: './',
       category: 'TEES',
-      name: 'THIRD',
+      name: 'LSKD.CO Collab Tee - Third',
       price: '$32',
       id: 3,
-    },
-    {
-      imageSrc:
-        'https://images.unsplash.com/photo-1532332248682-206cc786359f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=689&q=80',
-      imgAlt: './',
-      category: 'JACKETS',
-      name: 'FOURTH',
-      price: '$64',
-      id: 4,
     },
     {
       imageSrc:
         'https://images.unsplash.com/photo-1618453292459-53424b66bb6a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=764&q=80',
       imgAlt: './',
       category: 'TEES',
-      name: 'FIFTH',
+      name: 'LSKD.CO Collab Tee - FOURTH',
       price: '$32',
-      id: 5,
+      id: 4,
     },
     {
       imageSrc:
-        'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80',
+        'https://images.unsplash.com/photo-1532332248682-206cc786359f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=689&q=80',
       imgAlt: './',
-      category: 'JEANS',
-      name: 'LAST',
-      price: '$98',
-      id: 6,
+      category: 'JACKETS',
+      name: 'Lightweight Tether-Resist Bomber - LAST',
+      price: '$64',
+      id: 5,
     },
-  ]);
+  ]); // relatedData
   const [outfitList, setOutfitList] = useState([
     {
       imageSrc:
@@ -99,10 +91,33 @@ function RIAC() {
       outfits.push(<EmptyOutfit />);
     } else {
       outfits.push(
-        <Card key={outfitList[n].id} product={outfitList[n]} isRecc={false} />
+        <Card key={outfitList[n].id} products={outfitList[n]} isRecc={false} />
       );
     }
   }
+
+  const clickX = (product) => {
+    let idx = -1;
+    for (let n = 0; n < outfitList.length; n++) {
+      if (product.id === outfitList[n].id) {
+        idx = n;
+      }
+    }
+    if (idx > -1) {
+      setOutfitList([...outfitList.slice(0, idx), ...outfitList(idx + 1, outfitList.length)]);
+      if (idx > idxOutfit) {
+        setIdxOutfit(idxOutfit - 1);
+      }
+    }
+  };
+
+  const clickStar = (product) => {
+    outfitList.forEach((item) => {
+      if (item.id === product.id) {
+        setOutfitList([item, ...outfitList]);
+      }
+    });
+  };
 
   const nextSlideRecc = () => {
     setIdxRecc(idxRecc + 3 === reccList.length - 1 ? idxRecc : idxRecc + 1);
@@ -184,14 +199,20 @@ function RIAC() {
           /></button>
         }
           {reccList.slice(idxRecc, idxRecc + 4).map((reccProduct) => (
-            <Card key={reccProduct.id} product={reccProduct} isRecc={true} />
+            <Card
+              key={reccProduct.id}
+              products={reccProduct}
+              isRecc={true}
+              clickX={clickX}
+              clickStar={clickStar}
+            />
           ))}
-          {idxRecc === reccList.length - 4 ? null :
-          <button style={arrowButtonStyle}><img
-            style={arrowRightStyle}
-            alt="right arrow"
-            src={rightArrow}
-            onClick={nextSlideRecc}
+          {idxRecc === reccList.length - 4 ? <div style={spacer} />
+            : <button style={arrowButtonStyle}><img
+              style={arrowRightStyle}
+              alt="right arrow"
+              src={rightArrow}
+              onClick={nextSlideRecc}
           /></button>
           }
         </div>
@@ -209,7 +230,7 @@ function RIAC() {
         }
           <AddToOutfitsCard currProduct={currProduct} outfitList={outfitList} />
           {outfits}
-          {idxOutfit >= outfitList.length - 3 ? <div style={spacer}/> :
+          {idxOutfit >= outfitList.length - 3 ? <div style={spacer} /> :
           <button style={arrowButtonStyle}><img
             style={arrowRightStyle}
             alt="right arrow"

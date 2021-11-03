@@ -16,15 +16,15 @@ function App(props) {
   const [overviewData, setOverviewData] = useState(dummyOverview.dummyOverview.data);
   const [overviewStyles, setOverviewStyles] = useState({});
   const [curProdId, setCurProdId] = useState(0);
+  const [relatedData, setRelatedData] = useState([]);
 
   useEffect(() => {
-    // testing parse
-    // console.log(Parse);
     axios.get('/products')
-      .then((data) => setCurProdId(data.data[0].id))
+      .then((data) => {
+        setAllData(data.data);
+        setCurProdId(data.data[0].id);
+      })
       .catch((err) => console.log(err));
-
-    // Parse.getStuff();
   }, [overviewData]);
 
   useEffect(() => {
@@ -35,13 +35,25 @@ function App(props) {
     axios.get(`/products/${curProdId}/styles`)
       .then((data) => setOverviewStyles(data.data))
       .catch((err) => console.log(err));
+
+    axios.get(`/products/${curProdId}/related`)
+      .then((data) => {
+        const arr = [];
+        allData.forEach((item) => {
+          if (data.data.includes(item.id)) {
+            arr.push(item);
+          }
+        });
+        setRelatedData([...arr]);
+      })
+      .catch((err) => console.log(err));
   }, [curProdId]);
 
   return (
     <div>
       <div>Hello World</div>
       <Overview data={overviewData} styles={overviewStyles} />
-      <RIAC />
+      <RIAC relatedData={relatedData} overviewData={overviewData} />
       <QAMain />
       <a name="Ratings" />
       <RatingsNReviews />
