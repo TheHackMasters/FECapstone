@@ -15,7 +15,7 @@ app.get('/products', (req, res) => {
   models.getAll()
     .then((results) => {
       res.status(200).send(results.data);
-      console.log(results.data, 'Hello World! here is some data ');
+      //console.log(results.data, 'Hello World! here is some data ');
       // res.render('./Client/DIST', { retrievedData: results });
     })
     .catch((error) => {
@@ -28,7 +28,7 @@ app.get('/products/:prodID', (req, res) => {
   models.getProdInfo(req.params.prodID)
     .then((results) => {
       res.status(200).send(results.data);
-      console.log(results.data, 'Hello World! here is some data ');
+      // console.log(results.data, 'Hello World! here is some data ');
     })
     .catch((error) => {
       res.status(400).send(error);
@@ -40,7 +40,7 @@ app.get('/products/:prodID/styles', (req, res) => {
   models.getProdStyles(req.params.prodID)
     .then((results) => {
       res.status(200).send(results.data);
-      console.log(results.data, 'Hello World! here is some data ');
+      // console.log(results.data, 'Hello World! here is some data ');
     })
     .catch((error) => {
       res.status(400).send(error);
@@ -52,7 +52,7 @@ app.get('/products/:prodID/related', (req, res) => {
   models.getProdRelated(req.params.prodID)
     .then((results) => {
       res.status(200).send(results.data);
-      console.log(results.data, 'Hello World! here is some data ');
+      // console.log(results.data, 'Hello World! here is some data ');
     })
     .catch((error) => {
       res.status(400).send(error);
@@ -74,7 +74,7 @@ app.get('/reviews', (req, res) => {
   models.getProdReviews()
     .then((results) => {
       res.status(200).send(results.data);
-      console.log(results.data, 'Hello World! here is some data ');
+      // console.log(results.data, 'Hello World! here is some data ');
     })
     .catch((error) => {
       res.status(400).send(error);
@@ -86,7 +86,7 @@ app.get('/reviews/meta', (req, res) => {
   models.getProdReviewsMeta()
     .then((results) => {
       res.status(200).send(results.data);
-      console.log(results.data, 'Hello World! here is some data ');
+      // console.log(results.data, 'Hello World! here is some data ');
     })
     .catch((error) => {
       res.status(400).send(error);
