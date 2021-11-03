@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 
 const ReviewCard = ({ review, index }) => {
   const { body, count, reviewer_name, summary, date } = review;
+  // const body = review.body
+
 
   return (
     <>
