@@ -17,8 +17,8 @@ import CancelIcon from '@mui/icons-material/Cancel';
 // `;
 
 const ModalWrapper = styled.div`
-  width: 800px;
-  height: 500px;
+  width: 400px;
+  height: 300px;
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
   background: #fff;
   color: #000;
@@ -30,12 +30,13 @@ const ModalWrapper = styled.div`
 `;
 
 const ModalContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  line-height: 1.8;
-  color: #141414;
+  position: absolute;
+  width: 60%;
+  background: #ffffff;
+  left: 10%;
+  right: 20%;
+  top: 15%;
+  padding: 20px;
 
   p {
     margin-bottom: 1rem;
