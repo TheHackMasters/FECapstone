@@ -14,7 +14,7 @@ function App(props) {
   const [count, setCount] = useState(0);
   const [allData, setAllData] = useState([]);
   const [overviewData, setOverviewData] = useState(dummyOverview.dummyOverview.data);
-  const [overviewStyles, setOverviewStyles] = useState({});
+  const [overviewStyles, setOverviewStyles] = useState(dummyOverview.dummyOverview.styles);
   const [curProdId, setCurProdId] = useState(0);
 
   useEffect(() => {
@@ -28,13 +28,15 @@ function App(props) {
   }, [overviewData]);
 
   useEffect(() => {
-    axios.get(`/products/${curProdId}`)
-      .then((data) => setOverviewData(data.data))
-      .catch((err) => console.log(err));
+    if (curProdId !== 0) {
+      axios.get(`/products/${curProdId}`)
+        .then((data) => setOverviewData(data.data))
+        .catch((err) => console.log(err));
 
-    axios.get(`/products/${curProdId}/styles`)
-      .then((data) => setOverviewStyles(data.data))
-      .catch((err) => console.log(err));
+      axios.get(`/products/${curProdId}/styles`)
+        .then((data) => setOverviewStyles(data.data))
+        .catch((err) => console.log(err));
+    }
   }, [curProdId]);
 
   return (

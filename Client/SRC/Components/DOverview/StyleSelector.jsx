@@ -1,48 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import StyleSelectorBuilder from './StyleSelectorBuilder.jsx';
 import Checkbox from './Checkbox.jsx';
 
-const StyleOrientation = styled.section`
+const StyleOrientation = styled.div`
 display:flex;
-flex-direction:row;
+flex-wrap: wrap;
 padding-bottom: 1em;
-height: auto;
-width: auto;
-`;
-
-const StylesWrapper = styled.div`
-position: relative;
-height: 100px;
-width: 100px;
-padding: 10px;
-`;
-
-const CircledStyles = styled.div`
-border: solid;
-border-radius: 5em;
-background-image: url("http://placecorgi.com/100/100");
-height: 100px;
-width: 100px;
-background-repeat: no-repeat;
-background-position: center;
-cursor:pointer;
 `;
 
 function StyleSelector(props) {
+  const { styles } = props;
+  const { results } = styles;
+  // console.log('ss', styles);
   return (
     <StyleOrientation>
-      <StylesWrapper>
-        <Checkbox />
-        <CircledStyles />
-      </StylesWrapper>
-      <StylesWrapper>
-        <Checkbox />
-        <CircledStyles />
-      </StylesWrapper>
-      <StylesWrapper>
-        <Checkbox />
-        <CircledStyles />
-      </StylesWrapper>
+      {results.map((style) => (
+        <StyleSelectorBuilder
+          style={style}
+          key={style.style_id}
+        />
+      ))}
     </StyleOrientation>
   );
 }
