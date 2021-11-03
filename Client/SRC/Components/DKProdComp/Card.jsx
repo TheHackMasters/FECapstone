@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 function Card(props) {
-  const [product, productChange] = useState(props.product);
+  const [product, productChange] = useState(props.products);
 
   var isRecommended = props.isRecc;
   const [topRightIcon, setTopRightIcon] = useState(isRecommended ? '☆' : 'X');

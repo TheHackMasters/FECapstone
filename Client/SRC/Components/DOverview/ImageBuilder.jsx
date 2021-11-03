@@ -103,7 +103,7 @@ function ImageBuilder(props) {
         <UpDownWrapper>
           <StyledUpDownA>˄</StyledUpDownA>
         </UpDownWrapper>
-        <ScrollWrapper class="scrollable">
+        <ScrollWrapper>
           {results[0].photos.map((style) => {
             tempKey += 1;
             return (
