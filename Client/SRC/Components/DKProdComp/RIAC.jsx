@@ -3,20 +3,22 @@ import Card from './Card.jsx';
 import AddToOutfitsCard from './AddToOutfitsCard.jsx';
 import EmptyOutfit from './EmptyOutfit.jsx';
 
-function RIAC() {
+function RIAC(props) {
   let [idxRecc, setIdxRecc] = useState(0);
   let [idxOutfit, setIdxOutfit] = useState(0);
 
 
-  const [currProduct, setCurrProduct] = useState({
-    imageSrc:
-      'https://images.unsplash.com/photo-1572495673508-62a6b369c380?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80',
-    imgAlt: './',
-    category: 'JACKETS',
-    name: 'LOCATION FOUND Hoodie - FIRST',
-    price: '$92',
-    id: 111,
-  });
+  const [currProduct, setCurrProduct] = useState(props.overviewData
+  //   {
+  //   imageSrc:
+  //     'https://images.unsplash.com/photo-1572495673508-62a6b369c380?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80',
+  //   imgAlt: './',
+  //   category: 'JACKETS',
+  //   name: 'LOCATION FOUND Hoodie - FIRST',
+  //   price: '$92',
+  //   id: 111,
+  // }
+  );
   const [reccList, setReccList] = useState([
     {
       imageSrc:
