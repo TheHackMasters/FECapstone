@@ -3,9 +3,8 @@ import React, { useState } from 'react';
 function Card(props) {
   const [product, productChange] = useState(props.products);
 
-  var isRecommended = props.isRecc;
-  const [topRightIcon, setTopRightIcon] = useState(isRecommended ? '☆' : 'X');
-  const [topRightClicked, setTopRightClicked] = useState(false);
+  const [topRightIcon, setTopRightIcon] = useState(props.isRecc ? '☆' : 'X');
+  const [topRightClicked, setTopRightClicked] = useState(props.isRecc);
 
   const cardStyle = {
     border: '2px solid #D3D3D3',
@@ -74,11 +73,19 @@ function Card(props) {
         <img style={imageStyle} src={product.imageSrc} alt={product.imgAlt} />
         {topRightClicked
         ? <button type="submit"
-        onClick={(e, id) => setTopRightClicked(!topRightClicked)}
-        style={buttonStyleClicked} >{topRightIcon}</button>
+        onClick={() => {
+          setTopRightClicked(!topRightClicked)
+          props.clickStar(product);
+        }
+      }
+        style={buttonStyleDefault} >{topRightIcon}</button>
         : <button type="submit"
-        onClick={(e, id) => setTopRightClicked(!topRightClicked)}
-        style={buttonStyleDefault} >{topRightIcon}</button>}
+        onClick={(e, id) => {
+          setTopRightClicked(!topRightClicked)
+          props.clickX(product);
+        }
+      }
+        style={buttonStyleClicked} >{topRightIcon}</button>}
       </div>
       <div style={cardInfo}>
         <div style={cardT2}>{product.category}</div>

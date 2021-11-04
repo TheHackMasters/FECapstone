@@ -1,9 +1,16 @@
 /*eslint-disable */
-import React from 'react';
+import React, {useState} from 'react';
 import {ModalWrapper, ModalContent, CloseModalButton} from './styles/Modal.style.js';
 import {useSpring, animated} from 'react-spring';
+import {ModalInput} from './styles/ModalInput.style.js';
 
 const Modal = ({modalIsOpen, setModalIsOpen}) => {
+
+  const [modalInput, setModalInput] = useState('')
+
+  const handleSubmit = (event) => {
+    setModalInput(event.target.value)
+  }
 
   const animation = useSpring({
     config: {
@@ -20,8 +27,12 @@ const Modal = ({modalIsOpen, setModalIsOpen}) => {
         <animated.div style={animation}>
         <ModalWrapper modalIsOpen={modalIsOpen}>
           <ModalContent>
-            <h1>Add a question?</h1>
-            <p>Adding a question</p>
+            <h2>Add a question?</h2>
+            <ModalInput
+              type='text'
+              value={modalInput}
+              onChange={handleSubmit}
+            />
             <button>Submit question</button>
           </ModalContent>
           <CloseModalButton aria-label='Close modal' onClick={()=> setModalIsOpen(prev => !prev)} />
