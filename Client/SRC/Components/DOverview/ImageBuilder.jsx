@@ -76,8 +76,8 @@ width: 100px;
 `;
 
 function ImageBuilder(props) {
+  // console.log(props);
   const { styles } = props;
-  const { results } = styles;
   // console.log(styles);
 
   const ProdImage = {
@@ -85,7 +85,7 @@ function ImageBuilder(props) {
     display: 'flex',
     flexDirection: 'column',
     border: 'solid',
-    backgroundImage: `url(${results[0].photos[0].url})`,
+    backgroundImage: `url(${styles.photos[0].url})`,
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     width: '40em',
@@ -104,7 +104,7 @@ function ImageBuilder(props) {
           <StyledUpDownA>˄</StyledUpDownA>
         </UpDownWrapper>
         <ScrollWrapper>
-          {results[0].photos.map((style) => {
+          {styles.photos.map((style) => {
             tempKey += 1;
             return (
               <MiniImageBuilder

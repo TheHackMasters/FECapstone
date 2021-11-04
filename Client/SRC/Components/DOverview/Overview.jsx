@@ -24,11 +24,46 @@ padding-left: 1em;
 class Overview extends React.Component {
   constructor(props) {
     super(props);
+    const { data, styles } = this.props;
     this.state = {
-      data: {},
-      styles: 'This should break into multiple state items to pass needed info to different elements',
-      index: 0,
+      data: data,
+      styles: styles.results,
+      styleItem: 0,
+      prodId: data.id,
+      photos: styles.results[0].photos,
+      skus: styles.results[0].skus,
+      styleId: styles.results[0].style_id,
     };
+  }
+
+  componentDidMount() {
+    const { data, styles } = this.props;
+    this.setState({
+      data: data,
+      styles: styles.results,
+      styleItem: 0,
+      prodId: data.id,
+      photos: styles.results[0].photos,
+      skus: styles.results[0].skus,
+      styleId: styles.results[0].style_id,
+    });
+    console.log('Mounted overview');
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.data.id !== prevProps.data.id) {
+      const { data, styles } = this.props;
+      this.setState({
+        data: data,
+        styles: styles.results,
+        styleItem: 0,
+        prodId: data.id,
+        photos: styles.results[0].photos,
+        skus: styles.results[0].skus,
+        styleId: styles.results[0].style_id,
+      });
+      // console.log('Update needed', this.state);
+    }
   }
 
   /*
@@ -45,22 +80,25 @@ class Overview extends React.Component {
 
   render() {
     // console.log('should change', this.props);
-    const { data, styles } = this.props;
+    const {
+      data, styles, styleItem, prodId, photos, skus, styleId,
+    } = this.state;
     // console.log('s', styles);
+    // console.log('state', this.state);
     return (
       <ComponentWrapper id="overview">
         <div className="overview">Hello World from the Overview</div>
         <ComponentOrientation id="componentorient">
-          <ImageBuilder styles={styles} />
+          <ImageBuilder styles={styles[styleItem]} />
           <div>
             <SubComponentOrientation id="ratingname">
-              <RatingName data={data} styles={styles} />
+              <RatingName data={data} style={styles[styleItem]} />
             </SubComponentOrientation>
             <SubComponentOrientation id="styleselector">
-              <StyleSelector styles={styles} />
+              <StyleSelector styles={styles} selection={styles[styleItem]} />
             </SubComponentOrientation>
             <SubComponentOrientation id="cartbuilder">
-              <CartBuilder styles={styles} />
+              <CartBuilder skus={skus} />
             </SubComponentOrientation>
           </div>
         </ComponentOrientation>
