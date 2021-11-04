@@ -14,7 +14,7 @@ const UpDownWrapper = styled.div`
 position: relative;
 height: 30px;
 width: 100px;
-padding: 10px;
+margin: 1em;
 `;
 
 const StyledButton = styled.button`
