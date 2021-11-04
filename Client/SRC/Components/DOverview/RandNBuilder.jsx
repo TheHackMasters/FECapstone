@@ -29,6 +29,7 @@ function RatingName(props) {
     if (style.sale_price === null) {
       setStyleSalePrice(null);
       setStylePrice(`$${style.original_price}`);
+      setStylePriceStyle({ textDecorationLine: 'none' });
     } else {
       setStylePrice(`$${style.original_price}`);
       setStyleSalePrice(`$${style.sale_price}`);
