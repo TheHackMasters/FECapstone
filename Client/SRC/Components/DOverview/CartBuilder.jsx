@@ -57,6 +57,11 @@ width: 10fr;
 `;
 
 function CartBuilder(props) {
+  const [curSize, setCurSize] = useState(null);
+  const [quantity, setQuantity] = useState(1);
+
+  console.log('CB', props);
+
   return (
     <CartColumns>
       <form>
