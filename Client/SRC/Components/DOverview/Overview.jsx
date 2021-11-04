@@ -26,7 +26,7 @@ class Overview extends React.Component {
     super(props);
     const { data, styles } = this.props;
     this.state = {
-      data: data,
+      data,
       styles: styles.results,
       styleItem: 0,
       prodId: data.id,
@@ -34,12 +34,13 @@ class Overview extends React.Component {
       skus: styles.results[0].skus,
       styleId: styles.results[0].style_id,
     };
+    this.switchStyle = this.switchStyle.bind(this);
   }
 
   componentDidMount() {
     const { data, styles } = this.props;
     this.setState({
-      data: data,
+      data,
       styles: styles.results,
       styleItem: 0,
       prodId: data.id,
@@ -54,7 +55,7 @@ class Overview extends React.Component {
     if (this.props.data.id !== prevProps.data.id) {
       const { data, styles } = this.props;
       this.setState({
-        data: data,
+        data,
         styles: styles.results,
         styleItem: 0,
         prodId: data.id,
@@ -64,6 +65,13 @@ class Overview extends React.Component {
       });
       // console.log('Update needed', this.state);
     }
+  }
+
+  switchStyle(event) {
+    console.log(event.target.id);
+    this.setState({
+      styleItem: event.target.id,
+    });
   }
 
   /*
@@ -92,10 +100,17 @@ class Overview extends React.Component {
           <ImageBuilder styles={styles[styleItem]} />
           <div>
             <SubComponentOrientation id="ratingname">
-              <RatingName data={data} style={styles[styleItem]} />
+              <RatingName
+                data={data}
+                style={styles[styleItem]}
+              />
             </SubComponentOrientation>
             <SubComponentOrientation id="styleselector">
-              <StyleSelector styles={styles} selection={styles[styleItem]} />
+              <StyleSelector
+                styles={styles}
+                selection={styles[styleItem]}
+                switchStyle={this.switchStyle}
+              />
             </SubComponentOrientation>
             <SubComponentOrientation id="cartbuilder">
               <CartBuilder skus={skus} />

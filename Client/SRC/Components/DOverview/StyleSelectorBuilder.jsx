@@ -10,7 +10,7 @@ padding: 1em;
 `;
 
 function StyleSelectorBuilder(props) {
-  const { style } = props;
+  const { style, switchStyle, id } = props;
   // console.log('SSB', style);
 
   const CircledStyles = {
@@ -28,7 +28,13 @@ function StyleSelectorBuilder(props) {
   return (
     <StylesWrapper>
       <Checkbox />
-      <div style={CircledStyles} />
+      <div
+        style={CircledStyles}
+        id={id}
+        onClick={(event) => {
+          switchStyle(event);
+        }}
+      />
     </StylesWrapper>
   );
 }
