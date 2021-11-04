@@ -14,13 +14,18 @@ font-weight: bolder;
 
 function RatingName(props) {
   // console.log('RnN', props);
-  const { data, styles } = props;
+  const { data, style } = props;
+  // console.log('RnN', style);
   const [prodName, setProdName] = useState(data.name);
   const [stylePrice, setStylePrice] = useState(data.default_price);
 
   useEffect(() => {
     setProdName(data.name);
-    setStylePrice(data.default_price);
+    if (style.sale_price === null) {
+      setStylePrice(style.original_price);
+    } else {
+      setStylePrice(style.sale_price);
+    }
   }, [props]);
 
   return (

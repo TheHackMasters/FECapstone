@@ -9,7 +9,7 @@ padding: 1em;
 `;
 
 function MiniImageBuilder(props) {
-  const { style } = props;
+  const { style, switchDisplay, id } = props;
   // console.log('MIB', style);
 
   const MiniImage = {
@@ -24,7 +24,13 @@ function MiniImageBuilder(props) {
 
   return (
     <MiniImageWrapper>
-      <div style={MiniImage} />
+      <div
+        style={MiniImage}
+        id={id}
+        onClick={(event) => {
+          switchDisplay(event);
+        }}
+      />
     </MiniImageWrapper>
   );
 }

@@ -16,18 +16,19 @@ padding-right: 1em;
 `;
 
 function StyleSelector(props) {
-  const { styles } = props;
-  const { results } = styles;
-  // console.log('ss', styles);
+  const { styles, selection, switchStyle } = props;
+  // console.log('ss', switchStyle);
   return (
     <div>
-      <StyledSpan> STYLE > </StyledSpan>
-      <span className="selectedStyle">{results[0].name}</span>
+      <StyledSpan> STYLE 🡆 </StyledSpan>
+      <span className="selectedStyle">{selection.name}</span>
     <StyleOrientation>
-      {results.map((style) => (
+      {styles.map((style, index) => (
         <StyleSelectorBuilder
           style={style}
           key={style.style_id}
+          id={index}
+          switchStyle={switchStyle}
         />
       ))}
     </StyleOrientation>

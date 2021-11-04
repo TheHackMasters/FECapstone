@@ -14,7 +14,7 @@ const UpDownWrapper = styled.div`
 position: relative;
 height: 30px;
 width: 100px;
-padding: 10px;
+margin: 1em;
 `;
 
 const StyledButton = styled.button`
@@ -75,51 +75,81 @@ font-weight: 900;
 width: 100px;
 `;
 
-function ImageBuilder(props) {
-  const { styles } = props;
-  const { results } = styles;
-  // console.log(styles);
+class ImageBuilder extends React.Component {
+  constructor(props) {
+    super(props);
+    const { selection } = this.props;
+    this.state = {
+      curPhoto: 0,
+      photos: selection.photos,
+    };
+    this.switchDisplay = this.switchDisplay.bind(this);
+  }
 
-  const ProdImage = {
-    position: 'relative',
-    display: 'flex',
-    flexDirection: 'column',
-    border: 'solid',
-    backgroundImage: `url(${results[0].photos[0].url})`,
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-    width: '40em',
-    height: '40em',
-  };
+  componentDidUpdate(prevProps) {
+    const { selection } = this.props;
+    // console.log('prev', prevProps);
+    if (selection.style_id !== prevProps.selection.style_id) {
+      this.setState({
+        curPhoto: 0,
+        photos: selection.photos,
+      });
+      // console.log('Update needed', this.state);
+    }
+  }
 
-  let tempKey = 0;
+  switchDisplay(event) {
+    // console.log(event.target.id);
+    this.setState({
+      curPhoto: event.target.id,
+    });
+  }
 
-  return (
-    <div>
-      <div id="imagebuilder" style={ProdImage}>
-        <StyledButton />
-        <StyledLeftA>🡸</StyledLeftA>
-        <StyledRightA>🡺</StyledRightA>
-        <UpDownWrapper>
-          <StyledUpDownA>˄</StyledUpDownA>
-        </UpDownWrapper>
-        <ScrollWrapper>
-          {results[0].photos.map((style) => {
-            tempKey += 1;
-            return (
-              <MiniImageBuilder
-                style={style}
-                key={tempKey}
-              />
-            );
-          })}
-        </ScrollWrapper>
-        <UpDownWrapper>
-          <StyledUpDownA>˅</StyledUpDownA>
-        </UpDownWrapper>
+  render() {
+    const { photos, curPhoto } = this.state;
+    const ProdImage = {
+      position: 'relative',
+      display: 'flex',
+      flexDirection: 'column',
+      border: 'solid',
+      backgroundImage: `url(${photos[curPhoto].url})`,
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat',
+      width: '40em',
+      height: '40em',
+    };
+
+    let tempKey = 0;
+
+    return (
+      <div>
+        <div id="imagebuilder" style={ProdImage}>
+          <StyledButton />
+          <StyledLeftA>🡸</StyledLeftA>
+          <StyledRightA>🡺</StyledRightA>
+          <UpDownWrapper>
+            <StyledUpDownA>˄</StyledUpDownA>
+          </UpDownWrapper>
+          <ScrollWrapper>
+            {photos.map((style, index) => {
+              tempKey += 1;
+              return (
+                <MiniImageBuilder
+                  style={style}
+                  key={tempKey}
+                  id={index}
+                  switchDisplay={this.switchDisplay}
+                />
+              );
+            })}
+          </ScrollWrapper>
+          <UpDownWrapper>
+            <StyledUpDownA>˅</StyledUpDownA>
+          </UpDownWrapper>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default ImageBuilder;
