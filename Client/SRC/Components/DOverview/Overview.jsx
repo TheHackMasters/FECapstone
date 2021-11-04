@@ -68,23 +68,11 @@ class Overview extends React.Component {
   }
 
   switchStyle(event) {
-    console.log(event.target.id);
+    // console.log(event.target.id);
     this.setState({
       styleItem: event.target.id,
     });
   }
-
-  /*
-  THE PLAN:
-  Spread the data in the styles array in as organic a way as possible.
-  Use a state-track index to update all other components with the correct data from styles.
-  We will build a lot of bound functions here.
-  StyleSelector will be the core, which will update state to update the other components.
-  e.g. Default Style at index 0, have a function to update dependent states based on the index.
-  Such as: Price state, to use sale price if not null (e.z. if else) of style at 0
-  Style photo array at index, to be passed to image builder(different from the styles)
-  etc...
-  */
 
   render() {
     // console.log('should change', this.props);
@@ -97,7 +85,7 @@ class Overview extends React.Component {
       <ComponentWrapper id="overview">
         <div className="overview">Hello World from the Overview</div>
         <ComponentOrientation id="componentorient">
-          <ImageBuilder styles={styles[styleItem]} />
+          <ImageBuilder selection={styles[styleItem]} />
           <div>
             <SubComponentOrientation id="ratingname">
               <RatingName
