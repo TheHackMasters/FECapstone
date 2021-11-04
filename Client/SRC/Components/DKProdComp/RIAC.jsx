@@ -7,7 +7,6 @@ function RIAC(props) {
   let [idxRecc, setIdxRecc] = useState(0);
   let [idxOutfit, setIdxOutfit] = useState(0);
 
-
   const [currProduct, setCurrProduct] = useState(props.overviewData
   //   {
   //   imageSrc:

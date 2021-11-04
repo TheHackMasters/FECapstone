@@ -11,13 +11,14 @@ import dummyOverview from './Components/DOverview/dummydata.js';
 
 function App(props) {
   // example of using a hook for state
-  const [count, setCount] = useState(0);
   const [allData, setAllData] = useState([]);
   const [overviewData, setOverviewData] = useState(dummyOverview.dummyOverview.data);
   const [overviewStyles, setOverviewStyles] = useState(dummyOverview.dummyOverview.styles);
   const [curProdId, setCurProdId] = useState(0);
   const [relatedData, setRelatedData] = useState([]);
+  const [userCart, setUserCart] = useState(dummyOverview.dummyOverview.cart);
 
+  // Get the initial featured product and update app state
   useEffect(() => {
     axios.get('/products')
       .then((data) => {
@@ -27,6 +28,8 @@ function App(props) {
       .catch((err) => console.log(err));
   }, [overviewData]);
 
+  // Update the styles and related products when the currently selected
+  // product changes
   useEffect(() => {
     if (curProdId !== 0) {
       axios.get(`/products/${curProdId}`)
@@ -51,10 +54,23 @@ function App(props) {
     }
   }, [curProdId]);
 
+  // Gets the current cart data from the API
+  useEffect(() => {
+    axios.get('/cart')
+      .then((data) => {
+        setUserCart(data.data);
+      })
+      .catch((err) => console.log(err));
+  }, [curProdId]);
+
   return (
     <div>
       <div>Hello World</div>
-      <Overview data={overviewData} styles={overviewStyles} />
+      <Overview
+        data={overviewData}
+        styles={overviewStyles}
+        cart={userCart}
+      />
       <RIAC relatedData={relatedData} overviewData={overviewData} />
       <QAMain />
       <a name="Ratings" />
