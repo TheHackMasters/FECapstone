@@ -17,6 +17,8 @@ function App(props) {
   const [curProdId, setCurProdId] = useState(0);
   const [relatedData, setRelatedData] = useState([]);
   const [relatedStyles, setRelatedStyles] = useState([]);
+  const [qaList, setQaList] = useState();
+  const [answerList, setAnswerList] = useState([]);
 
   useEffect(() => {
     axios.get('/products')
@@ -73,6 +75,18 @@ function App(props) {
     }
   }, [relatedData]);
 
+  useEffect(() => {
+    if (curProdId !== 0) {
+      axios.get(`/qa/questions/${curProdId}`)
+        .then((data) => setQaList(data.data))
+        .catch((err) => console.log('Error! ', err));
+
+      // axios.get(`/qa/questions/${curProdId}/answers`)
+      //   .then((data) => setAnswerList(data.data))
+      //   .catch((err) => console.log(err));
+    }
+  }, [curProdId]);
+
   return (
     <div>
       <div>Hello World</div>
@@ -84,7 +98,8 @@ function App(props) {
         overviewStyles={overviewStyles}
         setCurProdId={setCurProdId}
       />
-      <QAMain />
+      <QAMain qaList={qaList} answerList={answerList} />
+
       <a name="Ratings" />
       <RatingsNReviews />
     </div>
