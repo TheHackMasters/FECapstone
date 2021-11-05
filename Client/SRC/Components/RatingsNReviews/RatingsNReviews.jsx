@@ -1,44 +1,24 @@
 /* eslint-disable no-unused-expressions */
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
-import Ratings from './Ratings.jsx';
-import Reviews from './Reviews.jsx';
+import Ratings from './ratings/Ratings.jsx';
+import Reviews from './reviews/Reviews.jsx';
 
-const RatingsNReviews = () => {
-  const [meta, setMeta] = useState();
-  const [reviews, setReviews] = useState();
+const RatingsNReviews = (props) => (
+  <>
 
-  useEffect(() => {
-    axios.get('/reviews/meta')
-      .then((results) => {
-        setMeta({ data: results.data });
-      })
-      .catch((error) => { console.log(error); }),
+    <div className="RatingsNReviews">
+      <MainSection>
 
-    axios.get('/reviews')
-      .then((results) => {
-        setReviews({ reviews: results.data.results });
-      })
-      .catch((error) => { console.log(error); });
-  }, []);
+        <Ratings meta={props.meta} />
+        <Reviews reviews={props.reviews} />
+      </MainSection>
 
-  return (
-    <>
+    </div>
 
-      <div className="RatingsNReviews">
-        <MainSection>
+  </>
 
-          <Ratings meta={meta} />
-          <Reviews reviews={reviews} />
-        </MainSection>
-
-      </div>
-
-    </>
-
-  );
-};
+);
 
 export default RatingsNReviews;
 
