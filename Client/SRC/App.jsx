@@ -11,47 +11,86 @@ import dummyOverview from './Components/DOverview/dummydata.js';
 
 function App(props) {
   // example of using a hook for state
-  const [count, setCount] = useState(0);
-  const [allData, setAllData] = useState([]);
+
   const [overviewData, setOverviewData] = useState(dummyOverview.dummyOverview.data);
   const [overviewStyles, setOverviewStyles] = useState(dummyOverview.dummyOverview.styles);
   const [curProdId, setCurProdId] = useState(0);
   const [relatedData, setRelatedData] = useState([]);
+  const [userCart, setUserCart] = useState(dummyOverview.dummyOverview.cart);
+  const [relatedStyles, setRelatedStyles] = useState([]);
   const [qaList, setQaList] = useState();
+<<<<<<< HEAD
   const [answerList, setAnswerList] = useState();
+=======
+  const [answerList, setAnswerList] = useState([]);
+  const [meta, setMeta] = useState();
+  const [reviews, setReviews] = useState();
+>>>>>>> 96ded486653f8601cfa9d9fb40b7beef8b69efef
 
+  // Get the initial featured product and update app state
   useEffect(() => {
     axios.get('/products')
       .then((data) => {
-        setAllData(data.data);
         setCurProdId(data.data[0].id);
       })
       .catch((err) => console.log(err));
-  }, [overviewData]);
+  }, []);
 
+  // Update the styles and related products when the currently selected
+  // product changes
   useEffect(() => {
     if (curProdId !== 0) {
       axios.get(`/products/${curProdId}`)
         .then((data) => setOverviewData(data.data))
-        .catch((err) => console.log(err));
-
-      axios.get(`/products/${curProdId}/styles`)
+        .then(() => axios.get(`/products/${curProdId}/styles`))
         .then((data) => setOverviewStyles(data.data))
         .catch((err) => console.log(err));
 
       axios.get(`/products/${curProdId}/related`)
-        .then((data) => {
+        .then((result) => {
           const arr = [];
-          allData.forEach((item) => {
-            if (data.data.includes(item.id)) {
-              arr.push(item);
-            }
+          result.data.forEach((id) => {
+            arr.push(axios.get(`/products/${id}`)
+              .then((reply) => (reply.data))
+              .catch((err) => console.log(err)));
           });
-          setRelatedData([...arr]);
+          return arr;
         })
+        .then((ary) => Promise.all(ary))
+        .then((finished) => setRelatedData(finished))
         .catch((err) => console.log(err));
     }
   }, [curProdId]);
+
+  // Gets the current cart data from the API
+  useEffect(() => {
+    axios.get('/cart')
+      .then((data) => {
+        setUserCart(data.data);
+      })
+      .catch((err) => console.log(err));
+  }, [curProdId]);
+
+  useEffect(() => {
+    if (curProdId !== 0) {
+      // console.log('related prods', relatedData);
+      const tempRelatedStyles = [];
+      relatedData.forEach((prod) => {
+        tempRelatedStyles.push(axios.get(`/products/${prod.id}/styles`)
+          .then((result) => (result.data))
+          // .then((products) => products.results.reduce((defaultStyle, item) => {
+          //   if (item['default?']) {
+          //     defaultStyle = item;
+          //   }
+          //   return defaultStyle;
+          // }))
+          .catch((err) => console.log(err)));
+      });
+      Promise.all(tempRelatedStyles)
+        .then((values) => setRelatedStyles(values))
+        .catch((err) => console.log(err));
+    }
+  }, [relatedData]);
 
   useEffect(() => {
     if (curProdId !== 0) {
@@ -65,14 +104,41 @@ function App(props) {
     }
   }, [curProdId]);
 
+  useEffect(() => {
+    if (curProdId !== 0) {
+      axios.get(`/reviews/meta/${curProdId}`)
+        .then((results) => setMeta({ data: results.data }))
+        .catch((error) => console.log(error));
+
+      axios.get(`/reviews/${curProdId}`)
+        .then((results) => setReviews({ reviews: results.data.results }))
+        .catch((error) => console.log(error));
+    }
+  }, [curProdId]);
+
   return (
     <div>
       <div>Hello World</div>
-      <Overview data={overviewData} styles={overviewStyles} />
-      <RIAC relatedData={relatedData} overviewData={overviewData} />
+      <Overview
+        data={overviewData}
+        styles={overviewStyles}
+        cart={userCart}
+      />
+      <RIAC
+        relatedData={relatedData}
+        relatedStyles={relatedStyles}
+        overviewData={overviewData}
+        overviewStyles={overviewStyles}
+        setCurProdId={setCurProdId}
+      />
       <QAMain qaList={qaList} answerList={answerList} />
+
       <a name="Ratings" />
-      <RatingsNReviews />
+      <RatingsNReviews
+        meta={meta}
+        reviews={reviews}
+      />
+
     </div>
   );
 }

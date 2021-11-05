@@ -18,13 +18,22 @@ function RatingName(props) {
   // console.log('RnN', style);
   const [prodName, setProdName] = useState(data.name);
   const [stylePrice, setStylePrice] = useState(data.default_price);
+  const [styleSalePrice, setStyleSalePrice] = useState(null);
+  const [stylePriceStyle, setStylePriceStyle] = useState({});
+  const [styleSalePriceStyle, setStyleSalePriceStyle] = useState({
+    color: 'red',
+  });
 
   useEffect(() => {
     setProdName(data.name);
     if (style.sale_price === null) {
-      setStylePrice(style.original_price);
+      setStyleSalePrice(null);
+      setStylePrice(`$${style.original_price}`);
+      setStylePriceStyle({ textDecorationLine: 'none' });
     } else {
-      setStylePrice(style.sale_price);
+      setStylePrice(`$${style.original_price}`);
+      setStyleSalePrice(`$${style.sale_price}`);
+      setStylePriceStyle({ textDecorationLine: 'line-through' });
     }
   }, [props]);
 
@@ -37,10 +46,14 @@ function RatingName(props) {
       <StyleOrientation>
         <span>{data.category}</span>
         <StyleName>{prodName}</StyleName>
-        <span>
-          $
-          {stylePrice}
-        </span>
+        <div>
+          <span style={styleSalePriceStyle}>
+            {styleSalePrice}
+          </span>
+          <span style={stylePriceStyle}>
+            {stylePrice}
+          </span>
+        </div>
       </StyleOrientation>
     </div>
   );

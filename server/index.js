@@ -82,8 +82,8 @@ app.get('/qa/questions/:prodID/answers', (req, res) => {
     });
 });
 
-app.get('/reviews', (req, res) => {
-  models.getProdReviews()
+app.get('/reviews/:prodID', (req, res) => {
+  models.getProdReviews(req.params.prodID)
     .then((results) => {
       res.status(200).send(results.data);
       // console.log(results.data, 'Hello World! here is some data ');
@@ -94,11 +94,34 @@ app.get('/reviews', (req, res) => {
     });
 });
 
-app.get('/reviews/meta', (req, res) => {
-  models.getProdReviewsMeta()
+app.get('/reviews/meta/:prodID', (req, res) => {
+  models.getProdReviewsMeta(req.params.prodID)
     .then((results) => {
       res.status(200).send(results.data);
       // console.log(results.data, 'Hello World! here is some data ');
+    })
+    .catch((error) => {
+      res.status(400).send(error);
+      console.log(error, '<-- There was an error in the get');
+    });
+});
+
+app.get('/cart', (req, res) => {
+  models.getCart()
+    .then((results) => {
+      res.status(200).send(results.data);
+    })
+    .catch((error) => {
+      res.status(400).send(error);
+      console.log(error, '<-- There was an error in the get');
+    });
+});
+
+app.post('/cart', (req, res) => {
+  console.log('sku obj', req.data);
+  models.postCart(req.data)
+    .then((results) => {
+      res.status(200).send(results.data);
     })
     .catch((error) => {
       res.status(400).send(error);
