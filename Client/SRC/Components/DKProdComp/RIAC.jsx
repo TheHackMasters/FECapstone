@@ -1,92 +1,35 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
 import Card from './Card.jsx';
 import AddToOutfitsCard from './AddToOutfitsCard.jsx';
 import EmptyOutfit from './EmptyOutfit.jsx';
+import RightArrow from './RightArrow.jsx';
+import LeftArrow from './LeftArrow.jsx';
 
 function RIAC(props) {
-  let [idxRecc, setIdxRecc] = useState(0);
-  let [idxOutfit, setIdxOutfit] = useState(0);
+  const [idxRecc, setIdxRecc] = useState(0);
+  const [idxOutfit, setIdxOutfit] = useState(0);
 
-  const [currProduct, setCurrProduct] = useState(props.overviewData
-  //   {
-  //   imageSrc:
-  //     'https://images.unsplash.com/photo-1572495673508-62a6b369c380?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80',
-  //   imgAlt: './',
-  //   category: 'JACKETS',
-  //   name: 'LOCATION FOUND Hoodie - FIRST',
-  //   price: '$92',
-  //   id: 111,
-  // }
-  );
-  const [reccList, setReccList] = useState([
-    {
-      imageSrc:
-        'https://images.unsplash.com/photo-1618453292459-53424b66bb6a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=764&q=80',
-      imgAlt: './',
-      category: 'TEES',
-      name: 'LSKD.CO Collab Tee - FIRST',
-      price: '$32',
-      id: 1,
-    },
-    {
-      imageSrc:
-        'https://images.unsplash.com/photo-1532332248682-206cc786359f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=689&q=80',
-      imgAlt: './',
-      category: 'JACKETS',
-      name: 'Lightweight Tether-Resist Bomber - SECOND',
-      price: '$64',
-      id: 2,
-    },
-    {
-      imageSrc:
-        'https://images.unsplash.com/photo-1618453292459-53424b66bb6a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=764&q=80',
-      imgAlt: './',
-      category: 'TEES',
-      name: 'LSKD.CO Collab Tee - Third',
-      price: '$32',
-      id: 3,
-    },
-    {
-      imageSrc:
-        'https://images.unsplash.com/photo-1552337557-45792b252a2e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80',
-      imgAlt: './',
-      category: 'TEES',
-      name: 'Deep-Dive, Reflective Sunglasses - FOURTH',
-      price: '$52',
-      id: 4,
-    },
-    {
-      imageSrc:
-        'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80',
-      imgAlt: './',
-      category: 'JACKETS',
-      name: 'Lightweight Tether-Resist Bomber - LAST',
-      price: '$64',
-      id: 5,
-    },
-  ]); // relatedData
-  const [outfitList, setOutfitList] = useState([
-    {
-      imageSrc:
-        'https://images.unsplash.com/photo-1552337557-45792b252a2e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80',
-      imgAlt: './',
-      category: 'TEES',
-      name: 'Reflective Sunglasses - FIRST',
-      price: '$32',
-      id: 11,
-    },
-    {
-      imageSrc:
-        'https://images.unsplash.com/photo-1532332248682-206cc786359f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=689&q=80',
-      imgAlt: './',
-      category: 'JACKETS',
-      name: 'Lightweight Tether-Resist Bomber - SECOND',
-      price: '$64',
-      id: 12,
-    },
-  ]);
+  const [currProduct, setCurrProduct] = useState(props.overviewData);
+  const [currProductStyle, setCurrProductStyle] = useState(props.overviewStyles)
+  const [reccList, setReccList] = useState(props.relatedData);
+  const [reccListStyles, setReccListStyles] = useState([]);
+  const [outfitList, setOutfitList] = useState([]);
 
-  let [addedCurrentOutfit, setAddedCurrentOutfit] = useState(() => {
+  const [preMount, setPreMount] = useState({ product_id: -1 });
+
+  useEffect(() => {
+    setCurrProduct(props.overviewData);
+    setReccList(props.relatedData);
+    setReccListStyles(props.relatedStyles);
+    setCurrProductStyle(props.overviewStyles);
+  }, [props]);
+
+  // console.log(reccList);
+  // console.log('recclistStyles', reccListStyles);
+
+  const [addedCurrentOutfit, setAddedCurrentOutfit] = useState(() => {
     let isIncluded = false;
     outfitList.forEach((item) => {
       if (currProduct.id === item.id) {
@@ -96,17 +39,30 @@ function RIAC(props) {
     return isIncluded;
   });
 
+  const selectStyle = (id) => {
+    //console.log('currProductStyleID', currProductStyle);
+    if (id === Number(currProductStyle.product_id)) {
+      return currProductStyle;
+    }
+    return reccListStyles.reduce((selected, item) => {
+      if (Number(item.product_id) === id) {
+        selected = item;
+      }
+      return selected;
+    });
+  };
+
   const clickX = (product) => {
     let idx = -1;
-    console.log('clicked ', product);
+    //console.log('clicked ', product);
     for (let n = 0; n < outfitList.length; n++) {
       if (product.id === outfitList[n].id) {
         idx = n;
       }
     }
     if (idx > -1) {
-      console.log('removing from idx: ', idx);
-      console.log('idxOutfit is :', idxOutfit);
+      //console.log('removing from idx: ', idx);
+      //console.log('idxOutfit is :', idxOutfit);
       setOutfitList([...outfitList.slice(0, idx), ...outfitList.slice(idx + 1, outfitList.length)]);
       if (idxOutfit > idx) {
         setIdxOutfit(idxOutfit - 1);
@@ -116,11 +72,11 @@ function RIAC(props) {
   };
 
   const clickStar = (product) => {
-    //console.log('clicked star', product);
-    //console.log('product id, ', product.id);
+    // console.log('clicked star', product);
+    // console.log('product id, ', product.id);
     let notAlready = true;
     outfitList.forEach((item) => {
-      //console.log('item id', item.id);
+      // console.log('item id', item.id);
       if (item.id === product.id) {
         notAlready = false;
       }
@@ -132,9 +88,9 @@ function RIAC(props) {
       }
     }
   };
-// (outfitList.length < 3 ? 3 : outfitList.length)
+  // (outfitList.length < 3 ? 3 : outfitList.length)
   const outfits = [];
-  for (let n = idxOutfit; n < 3; n++) {
+  for (let n = idxOutfit; n < idxOutfit + 3; n += 1) {
     if (outfitList[n] === undefined) {
       outfits.push(<EmptyOutfit />);
     } else {
@@ -142,6 +98,8 @@ function RIAC(props) {
         <Card
           key={outfitList[n].id}
           products={outfitList[n]}
+          style={reccListStyles.length === 0 ? { product_id: -1 } : selectStyle(outfitList[n].id)}
+          setCurProdId={props.setCurProdId}
           isRecc={false}
           clickX={clickX}
           clickStar={clickStar}
@@ -166,12 +124,6 @@ function RIAC(props) {
     setIdxOutfit(idxOutfit === 0 ? 0 : idxOutfit - 1);
   };
 
-  const leftArrow =
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTesrDH4a-wiZIORdQTA2BC93Uj_WHCBf0gB9eKJnCjhHmsMw9dhkWM7p2KRLnzSlqBHrg&usqp=CAU';
-
-  const rightArrow =
-    'https://freepngimg.com/thumb/web_design/24703-6-right-arrow-image.png';
-
   const setMiddle = {
     margin: 'auto',
     width: '65%',
@@ -190,27 +142,6 @@ function RIAC(props) {
     marginLeft: '75px',
   };
 
-  const arrowLeftStyle = {
-    width: '55px',
-    height: '55px',
-    objectFit: 'cover',
-    margin: 'auto',
-    marginRight: '25px',
-  };
-
-  const arrowRightStyle = {
-    width: '55px',
-    height: '55px',
-    objectFit: 'cover',
-    margin: 'auto',
-    marginLeft: '5px',
-  };
-
-  const arrowButtonStyle = {
-    backgroundColor: 'transparent',
-    borderColor: 'transparent',
-  };
-
   const spacer = {
     width: '50px',
     padding: '48px',
@@ -221,64 +152,65 @@ function RIAC(props) {
       <div className="recommended">
         <div style={title1}>RECOMMENDED</div>
         <div style={carouselStyle}>
-        {idxRecc === 0 ? <div style={spacer}></div> :
-          <button style={arrowButtonStyle}><img
-          style={arrowLeftStyle}
-          alt="left arrow"
-          src={leftArrow}
-          onClick={prevSlideRecc}
-          /></button>
-        }
+          {idxRecc === 0 ? <div style={spacer} />
+            : (
+              <LeftArrow
+                idx={idxRecc}
+                list={reccList}
+                nextSlide={prevSlideRecc}
+              />
+            )}
           {reccList.slice(idxRecc, idxRecc + 4).map((reccProduct) => (
             <Card
               key={reccProduct.id}
               products={reccProduct}
-              isRecc={true}
+              style={reccListStyles.length === 0 ? { product_id: -1 } : selectStyle(reccProduct.id)}
+              isRecc
+              setCurProdId={props.setCurProdId}
               clickX={clickX}
               clickStar={clickStar}
             />
           ))}
           {idxRecc === reccList.length - 4 ? <div style={spacer} />
-            : <button style={arrowButtonStyle}><img
-              style={arrowRightStyle}
-              alt="right arrow"
-              src={rightArrow}
-              onClick={nextSlideRecc}
-          /></button>
-          }
+            : (
+              <RightArrow
+                idx={idxRecc}
+                list={reccList}
+                nextSlide={nextSlideRecc}
+              />
+            )}
         </div>
       </div>
       <div className="outfits">
         <div style={title1}>OUTFITS</div>
         <div style={carouselStyle}>
-        {idxOutfit === 0 ? <div style={spacer}/> :
-        <button style={arrowButtonStyle}><img
-            style={arrowLeftStyle}
-            alt="left arrow"
-            src={leftArrow}
-            onClick={prevSlideOutfit}
-          /></button>
-        }
-          {addedCurrentOutfit ? <Card
+          {idxOutfit === 0 ? <div style={spacer} />
+            : (
+              <LeftArrow
+                idx={idxOutfit}
+                list={outfitList}
+                nextSlide={prevSlideOutfit}
+              />
+            )}
+          {addedCurrentOutfit ? (
+            <Card
               key={reccProduct.id}
               products={reccProduct}
-              isRecc={true}
+              isRecc
               clickX={clickX}
               clickStar={clickStar}
-            /> :
-          <AddToOutfitsCard
-          currProduct={currProduct}
-          clickStar={clickStar}
-          />}
+            />
+          )
+            : (
+              <AddToOutfitsCard
+                currProduct={currProduct}
+                style={currProductStyle}
+                clickStar={clickStar}
+              />
+            )}
           {outfits}
-          {idxOutfit >= outfitList.length - 3 ? <div style={spacer} /> :
-          <button style={arrowButtonStyle}><img
-            style={arrowRightStyle}
-            alt="right arrow"
-            src={rightArrow}
-            onClick={nextSlideOutfit}
-          /></button>
-          }
+          {idxOutfit >= outfitList.length - 3 ? <div style={spacer} />
+            : <RightArrow idx={idxOutfit} list={outfitList} nextSlide={nextSlideOutfit} />}
         </div>
       </div>
     </div>

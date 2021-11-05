@@ -25,6 +25,7 @@ class Overview extends React.Component {
   constructor(props) {
     super(props);
     const { data, styles } = this.props;
+    console.log('big', data);
     this.state = {
       data,
       styles: styles.results,
@@ -50,6 +51,7 @@ class Overview extends React.Component {
   componentDidUpdate(prevProps) {
     if (this.props.data.id !== prevProps.data.id) {
       const { data, styles } = this.props;
+      console.log('should update data', data);
       this.setState({
         data,
         styles: styles.results,

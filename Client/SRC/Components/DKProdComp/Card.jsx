@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
 function Card(props) {
-  const [product, productChange] = useState(props.products);
+  const [product, setProduct] = useState(props.products);
 
   const [topRightIcon, setTopRightIcon] = useState(props.isRecc ? '☆' : 'X');
   const [topRightClicked, setTopRightClicked] = useState(props.isRecc);
-
+  //console.log(props);
   const cardStyle = {
     border: '2px solid #D3D3D3',
     marginRight: '36px',
@@ -67,10 +67,19 @@ function Card(props) {
     fontWeight: 'bold',
   };
 
+  const imgCheck = (id) => {
+    if (id === Number(props.style.product_id) && props.style.results[0].photos[0].thumbnail_url) {
+      return props.style.results[0].photos[0].thumbnail_url;
+    }
+    else {
+      return ('https://images.unsplash.com/photo-1614332287897-cdc485fa562d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80')
+      }
+    };
+
   return (
     <div className="card" style={cardStyle}>
       <div style={cardImgStyle}>
-        <img style={imageStyle} src={product.imageSrc} alt={product.imgAlt} />
+        <img style={imageStyle} src={imgCheck(product.id)} alt={product.imgAlt} onClick={() => (props.setCurProdId(product.id))}/>
         {topRightClicked
         ? <button type="submit"
         onClick={() => {
@@ -89,8 +98,8 @@ function Card(props) {
       </div>
       <div style={cardInfo}>
         <div style={cardT2}>{product.category}</div>
-        <div style={cardT1}>{product.name}</div>
-        <div style={cardT2}>{product.price}</div>
+        <div style={cardT1} onClick={() => (props.setCurProdId(product.id))}>{product.name}</div>
+        <div style={cardT2}>{product.default_price}</div>
         <div>☆☆☆☆☆</div>
       </div>
     </div>

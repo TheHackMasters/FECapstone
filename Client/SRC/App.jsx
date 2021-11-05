@@ -17,6 +17,7 @@ function App(props) {
   const [curProdId, setCurProdId] = useState(0);
   const [relatedData, setRelatedData] = useState([]);
   const [userCart, setUserCart] = useState(dummyOverview.dummyOverview.cart);
+  const [relatedStyles, setRelatedStyles] = useState([]);
   const [qaList, setQaList] = useState();
   const [answerList, setAnswerList] = useState([]);
 
@@ -24,7 +25,6 @@ function App(props) {
   useEffect(() => {
     axios.get('/products')
       .then((data) => {
-        setAllData(data.data);
         setCurProdId(data.data[0].id);
       })
       .catch((err) => console.log(err));
@@ -43,15 +43,17 @@ function App(props) {
         .catch((err) => console.log(err));
 
       axios.get(`/products/${curProdId}/related`)
-        .then((data) => {
+        .then((result) => {
           const arr = [];
-          allData.forEach((item) => {
-            if (data.data.includes(item.id)) {
-              arr.push(item);
-            }
+          result.data.forEach((id) => {
+            arr.push(axios.get(`/products/${id}`)
+              .then((reply) => (reply.data))
+              .catch((err) => console.log(err)));
           });
-          setRelatedData([...arr]);
+          return arr;
         })
+        .then((ary) => Promise.all(ary))
+        .then((finished) => setRelatedData(finished))
         .catch((err) => console.log(err));
     }
   }, [curProdId]);
@@ -64,6 +66,27 @@ function App(props) {
       })
       .catch((err) => console.log(err));
   }, [curProdId]);
+
+  useEffect(() => {
+    if (curProdId !== 0) {
+      console.log('related prods', relatedData);
+      const tempRelatedStyles = [];
+      relatedData.forEach((prod) => {
+        tempRelatedStyles.push(axios.get(`/products/${prod.id}/styles`)
+          .then((result) => (result.data))
+          // .then((products) => products.results.reduce((defaultStyle, item) => {
+          //   if (item['default?']) {
+          //     defaultStyle = item;
+          //   }
+          //   return defaultStyle;
+          // }))
+          .catch((err) => console.log(err)));
+      });
+      Promise.all(tempRelatedStyles)
+        .then((values) => setRelatedStyles(values))
+        .catch((err) => console.log(err));
+    }
+  }, [relatedData]);
 
   useEffect(() => {
     if (curProdId !== 0) {
@@ -85,8 +108,15 @@ function App(props) {
         styles={overviewStyles}
         cart={userCart}
       />
-      <RIAC relatedData={relatedData} overviewData={overviewData} />
+      <RIAC
+        relatedData={relatedData}
+        relatedStyles={relatedStyles}
+        overviewData={overviewData}
+        overviewStyles={overviewStyles}
+        setCurProdId={setCurProdId}
+      />
       <QAMain qaList={qaList} answerList={answerList} />
+
       <a name="Ratings" />
       <RatingsNReviews />
     </div>
