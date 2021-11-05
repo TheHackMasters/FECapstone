@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import SelectQuantity from './SelectQuantity.jsx';
+import SelectSize from './SelectSize.jsx';
 
 const CartRows = styled.div`
 margin-top: 15px;
@@ -65,27 +67,50 @@ class CartBuilder extends React.Component {
       curSize: 'Select Size',
       curQuantity: '-',
       curSku: '',
-      skus: skus,
+      skus,
     };
     this.onSizeChange = this.onSizeChange.bind(this);
     this.onSizeChange = this.onQuantityChange.bind(this);
   }
 
-  onSizeChange (event) {
-    //
+  // componentDidUpdate(prevProps) {
+  //   const { skus } = this.props;
+  //   if (selection.style_id !== prevProps.skus.style_id) {
+  //     this.setState({
+  //       curPhoto: 0,
+  //       photos: selection.photos,
+  //     });
+  //     // console.log('Update needed', this.state);
+  //   }
+  // }
+
+  onSizeChange(event) {
+    console.log('event', event);
+    console.log('value', event.target.value);
+    console.log('id', event.target.id);
+    this.setState({
+      curSize: event.target.id,
+    });
   }
 
-  onQuantityChange (event) {
-    //
+  onQuantityChange(event) {
+    this.setState({
+      curQuantity: event.target.id,
+    });
   }
 
   render() {
+    const { skus } = this.state;
     return (
       <CartColumns>
         <form>
           <BoxWrapper>
-            <StyledSelectS>
+            <StyledSelectS onChange={(event) => {
+              this.onSizeChange(event);
+            }}
+            >
               <StyledOption value="makeAbuilder">Select Size</StyledOption>
+              <SelectSize skus={skus} />
             </StyledSelectS>
           </BoxWrapper>
           <BoxWrapper>

@@ -5,6 +5,11 @@ const StyledOption = styled.option`
 width: 10fr;
 `;
 
-function SelectSize(props) {}
+function SelectSize(props) {
+  console.log(props);
+  return (
+    <option id="1" value="makeAbuilder">Testing</option>
+  );
+}
 
 export default SelectSize;
