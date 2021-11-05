@@ -28,7 +28,7 @@ function App(props) {
         setCurProdId(data.data[0].id);
       })
       .catch((err) => console.log(err));
-  }, [overviewData]);
+  }, []);
 
   // Update the styles and related products when the currently selected
   // product changes
@@ -36,9 +36,7 @@ function App(props) {
     if (curProdId !== 0) {
       axios.get(`/products/${curProdId}`)
         .then((data) => setOverviewData(data.data))
-        .catch((err) => console.log(err));
-
-      axios.get(`/products/${curProdId}/styles`)
+        .then(() => axios.get(`/products/${curProdId}/styles`))
         .then((data) => setOverviewStyles(data.data))
         .catch((err) => console.log(err));
 
@@ -69,7 +67,7 @@ function App(props) {
 
   useEffect(() => {
     if (curProdId !== 0) {
-      console.log('related prods', relatedData);
+      // console.log('related prods', relatedData);
       const tempRelatedStyles = [];
       relatedData.forEach((prod) => {
         tempRelatedStyles.push(axios.get(`/products/${prod.id}/styles`)
