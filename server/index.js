@@ -11,6 +11,8 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/', express.static('./Client/DIST'));
 
+const baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo';
+
 app.get('/products', (req, res) => {
   models.getAll()
     .then((results) => {
@@ -60,8 +62,8 @@ app.get('/products/:prodID/related', (req, res) => {
     });
 });
 
-app.get('/qa/questions', (req, res) => {
-  models.getAllQs()
+app.get('/qa/questions/:prodID', (req, res) => {
+  models.getAllQs(req.params.prodID)
     .then((results) => {
       res.status(200).send(results.data);
     })
@@ -69,6 +71,16 @@ app.get('/qa/questions', (req, res) => {
       res.status(400).send(error);
     });
 });
+
+// app.get('/qa/questions/:questionID', (req, res) => {
+//   models.getAnswers(req.params.product_id)
+//     .then((results) => {
+//       res.status(200).send(results.data);
+//     })
+//     .catch((error) => {
+//       res.status(400).send(error);
+//     });
+// });
 
 app.get('/reviews', (req, res) => {
   models.getProdReviews()
