@@ -79,7 +79,7 @@ module.exports = {
     params: { product_id },
   }),
 
-  getProdReviewsMeta: () => axios({
+  getProdReviewsMeta: (product_id) => axios({
     url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/reviews/meta',
     method: 'get',
     headers: {
