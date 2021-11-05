@@ -89,4 +89,25 @@ module.exports = {
     },
     params: { product_id },
   }),
+
+  getCart: () => axios({
+    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/cart',
+    method: 'get',
+    headers: {
+      campus: git.tokens.campus,
+      Authorization: git.tokens.gitToken,
+
+    },
+  }),
+
+  postCart: (sku) => axios({
+    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/cart',
+    method: 'post',
+    data: sku,
+    headers: {
+      campus: git.tokens.campus,
+      Authorization: git.tokens.gitToken,
+
+    },
+  }),
 };

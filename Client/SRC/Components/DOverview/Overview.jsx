@@ -25,13 +25,12 @@ class Overview extends React.Component {
   constructor(props) {
     super(props);
     const { data, styles } = this.props;
+    console.log('big', data);
     this.state = {
       data,
       styles: styles.results,
       styleItem: 0,
       prodId: data.id,
-      photos: styles.results[0].photos,
-      skus: styles.results[0].skus,
       styleId: styles.results[0].style_id,
     };
     this.switchStyle = this.switchStyle.bind(this);
@@ -44,23 +43,25 @@ class Overview extends React.Component {
       styles: styles.results,
       styleItem: 0,
       prodId: data.id,
-      photos: styles.results[0].photos,
-      skus: styles.results[0].skus,
       styleId: styles.results[0].style_id,
     });
     console.log('Mounted overview');
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.data.id !== prevProps.data.id) {
+    if (
+      (this.props.data.id !== prevProps.data.id)
+      ||
+      (this.props.styles.product_id !== prevProps.styles.product_id)
+      ) {
       const { data, styles } = this.props;
+      console.log('should update data', data);
+      console.log('should update styles', styles);
       this.setState({
         data,
         styles: styles.results,
         styleItem: 0,
         prodId: data.id,
-        photos: styles.results[0].photos,
-        skus: styles.results[0].skus,
         styleId: styles.results[0].style_id,
       });
       // console.log('Update needed', this.state);
@@ -77,7 +78,7 @@ class Overview extends React.Component {
   render() {
     // console.log('should change', this.props);
     const {
-      data, styles, styleItem, prodId, photos, skus, styleId,
+      data, styles, styleItem, prodId, styleId,
     } = this.state;
     // console.log('s', styles);
     // console.log('state', this.state);
@@ -101,7 +102,7 @@ class Overview extends React.Component {
               />
             </SubComponentOrientation>
             <SubComponentOrientation id="cartbuilder">
-              <CartBuilder skus={skus} />
+              <CartBuilder skus={styles[styleItem].skus} />
             </SubComponentOrientation>
           </div>
         </ComponentOrientation>
