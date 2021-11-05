@@ -24,18 +24,62 @@ const Search = ({qaList}) => {
     qList = qaList.results;
   }
 
-
   const filteredList = qList.filter(question => {
+    const questionBody = question.question_body;
+    const answersContainerArray = Object.values(question.answers);
+
+    const answers = []
+    for (var i = 0; i < answersContainerArray.length; i++) {
+      const eachAnswer = answersContainerArray[i].body;
+      answers.push(eachAnswer);
+    }
+    const stringifiedAnswers = answers.join(' ')
+
     if (search === '') {
       isFull = false;
       return ''
-    } else if (question.question_body.toLowerCase().includes(search.toLowerCase())) {
+    } else if (questionBody.toLowerCase().includes(search.toLowerCase())) {
       return question
     }
-    // else if (post.answer.toLowerCase().includes(search.toLowerCase())) {
-    //   return post
-    // }
+    else if (stringifiedAnswers.toLowerCase().includes(search.toLowerCase())) {
+      return question
+    }
   })
+
+
+  const handleSearch = (event) => {
+    const input = event.target.value.toLowerCase();
+
+    if (input.length < 3) {
+      setQuestionList([])
+    } else {
+      const filtered = [];
+
+      qList.forEach(question => {
+        const questionBody = question.question_body;
+
+        if (questionBody.toLowerCase().includes(input)) {
+          filtered.push(question);
+        } else if (Object.values(question.answers).length > 0) {
+          const answers = Object.values(question.answers);
+
+          for (let i = 0; i < answers.length; i++) {
+            const answerBody = answers[i].body;
+
+            if (answerBody.toLowerCase().includes(input)) {
+              filtered.push(question);
+              return;
+            }
+          }
+        }
+      });
+      setQuestionList(filtered);
+      console.log(questionList)
+    }
+  }
+
+
+
   const handleIncrement = () => {
     setHelpCount(prev => prev + 1)
   };
@@ -53,9 +97,9 @@ const Search = ({qaList}) => {
             &nbsp;|
           </Count>
         </div>
-        {/* <div>
-        A: {post.answer}
-        </div> */}
+        <div>
+        A: {Object.values(question.answers)[0].body}
+        </div>
       </List>
     )
 
@@ -77,7 +121,7 @@ const Search = ({qaList}) => {
         <Input
           type='text'
           placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...'
-          onChange={event=>setSearch(event.target.value)}
+          onChange={handleSearch}
         />
           <SearchIcon
            style={{ color: '#6495ed' }}

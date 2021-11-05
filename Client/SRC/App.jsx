@@ -18,7 +18,7 @@ function App(props) {
   const [curProdId, setCurProdId] = useState(0);
   const [relatedData, setRelatedData] = useState([]);
   const [qaList, setQaList] = useState();
-  const [answerList, setAnswerList] = useState([]);
+  const [answerList, setAnswerList] = useState();
 
   useEffect(() => {
     axios.get('/products')
@@ -59,9 +59,9 @@ function App(props) {
         .then((data) => setQaList(data.data))
         .catch((err) => console.log('Error! ', err));
 
-      // axios.get(`/qa/questions/${curProdId}/answers`)
-      //   .then((data) => setAnswerList(data.data))
-      //   .catch((err) => console.log(err));
+      axios.get(`/qa/questions/${curProdId}/answers`)
+        .then((data) => setAnswerList(data.data))
+        .catch((err) => console.log(err));
     }
   }, [curProdId]);
 

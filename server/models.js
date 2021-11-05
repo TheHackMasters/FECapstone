@@ -55,18 +55,18 @@ module.exports = {
     }
   }),
 
-  // getAnswers: (questionID) => axios({
-  //   url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions/${questionID}`,
-  //   method: 'get',
-  //   headers: {
-  //     campus: git.tokens.campus,
-  //     Authorization: git.tokens.gitToken,
+  getAnswers: (product_id) => axios({
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions/${product_id}/answers`,
+    method: 'get',
+    headers: {
+      campus: git.tokens.campus,
+      Authorization: git.tokens.gitToken,
 
-  //   },
-  //   params: {
-  //     product_id: questionID,
-  //   },
-  // }),
+    },
+    params: {
+      product_id,
+    },
+  }),
 
   getProdReviews: (product_id = 61575) => axios({
     url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/reviews',
