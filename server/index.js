@@ -82,8 +82,8 @@ app.get('/qa/questions/:prodID', (req, res) => {
 //     });
 // });
 
-app.get('/reviews', (req, res) => {
-  models.getProdReviews()
+app.get('/reviews/:prodID', (req, res) => {
+  models.getProdReviews(req.params.prodID)
     .then((results) => {
       res.status(200).send(results.data);
       // console.log(results.data, 'Hello World! here is some data ');
@@ -94,8 +94,8 @@ app.get('/reviews', (req, res) => {
     });
 });
 
-app.get('/reviews/meta', (req, res) => {
-  models.getProdReviewsMeta()
+app.get('/reviews/meta/:prodID', (req, res) => {
+  models.getProdReviewsMeta(req.params.prodID)
     .then((results) => {
       res.status(200).send(results.data);
       // console.log(results.data, 'Hello World! here is some data ');

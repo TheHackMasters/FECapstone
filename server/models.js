@@ -68,7 +68,7 @@ module.exports = {
   //   },
   // }),
 
-  getProdReviews: (product_id = 61575) => axios({
+  getProdReviews: (product_id) => axios({
     url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/reviews',
     method: 'get',
     headers: {
@@ -79,7 +79,7 @@ module.exports = {
     params: { product_id },
   }),
 
-  getProdReviewsMeta: (product_id = 61575) => axios({
+  getProdReviewsMeta: (product_id) => axios({
     url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/reviews/meta',
     method: 'get',
     headers: {
