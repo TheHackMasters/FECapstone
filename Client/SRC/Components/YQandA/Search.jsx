@@ -9,7 +9,7 @@ import Modal from './Modal.jsx'
 
 // if (process.env.NODE_ENV !== 'test') Modal.setAppElement('#app');
 
-const Search = () => {
+const Search = ({qaList}) => {
 
   const [search, setSearch] = useState('');
   const [questionList, setQuestionList] = useState([]);
@@ -17,27 +17,33 @@ const Search = () => {
   let isFull = true;
 
   const initialCount = 0;
-  const [helpCount, setHelpCount] = useState(initialCount)
+  const [helpCount, setHelpCount] = useState(initialCount);
 
-  const filteredList = posts.filter(post => {
+  let qList = [];
+  if (qaList !== undefined) {
+    qList = qaList.results;
+  }
+
+
+  const filteredList = qList.filter(question => {
     if (search === '') {
       isFull = false;
       return ''
-    } else if (post.question.toLowerCase().includes(search.toLowerCase())) {
-      return post
-    } else if (post.answer.toLowerCase().includes(search.toLowerCase())) {
-      return post
+    } else if (question.question_body.toLowerCase().includes(search.toLowerCase())) {
+      return question
     }
+    // else if (post.answer.toLowerCase().includes(search.toLowerCase())) {
+    //   return post
+    // }
   })
-
   const handleIncrement = () => {
     setHelpCount(prev => prev + 1)
   };
 
-  const newList = filteredList.slice(0,2).map(post =>
-      <List key={post.id}>
+  const newList = filteredList.slice(0,2).map(question =>
+      <List key={question.question_id}>
         <div>
-          Q: {post.question}
+          Q: {question.question_body}
           <HelpContainer>Helpful?</HelpContainer>
           <HelpButton onClick={handleIncrement}>
             Yes
@@ -47,17 +53,17 @@ const Search = () => {
             &nbsp;|
           </Count>
         </div>
-        <div>
+        {/* <div>
         A: {post.answer}
-        </div>
+        </div> */}
       </List>
     )
 
-  const restList = filteredList.slice(2).map(post =>
-      <li key={post.id}>
-        Q: {post.question}
+  const restList = filteredList.slice(2).map(question =>
+      <li key={question.question_id}>
+        Q: {question.question_body}
         <br></br>
-        A: {post.answer}
+        {/* A: {post.answer} */}
       </li>
   )
 

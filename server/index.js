@@ -63,11 +63,9 @@ app.get('/products/:prodID/related', (req, res) => {
 });
 
 app.get('/qa/questions/:prodID', (req, res) => {
-  console.log(req.params)
   models.getAllQs(req.params.prodID)
     .then((results) => {
       res.status(200).send(results.data);
-      console.log(results.data, 'Hello World! here is some data ');
     })
     .catch((error) => {
       res.status(400).send(error);

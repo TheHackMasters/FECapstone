@@ -5,14 +5,13 @@ import axios from 'axios';
 import Search from './Search.jsx';
 import {Header, Paragraph} from './styles/Header.style.js';
 
-const QAMain = () => {
-  const [questionList, setQuestionList] = useState([])
+const QAMain = ({qaList}) => {
 
   return (
     <div>
       <Header>Questions & Answers</Header>
       <Paragraph>Find answers in Q&As</Paragraph>
-      <Search />
+      <Search qaList={qaList}/>
     </div>
   )
 };

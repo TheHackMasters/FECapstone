@@ -17,7 +17,7 @@ function App(props) {
   const [overviewStyles, setOverviewStyles] = useState(dummyOverview.dummyOverview.styles);
   const [curProdId, setCurProdId] = useState(0);
   const [relatedData, setRelatedData] = useState([]);
-  const [qaList, setQaList] = useState([]);
+  const [qaList, setQaList] = useState();
   const [answerList, setAnswerList] = useState([]);
 
   useEffect(() => {
