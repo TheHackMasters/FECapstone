@@ -26,7 +26,7 @@ function App(props) {
         setCurProdId(data.data[0].id);
       })
       .catch((err) => console.log(err));
-  }, [overviewData]);
+  }, []);
 
   useEffect(() => {
     if (curProdId !== 0) {
