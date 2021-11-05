@@ -56,32 +56,56 @@ const StyledOption = styled.option`
 width: 10fr;
 `;
 
-function CartBuilder(props) {
-  return (
-    <CartColumns>
-      <form>
-        <BoxWrapper>
-          <StyledSelectS>
-            <StyledOption value="makeAbuilder">Select Size</StyledOption>
-          </StyledSelectS>
-        </BoxWrapper>
-        <BoxWrapper>
-          <StyledSelectQ>
-            <StyledOption value="makeAbuilder">1</StyledOption>
-          </StyledSelectQ>
-        </BoxWrapper>
-      </form>
-      <CartRows>
-        <BoxAlt>
-          <span>ADD TO BAG</span>
-          <StyledPlus>+</StyledPlus>
-        </BoxAlt>
-        <BoxStar>
-          <span>☆</span>
-        </BoxStar>
-      </CartRows>
-    </CartColumns>
-  );
+class CartBuilder extends React.Component {
+  constructor(props) {
+    super(props);
+    const { skus } = this.props;
+    console.log('CB', this.props);
+    this.state = {
+      curSize: 'Select Size',
+      curQuantity: '-',
+      curSku: '',
+      skus: skus,
+    };
+    this.onSizeChange = this.onSizeChange.bind(this);
+    this.onSizeChange = this.onQuantityChange.bind(this);
+  }
+
+  onSizeChange (event) {
+    //
+  }
+
+  onQuantityChange (event) {
+    //
+  }
+
+  render() {
+    return (
+      <CartColumns>
+        <form>
+          <BoxWrapper>
+            <StyledSelectS>
+              <StyledOption value="makeAbuilder">Select Size</StyledOption>
+            </StyledSelectS>
+          </BoxWrapper>
+          <BoxWrapper>
+            <StyledSelectQ>
+              <StyledOption value="makeAbuilder">1</StyledOption>
+            </StyledSelectQ>
+          </BoxWrapper>
+        </form>
+        <CartRows>
+          <BoxAlt>
+            <span>ADD TO BAG</span>
+            <StyledPlus>+</StyledPlus>
+          </BoxAlt>
+          <BoxStar>
+            <span>☆</span>
+          </BoxStar>
+        </CartRows>
+      </CartColumns>
+    );
+  }
 }
 
 export default CartBuilder;
