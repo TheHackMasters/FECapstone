@@ -70,7 +70,7 @@ class CartBuilder extends React.Component {
       skus,
     };
     this.onSizeChange = this.onSizeChange.bind(this);
-    this.onSizeChange = this.onQuantityChange.bind(this);
+    this.onQuantityChange = this.onQuantityChange.bind(this);
   }
 
   // componentDidUpdate(prevProps) {
@@ -85,11 +85,12 @@ class CartBuilder extends React.Component {
   // }
 
   onSizeChange(event) {
-    console.log('event', event);
-    console.log('value', event.target.value);
-    console.log('id', event.target.id);
+    const index = event.target.selectedIndex;
+    const el = event.target.childNodes[index];
+    const option = el.getAttribute('id');
     this.setState({
-      curSize: event.target.id,
+      curSize: event.target.value,
+      curSku: option,
     });
   }
 
@@ -105,13 +106,7 @@ class CartBuilder extends React.Component {
       <CartColumns>
         <form>
           <BoxWrapper>
-            <StyledSelectS onChange={(event) => {
-              this.onSizeChange(event);
-            }}
-            >
-              <StyledOption value="makeAbuilder">Select Size</StyledOption>
-              <SelectSize skus={skus} />
-            </StyledSelectS>
+            <SelectSize skus={skus} handleChange={this.onSizeChange} />
           </BoxWrapper>
           <BoxWrapper>
             <StyledSelectQ>
