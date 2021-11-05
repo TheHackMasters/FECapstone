@@ -19,13 +19,7 @@ function App(props) {
   const [userCart, setUserCart] = useState(dummyOverview.dummyOverview.cart);
   const [relatedStyles, setRelatedStyles] = useState([]);
   const [qaList, setQaList] = useState();
-<<<<<<< HEAD
   const [answerList, setAnswerList] = useState();
-=======
-  const [answerList, setAnswerList] = useState([]);
-  const [meta, setMeta] = useState();
-  const [reviews, setReviews] = useState();
->>>>>>> 96ded486653f8601cfa9d9fb40b7beef8b69efef
 
   // Get the initial featured product and update app state
   useEffect(() => {

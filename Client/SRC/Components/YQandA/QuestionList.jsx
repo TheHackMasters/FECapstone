@@ -5,6 +5,8 @@ import Question from './Question.jsx'
 
 const QAList = ({qaList, answerList}) => {
 
+  console.log(AnswerList)
+
 
   let qList = [];
   if (qaList !== undefined) {
