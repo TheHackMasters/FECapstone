@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import dummydata from './dummydata.js';
+import { StarsRating } from 'stars-rating-react-hooks';
 import ReviewCard from './ReviewCard.jsx';
+import ReviewModal from './ReviewModal.jsx';
+
 
 const Reviews = (props) => {
   // const [data, setData] = useState(dummydata);
   const [reviewCount, setReviewCount] = useState(2);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   let reviewsArray = [];
   if (props.reviews !== undefined) {
@@ -13,6 +16,10 @@ const Reviews = (props) => {
     // console.log(reviews.reviews, 'inside');
     reviewsArray = reviews.reviews;
   }
+
+  const openModal = () => {
+    setModalIsOpen((prev) => !prev);
+  };
 
   return (
 
@@ -28,10 +35,10 @@ const Reviews = (props) => {
           {reviewsArray.map((review, index) => (
             (index < reviewCount
               && (
-              <ReviewCard
-                review={review}
-                index={index}
-              />
+                <ReviewCard
+                  review={review}
+                  key={index}
+                />
               )
 
             )
@@ -39,8 +46,16 @@ const Reviews = (props) => {
           ))}
 
           <div>
-            <MoreReviews onClick={()=>{setReviewCount(reviewCount + 2)}}>MORE REVIEWS</MoreReviews>
-            <AddReview>ADD A REVIEW +</AddReview>
+            <MoreReviews
+              onClick={() => { setReviewCount(reviewCount + 2); }}
+            >
+              MORE REVIEWS
+            </MoreReviews>
+            <AddReview onClick={openModal}>ADD A REVIEW +</AddReview>
+            <ReviewModal
+              modalIsOpen={modalIsOpen}
+              setModalIsOpen={setModalIsOpen}
+            />
           </div>
 
         </div>

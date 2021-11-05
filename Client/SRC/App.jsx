@@ -11,7 +11,7 @@ import dummyOverview from './Components/DOverview/dummydata.js';
 
 function App(props) {
   // example of using a hook for state
-  const [allData, setAllData] = useState([]);
+
   const [overviewData, setOverviewData] = useState(dummyOverview.dummyOverview.data);
   const [overviewStyles, setOverviewStyles] = useState(dummyOverview.dummyOverview.styles);
   const [curProdId, setCurProdId] = useState(0);
@@ -20,6 +20,8 @@ function App(props) {
   const [relatedStyles, setRelatedStyles] = useState([]);
   const [qaList, setQaList] = useState();
   const [answerList, setAnswerList] = useState([]);
+  const [meta, setMeta] = useState();
+  const [reviews, setReviews] = useState();
 
   // Get the initial featured product and update app state
   useEffect(() => {
@@ -101,6 +103,18 @@ function App(props) {
     }
   }, [curProdId]);
 
+  useEffect(() => {
+    if (curProdId !== 0) {
+      axios.get(`/reviews/meta/${curProdId}`)
+        .then((results) => setMeta({ data: results.data }))
+        .catch((error) => console.log(error));
+
+      axios.get(`/reviews/${curProdId}`)
+        .then((results) => setReviews({ reviews: results.data.results }))
+        .catch((error) => console.log(error));
+    }
+  }, [curProdId]);
+
   return (
     <div>
       <div>Hello World</div>
@@ -119,7 +133,11 @@ function App(props) {
       <QAMain qaList={qaList} answerList={answerList} />
 
       <a name="Ratings" />
-      <RatingsNReviews />
+      <RatingsNReviews
+        meta={meta}
+        reviews={reviews}
+      />
+
     </div>
   );
 }
