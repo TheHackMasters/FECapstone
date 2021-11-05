@@ -17,6 +17,8 @@ function App(props) {
   const [overviewStyles, setOverviewStyles] = useState(dummyOverview.dummyOverview.styles);
   const [curProdId, setCurProdId] = useState(0);
   const [relatedData, setRelatedData] = useState([]);
+  const [qaList, setQaList] = useState([]);
+  const [answerList, setAnswerList] = useState([]);
 
   useEffect(() => {
     axios.get('/products')
@@ -51,12 +53,24 @@ function App(props) {
     }
   }, [curProdId]);
 
+  useEffect(() => {
+    if (curProdId !== 0) {
+      axios.get(`/qa/questions/${curProdId}`)
+        .then((data) => setQaList(data.data))
+        .catch((err) => console.log('Error! ', err));
+
+      // axios.get(`/qa/questions/${curProdId}/answers`)
+      //   .then((data) => setAnswerList(data.data))
+      //   .catch((err) => console.log(err));
+    }
+  }, [curProdId]);
+
   return (
     <div>
       <div>Hello World</div>
       <Overview data={overviewData} styles={overviewStyles} />
       <RIAC relatedData={relatedData} overviewData={overviewData} />
-      <QAMain />
+      <QAMain qaList={qaList} answerList={answerList} />
       <a name="Ratings" />
       <RatingsNReviews />
     </div>

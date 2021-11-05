@@ -41,17 +41,32 @@ module.exports = {
 
     },
   }),
-  // Q&A
 
-  getAllQs: () => axios({
-    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions',
+  getAllQs: (product_id) => axios({
+    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions/',
     method: 'get',
     headers: {
       campus: git.tokens.campus,
       Authorization: git.tokens.gitToken,
 
     },
+    params: {
+      product_id,
+    }
   }),
+
+  // getAnswers: (questionID) => axios({
+  //   url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions/${questionID}`,
+  //   method: 'get',
+  //   headers: {
+  //     campus: git.tokens.campus,
+  //     Authorization: git.tokens.gitToken,
+
+  //   },
+  //   params: {
+  //     product_id: questionID,
+  //   },
+  // }),
 
   getProdReviews: (product_id = 61575) => axios({
     url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/reviews',
