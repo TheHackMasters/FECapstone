@@ -19,11 +19,22 @@ function RIAC(props) {
 
   const [preMount, setPreMount] = useState({ product_id: -1 });
 
+  const cleanData = (data) => {
+    //console.log('beofre, ', data);
+    const set = new Set(data);
+    const arr = Array.from(set);
+    const filter = arr.filter((item) => (item.id !== currProduct.id));
+    //console.log('after filter,', filter);
+    return filter;
+  };
+
   useEffect(() => {
     setCurrProduct(props.overviewData);
-    setReccList(props.relatedData);
+    setReccList(cleanData(props.relatedData));
     setReccListStyles(props.relatedStyles);
     setCurrProductStyle(props.overviewStyles);
+    setIdxRecc(0);
+    setIdxOutfit(0);
   }, [props]);
 
   // console.log(reccList);
@@ -88,6 +99,28 @@ function RIAC(props) {
       }
     }
   };
+
+  const recommends = [];
+  for (let n = idxRecc; n < idxRecc + 4; n += 1) {
+    if (reccList[n] === undefined) {
+      recommends.push(<EmptyOutfit />);
+    } else if (reccList[n] === currProduct.id) {
+      continue;
+    } else {
+      recommends.push(
+        <Card
+          key={reccList[n].id}
+          products={reccList[n]}
+          style={reccListStyles.length === 0 ? { product_id: -1 } : selectStyle(reccList[n].id)}
+          setCurProdId={props.setCurProdId}
+          isRecc={true}
+          clickX={clickX}
+          clickStar={clickStar}
+        />,
+      );
+    }
+  }
+
   // (outfitList.length < 3 ? 3 : outfitList.length)
   const outfits = [];
   for (let n = idxOutfit; n < idxOutfit + 3; n += 1) {
@@ -160,7 +193,7 @@ function RIAC(props) {
                 nextSlide={prevSlideRecc}
               />
             )}
-          {reccList.slice(idxRecc, idxRecc + 4).map((reccProduct) => (
+          {/* {reccList.slice(idxRecc, idxRecc + 4).map((reccProduct) => (
             <Card
               key={reccProduct.id}
               products={reccProduct}
@@ -170,7 +203,8 @@ function RIAC(props) {
               clickX={clickX}
               clickStar={clickStar}
             />
-          ))}
+          ))} */}
+          {recommends}
           {idxRecc === reccList.length - 4 ? <div style={spacer} />
             : (
               <RightArrow
