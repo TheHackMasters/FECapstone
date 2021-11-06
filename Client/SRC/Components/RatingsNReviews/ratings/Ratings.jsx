@@ -7,7 +7,7 @@ import RatingsSlider from './RatingsSlider.jsx';
 
 const Ratings = (props) => {
   // const { data: { ratings, characteristics, recommended } } = meta;
-  console.log(props);
+  // console.log(props);
   // console.log(ratings);
 
   // const [ratings, setRatings] = useState();

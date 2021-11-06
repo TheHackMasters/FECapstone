@@ -118,8 +118,8 @@ app.get('/cart', (req, res) => {
 });
 
 app.post('/cart', (req, res) => {
-  console.log('sku obj', req.data);
-  models.postCart(req.data)
+  // console.log('sku obj', req.body);
+  models.postCart(req.body)
     .then((results) => {
       res.status(200).send(results.data);
     })

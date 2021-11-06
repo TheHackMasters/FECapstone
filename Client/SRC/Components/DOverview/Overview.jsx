@@ -7,6 +7,7 @@ import StyleSelector from './StyleSelector.jsx';
 import CartBuilder from './CartBuilder.jsx';
 import ProductInfo from './ProductInfo.jsx';
 
+// Add in a min width(300) with an auto max width
 const ComponentWrapper = styled.section`
   border: solid
 `;
