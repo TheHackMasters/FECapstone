@@ -18,6 +18,9 @@ function SelectQuantity(props) {
   const quantityArr = (num) => {
     const newArr = [];
     let max = num;
+    if (typeof (max) === 'string') {
+      return newArr;
+    }
     if (max > 15) {
       max = 15;
     }
@@ -29,8 +32,12 @@ function SelectQuantity(props) {
 
   useEffect(() => {
     if (quantity.curSku !== '') {
-      const { skus, curSku } = quantity;
-      setQuantityBuild(quantityArr(skus[curSku].quantity));
+      if (quantity.curSku === '0') {
+        setQuantityBuild([]);
+      } else {
+        const { skus, curSku } = quantity;
+        setQuantityBuild(quantityArr(skus[curSku].quantity));
+      }
     }
   }, [quantity]);
 

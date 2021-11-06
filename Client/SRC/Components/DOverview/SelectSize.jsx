@@ -20,7 +20,6 @@ function SelectSize(props) {
 
   useEffect(() => {
     const { skus } = props;
-    console.log('please', props);
     setSkuArr(Object.keys(skus));
     setSkus(skus);
   }, [props]);

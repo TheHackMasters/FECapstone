@@ -75,8 +75,6 @@ class CartBuilder extends React.Component {
 
   componentDidUpdate(prevProps) {
     const { selection, skus } = this.props;
-    console.log('HMM');
-    console.log(selection, prevProps.selection);
     if (selection !== prevProps.selection) {
       console.log('should update');
       this.setState({
@@ -107,7 +105,6 @@ class CartBuilder extends React.Component {
 
   render() {
     const { skus, curSku } = this.state;
-    console.log('hmm', this.props);
     return (
       <CartColumns>
         <form>
