@@ -11,7 +11,6 @@ import dummyOverview from './Components/DOverview/dummydata.js';
 
 function App(props) {
   // example of using a hook for state
-
   const [overviewData, setOverviewData] = useState(dummyOverview.dummyOverview.data);
   const [overviewStyles, setOverviewStyles] = useState(dummyOverview.dummyOverview.styles);
   const [curProdId, setCurProdId] = useState(0);

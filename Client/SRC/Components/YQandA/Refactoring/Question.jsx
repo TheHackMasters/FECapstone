@@ -1,14 +1,21 @@
 /*eslint-disable */
 
-import React from 'react';
-import {HelpContainer, HelpButton, List, Count, QuestionLetter, AddButton} from './styles/Helpful.style.js';
+import React, {useState} from 'react';
 import AnswerList from './AnswerList.jsx';
+import {HelpContainer, HelpButton, List, Count, QuestionLetter, AddButton} from './styles/Helpful.style.js';
+import {ModalWrapper, ModalContent, CloseModalButton} from './styles/Modal.style.js';
+import {ModalInput} from './styles/ModalInput.style.js';
 
 const Question = ({question}) => {
+
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const openModal = () => setModalIsOpen(prev => !prev);
+  const [isAdd, setIsAdd] = useState(false);
+
   return (
     <>
       <List>
-       <QuestionLetter>
+        <QuestionLetter>
          Q
         </QuestionLetter>
          : {question.question_body}
@@ -25,7 +32,7 @@ const Question = ({question}) => {
           add answer
         </AddButton>
       </List>
-      <AnswerList answers={question.answers}/>
+      {/* <AnswerList answers={question.answers}/> */}
     </>
   )
 }
