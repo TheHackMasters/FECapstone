@@ -73,16 +73,21 @@ class CartBuilder extends React.Component {
     this.onQuantityChange = this.onQuantityChange.bind(this);
   }
 
-  // componentDidUpdate(prevProps) {
-  //   const { skus } = this.props;
-  //   if (selection.style_id !== prevProps.skus.style_id) {
-  //     this.setState({
-  //       curPhoto: 0,
-  //       photos: selection.photos,
-  //     });
-  //     // console.log('Update needed', this.state);
-  //   }
-  // }
+  componentDidUpdate(prevProps) {
+    const { selection, skus } = this.props;
+    console.log('HMM');
+    console.log(selection, prevProps.selection);
+    if (selection !== prevProps.selection) {
+      console.log('should update');
+      this.setState({
+        curSize: 'Select Size',
+        curQuantity: '-',
+        curSku: '',
+        skus,
+      });
+      // console.log('Update needed', this.state);
+    }
+  }
 
   onSizeChange(event) {
     const index = event.target.selectedIndex;
@@ -96,12 +101,13 @@ class CartBuilder extends React.Component {
 
   onQuantityChange(event) {
     this.setState({
-      curQuantity: event.target.id,
+      curQuantity: event.target.value,
     });
   }
 
   render() {
-    const { skus } = this.state;
+    const { skus, curSku } = this.state;
+    console.log('hmm', this.props);
     return (
       <CartColumns>
         <form>
@@ -109,9 +115,7 @@ class CartBuilder extends React.Component {
             <SelectSize skus={skus} handleChange={this.onSizeChange} />
           </BoxWrapper>
           <BoxWrapper>
-            <StyledSelectQ>
-              <StyledOption value="makeAbuilder">1</StyledOption>
-            </StyledSelectQ>
+            <SelectQuantity quantity={this.state} handleChange={this.onQuantityChange} />
           </BoxWrapper>
         </form>
         <CartRows>

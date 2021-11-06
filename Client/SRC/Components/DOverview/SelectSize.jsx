@@ -15,13 +15,21 @@ cursor:pointer;
 function SelectSize(props) {
   // console.log(props);
   const { handleChange, skus } = props;
-  const skuArr = Object.keys(skus);
+  const [skuArr, setSkuArr] = useState(Object.keys(skus));
+  const [newskus, setSkus] = useState(skus);
+
+  useEffect(() => {
+    const { skus } = props;
+    console.log('please', props);
+    setSkuArr(Object.keys(skus));
+    setSkus(skus);
+  }, [props]);
   // console.log(skuArr);
   return (
     <StyledSelectS onChange={handleChange}>
-      <StyledOption id="0" value="makeAbuilder">Select Size</StyledOption>
+      <StyledOption id="0" value="invalid">Select Size</StyledOption>
       {skuArr.map((sku) => (
-        <StyledOption id={sku} value={skus[`${sku}`].size}>{skus[`${sku}`].size}</StyledOption>
+        <StyledOption id={sku} key={sku} value={newskus[`${sku}`].size}>{newskus[`${sku}`].size}</StyledOption>
       ))}
     </StyledSelectS>
   );
