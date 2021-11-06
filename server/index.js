@@ -72,15 +72,15 @@ app.get('/qa/questions/:prodID', (req, res) => {
     });
 });
 
-// app.get('/qa/questions/:questionID', (req, res) => {
-//   models.getAnswers(req.params.product_id)
-//     .then((results) => {
-//       res.status(200).send(results.data);
-//     })
-//     .catch((error) => {
-//       res.status(400).send(error);
-//     });
-// });
+app.get('/qa/questions/:prodID/answers', (req, res) => {
+  models.getAnswers(req.params.prodID)
+    .then((results) => {
+      res.status(200).send(results.data);
+    })
+    .catch((error) => {
+      res.status(400).send(error);
+    });
+});
 
 app.get('/reviews/:prodID', (req, res) => {
   models.getProdReviews(req.params.prodID)
