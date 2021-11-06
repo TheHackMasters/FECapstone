@@ -52,7 +52,7 @@ margin-top: 2px;
 margin-bottom: 2px;
 `
 
-const RatingsSlider = (props) => {
+const RatingsSlider = () => {
   const [charState, setCharState] = useState({
     Fit: {
       id: 206673,

@@ -45,7 +45,10 @@ function App(props) {
       axios.get(`/products/${curProdId}/related`)
         .then((result) => {
           const arr = [];
-          result.data.forEach((id) => {
+          const set = new Set(result.data);
+          const arrSet = Array.from(set);
+          const filter = arrSet.filter((item) => (item.id !== curProdId))
+          filter.forEach((id) => {
             arr.push(axios.get(`/products/${id}`)
               .then((reply) => (reply.data))
               .catch((err) => console.log(err)));

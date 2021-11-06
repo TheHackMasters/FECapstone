@@ -9,12 +9,14 @@ function Card(props) {
   const cardStyle = {
     border: '2px solid #D3D3D3',
     marginRight: '36px',
+    width: '235px',
+    height: '350px',
   };
 
   const cardImgStyle = {
     position: 'relative',
     width: '235px',
-    height: '225px',
+    height: '240px',
     objectFit: 'cover',
   };
 
@@ -40,8 +42,10 @@ function Card(props) {
 
   const imageStyle = {
     display: 'flex',
+    maxHeight: '100%',
+    maxWidth: '100%',
+    height: '240px',
     width: '235px',
-    height: '225px',
     objectFit: 'cover',
   };
 
