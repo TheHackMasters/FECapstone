@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import SelectQuantity from './SelectQuantity.jsx';
+import SelectSize from './SelectSize.jsx';
 
 const CartRows = styled.div`
 margin-top: 15px;
@@ -65,33 +67,52 @@ class CartBuilder extends React.Component {
       curSize: 'Select Size',
       curQuantity: '-',
       curSku: '',
-      skus: skus,
+      skus,
     };
     this.onSizeChange = this.onSizeChange.bind(this);
-    this.onSizeChange = this.onQuantityChange.bind(this);
+    this.onQuantityChange = this.onQuantityChange.bind(this);
   }
 
-  onSizeChange (event) {
-    //
+  componentDidUpdate(prevProps) {
+    const { selection, skus } = this.props;
+    if (selection !== prevProps.selection) {
+      console.log('should update');
+      this.setState({
+        curSize: 'Select Size',
+        curQuantity: '-',
+        curSku: '',
+        skus,
+      });
+      // console.log('Update needed', this.state);
+    }
   }
 
-  onQuantityChange (event) {
-    //
+  onSizeChange(event) {
+    const index = event.target.selectedIndex;
+    const el = event.target.childNodes[index];
+    const option = el.getAttribute('id');
+    this.setState({
+      curSize: event.target.value,
+      curSku: option,
+    });
+  }
+
+  onQuantityChange(event) {
+    this.setState({
+      curQuantity: event.target.value,
+    });
   }
 
   render() {
+    const { skus, curSku } = this.state;
     return (
       <CartColumns>
         <form>
           <BoxWrapper>
-            <StyledSelectS>
-              <StyledOption value="makeAbuilder">Select Size</StyledOption>
-            </StyledSelectS>
+            <SelectSize skus={skus} handleChange={this.onSizeChange} />
           </BoxWrapper>
           <BoxWrapper>
-            <StyledSelectQ>
-              <StyledOption value="makeAbuilder">1</StyledOption>
-            </StyledSelectQ>
+            <SelectQuantity quantity={this.state} handleChange={this.onQuantityChange} />
           </BoxWrapper>
         </form>
         <CartRows>

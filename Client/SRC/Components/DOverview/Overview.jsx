@@ -25,7 +25,6 @@ class Overview extends React.Component {
   constructor(props) {
     super(props);
     const { data, styles } = this.props;
-    console.log('big', data);
     this.state = {
       data,
       styles: styles.results,
@@ -51,12 +50,14 @@ class Overview extends React.Component {
   componentDidUpdate(prevProps) {
     if (
       (this.props.data.id !== prevProps.data.id)
-      ||
-      (this.props.styles.product_id !== prevProps.styles.product_id)
-      ) {
+      || (this.props.styles.product_id !== prevProps.styles.product_id)
+    ) {
       const { data, styles } = this.props;
+<<<<<<< HEAD
+=======
       //console.log('should update data', data);
       //console.log('should update styles', styles);
+>>>>>>> 310216eb28522a17a7dfdeec6e96cfcf2e7dd7a4
       this.setState({
         data,
         styles: styles.results,
@@ -102,7 +103,10 @@ class Overview extends React.Component {
               />
             </SubComponentOrientation>
             <SubComponentOrientation id="cartbuilder">
-              <CartBuilder skus={styles[styleItem].skus} />
+              <CartBuilder
+                skus={styles[styleItem].skus}
+                selection={styles[styleItem].style_id}
+              />
             </SubComponentOrientation>
           </div>
         </ComponentOrientation>
