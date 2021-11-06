@@ -6,25 +6,29 @@ import AddToOutfitsCard from './AddToOutfitsCard.jsx';
 import EmptyOutfit from './EmptyOutfit.jsx';
 import RightArrow from './RightArrow.jsx';
 import LeftArrow from './LeftArrow.jsx';
+import ComparisonModal from './ComparisonModal.jsx';
 
 function RIAC(props) {
   const [idxRecc, setIdxRecc] = useState(0);
   const [idxOutfit, setIdxOutfit] = useState(0);
 
   const [currProduct, setCurrProduct] = useState(props.overviewData);
-  const [currProductStyle, setCurrProductStyle] = useState(props.overviewStyles)
+  const [currProductStyle, setCurrProductStyle] = useState(props.overviewStyles);
   const [reccList, setReccList] = useState(props.relatedData);
   const [reccListStyles, setReccListStyles] = useState([]);
   const [outfitList, setOutfitList] = useState([]);
 
+  const [openModal, setOpenModal] = useState(false);
+  const [compareProd, setCompareProd] = useState({});
+
   const [preMount, setPreMount] = useState({ product_id: -1 });
 
   const cleanData = (data) => {
-    //console.log('beofre, ', data);
+    // console.log('beofre, ', data);
     const set = new Set(data);
     const arr = Array.from(set);
     const filter = arr.filter((item) => (item.id !== currProduct.id));
-    //console.log('after filter,', filter);
+    // console.log('after filter,', filter);
     return filter;
   };
 
@@ -51,7 +55,7 @@ function RIAC(props) {
   });
 
   const selectStyle = (id) => {
-    //console.log('currProductStyleID', currProductStyle);
+    // console.log('currProductStyleID', currProductStyle);
     if (id === Number(currProductStyle.product_id)) {
       return currProductStyle;
     }
@@ -65,15 +69,15 @@ function RIAC(props) {
 
   const clickX = (product) => {
     let idx = -1;
-    //console.log('clicked ', product);
+    // console.log('clicked ', product);
     for (let n = 0; n < outfitList.length; n++) {
       if (product.id === outfitList[n].id) {
         idx = n;
       }
     }
     if (idx > -1) {
-      //console.log('removing from idx: ', idx);
-      //console.log('idxOutfit is :', idxOutfit);
+      // console.log('removing from idx: ', idx);
+      // console.log('idxOutfit is :', idxOutfit);
       setOutfitList([...outfitList.slice(0, idx), ...outfitList.slice(idx + 1, outfitList.length)]);
       if (idxOutfit > idx) {
         setIdxOutfit(idxOutfit - 1);
@@ -83,21 +87,23 @@ function RIAC(props) {
   };
 
   const clickStar = (product) => {
+    setCompareProd(product);
+    setOpenModal(true);
     // console.log('clicked star', product);
     // console.log('product id, ', product.id);
-    let notAlready = true;
-    outfitList.forEach((item) => {
-      // console.log('item id', item.id);
-      if (item.id === product.id) {
-        notAlready = false;
-      }
-    });
-    if (notAlready) {
-      setOutfitList([product, ...outfitList]);
-      if (idxOutfit > 0) {
-        setIdxOutfit(idxOutfit - 1);
-      }
-    }
+    // let notAlready = true;
+    // outfitList.forEach((item) => {
+    //   // console.log('item id', item.id);
+    //   if (item.id === product.id) {
+    //     notAlready = false;
+    //   }
+    // });
+    // if (notAlready) {
+    //   setOutfitList([product, ...outfitList]);
+    //   if (idxOutfit > 0) {
+    //     setIdxOutfit(idxOutfit - 1);
+    //   }
+    // }
   };
 
   const recommends = [];
@@ -113,7 +119,7 @@ function RIAC(props) {
           products={reccList[n]}
           style={reccListStyles.length === 0 ? { product_id: -1 } : selectStyle(reccList[n].id)}
           setCurProdId={props.setCurProdId}
-          isRecc={true}
+          isRecc
           clickX={clickX}
           clickStar={clickStar}
         />,
@@ -205,6 +211,14 @@ function RIAC(props) {
             />
           ))} */}
           {recommends}
+          {openModal ? (
+            <ComparisonModal
+              openModal={openModal}
+              setOpenModal={setOpenModal}
+              currProduct={currProduct}
+              compareProd={compareProd}
+            />
+          ) : null}
           {idxRecc === reccList.length - 4 ? <div style={spacer} />
             : (
               <RightArrow
