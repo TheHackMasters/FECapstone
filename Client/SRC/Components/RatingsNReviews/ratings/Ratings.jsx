@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import helper from './helper.js'
+import helper from './helper.js';
 import { StarsRating } from "stars-rating-react-hooks";
 import RatingStar from './RatingStar.jsx';
-// import RatingsBar from './RatingsBar.jsx';
+import RatingsSlider from './RatingsSlider.jsx';
 
 const Ratings = (props) => {
   // const { data: { ratings, characteristics, recommended } } = meta;
-  // console.log(props);
+  console.log(props);
   // console.log(ratings);
 
   // const [ratings, setRatings] = useState();
@@ -56,14 +56,13 @@ const Ratings = (props) => {
               % of reviewers recommend this product
             </div>
 
-            {/* <RatingsBar /> */}
             <div>5 stars ########## </div>
             <div>4 stars ##### </div>
             <div>3 stars ######## </div>
             <div>2 stars ## </div>
             <div>1 stars ### </div>
-            <div> Size (too small, too large)</div>
-            <div> Comfort (poor, perfect)</div>
+            <RatingsSlider />
+
           </div>
 
         </div>
