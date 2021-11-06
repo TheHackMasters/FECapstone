@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
+
 import SelectQuantity from './SelectQuantity.jsx';
 import SelectSize from './SelectSize.jsx';
 
@@ -62,7 +64,7 @@ class CartBuilder extends React.Component {
   constructor(props) {
     super(props);
     const { skus } = this.props;
-    console.log('CB', this.props);
+    // console.log('CB', this.props);
     this.state = {
       curSize: 'Select Size',
       curQuantity: '-',
@@ -71,12 +73,12 @@ class CartBuilder extends React.Component {
     };
     this.onSizeChange = this.onSizeChange.bind(this);
     this.onQuantityChange = this.onQuantityChange.bind(this);
+    this.handleAdd = this.handleAdd.bind(this);
   }
 
   componentDidUpdate(prevProps) {
     const { selection, skus } = this.props;
     if (selection !== prevProps.selection) {
-      console.log('should update');
       this.setState({
         curSize: 'Select Size',
         curQuantity: '-',
@@ -84,6 +86,26 @@ class CartBuilder extends React.Component {
         skus,
       });
       // console.log('Update needed', this.state);
+    }
+  }
+
+  handleAdd(event) {
+    const { curSize, curQuantity, curSku} = this.state;
+
+    if (curSize === 'Select Size') {
+      alert('Please select a size!');
+    } else if ((curQuantity === '-') || (curQuantity === 'invalid')) {
+      alert('Please select a quantity!');
+    } else {
+      console.log(curSize, curQuantity, curSku);
+      axios.post('/cart', {
+        sku_id: curSku,
+        count: curQuantity,
+      })
+        .then((data) => {
+          console.log('success!', data);
+        })
+        .catch((err) => console.log(err));
     }
   }
 
@@ -116,7 +138,7 @@ class CartBuilder extends React.Component {
           </BoxWrapper>
         </form>
         <CartRows>
-          <BoxAlt>
+          <BoxAlt onClick={this.handleAdd}>
             <span>ADD TO BAG</span>
             <StyledPlus>+</StyledPlus>
           </BoxAlt>
