@@ -10,7 +10,7 @@ const LoadMoreButton = styled.button`
   color: black;
   background-color: #87CEEB;
   position: relative;
-  top: 10px;
+  top: 20px;
   right: 40px;
   width: 270px;
 
@@ -28,7 +28,7 @@ const AddMoreQuestion = styled.button`
   color: black;
   background-color: #87CEEB;
   position: relative;
-  top: 10px;
+  top: 20px;
   right: 10px;
   width: 200px;
 
