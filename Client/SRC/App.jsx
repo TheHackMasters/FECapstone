@@ -20,6 +20,8 @@ function App(props) {
   const [relatedStyles, setRelatedStyles] = useState([]);
   const [qaList, setQaList] = useState();
   const [answerList, setAnswerList] = useState();
+  const [meta, setMeta] = useState();
+  const [reviews, setReviews] = useState();
 
   // Get the initial featured product and update app state
   useEffect(() => {

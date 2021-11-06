@@ -4,14 +4,15 @@ import React from 'react';
 import Answer from './Answer.jsx';
 
 const AnswerList = ({answers}) => {
-  const sortedAnswers = Object.values(answers);
-  const newList = sortedAnswers.map(answer => {
-    <Answer />
+  const answerList = Object.values(answers);
+
+  const newList = answerList.map(answer => {
+   return <Answer answer={answer }key={answer.id} body={answer.body}/>
   })
 
   return (
    <div>
-     hello123
+    {newList}
    </div>
   )
 }

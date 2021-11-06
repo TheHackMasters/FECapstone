@@ -1,29 +1,30 @@
 /*eslint-disable */
 
 import React from 'react';
+import {HelpContainer, HelpButton, List, Count, QuestionLetter, AddButton} from './styles/Helpful.style.js';
 import AnswerList from './AnswerList.jsx';
 
 const Question = ({question}) => {
   return (
     <>
-      <div>
-        Q: {question.question_body}
-      </div>
-      <span>
-        Helpful?
-      </span>
-      <button>
-        Yes
-      </button>
-      <span>
-        ({question.question_helpfulness})
-      </span>
-      <span>
-      &nbsp;|&nbsp;
-      </span>
-      <button>
-        add answer
-      </button>
+      <List>
+       <QuestionLetter>
+         Q
+        </QuestionLetter>
+         : {question.question_body}
+        <HelpContainer>
+          Helpful?
+        </HelpContainer>
+        <HelpButton>
+          Yes
+        </HelpButton>
+        <Count>
+          ({question.question_helpfulness})&nbsp;|&nbsp;
+        </Count>
+        <AddButton>
+          add answer
+        </AddButton>
+      </List>
       <AnswerList answers={question.answers}/>
     </>
   )
