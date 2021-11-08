@@ -2,6 +2,12 @@
 
 import React, {useState} from 'react';
 import { postServer, validateEmail } from '../helpers/helpers.js';
+import {
+  AWarningText, ANameText, AEmailText, QModal, QModalContent, AModalHeader, AModalTitle,
+  QuestionSub, AModalFooter, Warning, AModalBody, AText, AEmailBox, ANameBox, ALabel, ATextArea, QButton
+
+} from './styles.js'
+
 
 const QuestionModal = (props) => {
   const [qModalBody, setQModalBody] = useState('');
@@ -48,62 +54,76 @@ const QuestionModal = (props) => {
   if (qModalBody.length > 0) {
     qWarning = null;
   } else {
-    qWarning = <span className="aWarningText">Please ask a question</span>;
+    qWarning = <AWarningText>Please ask a question</AWarningText>;
   }
 
   if (qModalName.length > 0) {
     nWarning = null;
   } else {
-    nWarning = <span className='aNameText'>Please enter your nickname</span>;
+    nWarning = <ANameText>Please enter your nickname</ANameText>;
   }
 
 
   if (validateEmail(qModalEmail)) {
     eWarning = null;
   } else {
-    eWarning = <span className='aEmailText'>Please enter a valid email</span>;
+    eWarning = <AEmailText>Please enter a valid email</AEmailText>;
   }
 
   return (
-    <div className="q-modal" onClick={props.onClose}>
-      <div className="a-modal-content" onClick={e => e.stopPropagation()}>
-        <div className="a-modal-header">
-          <h2 className="a-modal-title">Ask Your Question about the... </h2>
-          <h4 className="questionSub"> {props.name}</h4>
-        </div>
-        <div className="a-modal-body">
-          <div className="a-text">
-            <label className="a-label">
+    <QModal onClick={props.onClose}>
+      <QModalContent onClick={e => e.stopPropagation()}>
+        <AModalHeader>
+          <AModalTitle>Ask Your Question about the... </AModalTitle>
+          <QuestionSub> {props.name}</QuestionSub>
+        </AModalHeader>
+        <AModalBody>
+          <AText>
+            <ALabel>
               * Your Question:
-            </label>
-            <textarea type="text" className="a-textarea" maxLength={1000} onChange={qModalBodyHandler}></textarea>
-          </div>
-          <div className="a-name">
-            <label className="a-label">
+            </ALabel>
+            <ATextArea type="text" maxLength={1000} onChange={qModalBodyHandler}></ATextArea>
+          </AText>
+          <AText>
+            <ALabel>
               * What is your nickname?
-              <input className="a-name-box" maxLength={60} onChange={qModalNameHandler} type="text" placeholder="Example: jackson11!"></input>
-            </label>
-            <div className="warning">
+              <ANameBox
+                maxLength={60}
+                onChange={qModalNameHandler}
+                type="text"
+                placeholder="Example: jackson11!">
+              </ANameBox>
+            </ALabel>
+            <Warning>
               For privacy reasons, do not use your full name or email address
-            </div>
-          </div>
+            </Warning>
+          </AText>
           <div>
-            <label className="a-label">
+            <ALabel>
               * Your email:
-              <input className="a-email-box" maxLength={60} onChange={qModalEmailHandler} type="text" placeholder="Why did you like the product or not?"></input>
-            </label>
-            <div className="warning">
+              <AEmailBox
+                maxLength={60}
+                onChange={qModalEmailHandler}
+                type="text"
+                placeholder="Why did you like the product or not?">
+              </AEmailBox>
+            </ALabel>
+            <Warning>
                 For authentication reasons you will not be emailed
-            </div>
-            <div className="warning">* Indicates a required field</div>
+            </Warning>
+            <Warning>* Indicates a required field</Warning>
           </div>
-        </div>
-        <div className="a-modal-footer">
-          <button className="q-button" onClick={() => submitQuestion(qModalBody, qModalName, qModalEmail, props.productId)}>Submit</button>
+        </AModalBody>
+        <AModalFooter>
+          <QButton
+            onClick={() => submitQuestion(qModalBody, qModalName, qModalEmail, props.productId)}
+          >
+          Submit
+          </QButton>
           {qWarning} {nWarning} {eWarning}
-        </div>
-      </div>
-    </div>
+        </AModalFooter>
+      </QModalContent>
+    </QModal>
   );
 };
 

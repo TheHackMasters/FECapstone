@@ -2,10 +2,12 @@
 
 import React, {useState, useEffect, useContext} from 'react';
 import axios from 'axios';
-//import {ContextObj} from '../../ContextObj';
+import {ContextObj} from './ContextObj.jsx';
 import AnswerEntry from './AnswerEntry.jsx';
 import AnswerModal from './AnswerModal.jsx';
-import { getServer, grabReviewScore, formatDate, putServer } from '../helpers';
+import {getServer, grabReviewScore, formatDate, putServer} from '../helpers/helpers.js';
+import {MoreAnswers, Highlight, AnswerList, Link, QText, QLetter, QEntry, SellerSig} from './styles.js';
+
 
 const QAListEntry = (props) => {
 
@@ -81,9 +83,12 @@ const QAListEntry = (props) => {
     if (props.query.length >= 3) {
       var index = clone.indexOf(query);
       if (index > -1) {
-        result = <div>
+        result =
+        <div>
           <span>{string.slice(0, index)}</span>
-          <span className="highlight"><b>{string.slice(index, index + query.length)}</b></span>
+          <Highlight>
+            <b>{string.slice(index, index + query.length)}</b>
+          </Highlight>
           <span>{string.slice(index + query.length)}</span>
         </div>;
       }
@@ -95,24 +100,35 @@ const QAListEntry = (props) => {
   if (answerList.length - listHandler(answerList).length === 0 && answerList.length <= 2) {
     listButton = null;
   } else if (answerList.length - listHandler(answerList).length === 0 && answerList.length > 2) {
-    listButton = <div className="moreAnswers" onClick={decreaseLimit}>Collapse Answers</div>;
+    listButton = <MoreAnswers onClick={decreaseLimit}>Collapse Answers</MoreAnswers>;
   } else {
-    listButton = <div className="moreAnswers" onClick={increaseLimit}>See More Answers</div>;
+    listButton = <MoreAnswers onClick={increaseLimit}>See More Answers</MoreAnswers>;
   }
 
   return (
-    <div className="QAEntry">
-      <div className="qEntry">
-        <span className="qLetter">Q:</span> <span className="qText">{highlightSearch(questionBody)}</span>
-        <div className="sellerSig">
+    <div>
+      <QEntry>
+        <QLetter>Q:</QLetter>
+        <QText>{highlightSearch(questionBody)}</QText>
+        <SellerSig>
           <span>    Helpful?</span>
-          <span className="link" onClick={updateQuestionHelp}> Yes ({questionHelpfulness})</span>
+          <Link onClick={updateQuestionHelp}> Yes ({questionHelpfulness})</Link>
           <span> | </span>
-          <span className="link" onClick={() => setShowAnswers(true)}> Add Answer</span>
-        </div>
+          <Link onClick={() => setShowAnswers(true)}> Add Answer</Link>
+        </SellerSig>
+      </QEntry>
+      <div>
+        <AnswerModal
+          setNewAnswer={setNewAnswer}
+          onClose={() => setShowAnswers(false)}
+          name={productInfo.name}
+          question={props.question.question_body}
+          qId={props.question.question_id}
+          show={showAnswers}/>
       </div>
-      <div><AnswerModal setNewAnswer={setNewAnswer} onClose={() => setShowAnswers(false)} name={productInfo.name} question={props.question.question_body} qId={props.question.question_id} show={showAnswers}/></div>
-      <div className="answerList">{listHandler(sortAnswersBySeller(answers)).map((answer, index) => <AnswerEntry answer={answer} key={index}/>)}</div>
+      <AnswerList>
+        {listHandler(sortAnswersBySeller(answers)).map((answer, index) => <AnswerEntry answer={answer} key={index}/>)}
+      </AnswerList>
       {listButton}
     </div>
   );
