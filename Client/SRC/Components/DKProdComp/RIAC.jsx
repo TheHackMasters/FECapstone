@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-
 import Card from './Card.jsx';
 import AddToOutfitsCard from './AddToOutfitsCard.jsx';
 import EmptyOutfit from './EmptyOutfit.jsx';
@@ -18,6 +16,8 @@ function RIAC(props) {
   const [reccListStyles, setReccListStyles] = useState([]);
   const [outfitList, setOutfitList] = useState([]);
   const [outfitListStyles, setOutfitListStyles] = useState([currProductStyle]);
+  const [addedCurrentToOutfits, setAddedCurrentToOutfit] =
+  useState(!!localStorage.getItem(currProduct.id));
 
   const [openModal, setOpenModal] = useState(false);
   const [compareProd, setCompareProd] = useState({});
@@ -25,7 +25,7 @@ function RIAC(props) {
   const [preMount, setPreMount] = useState({ product_id: -1 });
 
   const cleanData = (data) => {
-    // console.log('beofre, ', data);
+    // console.log('before, ', data);
     const set = new Set(data);
     const arr = Array.from(set);
     const filter = arr.filter((item) => (item.id !== currProduct.id));
@@ -38,6 +38,7 @@ function RIAC(props) {
     setReccList(cleanData(props.relatedData));
     setReccListStyles(props.relatedStyles);
     setCurrProductStyle(props.overviewStyles);
+    setAddedCurrentToOutfit(!!localStorage.getItem(currProduct.id));
     setIdxRecc(0);
     setIdxOutfit(0);
   }, [props]);
@@ -45,15 +46,15 @@ function RIAC(props) {
   // console.log(reccList);
   // console.log('recclistStyles', reccListStyles);
 
-  const [addedCurrentOutfit, setAddedCurrentOutfit] = useState(() => {
-    let isIncluded = false;
-    outfitList.forEach((item) => {
-      if (currProduct.id === item.id) {
-        isIncluded = true;
-      }
-    });
-    return isIncluded;
-  });
+  // const [addedCurrentOutfit, setAddedCurrentOutfit] = useState(() => {
+  //   let isIncluded = false;
+  //   outfitList.forEach((item) => {
+  //     if (currProduct.id === item.id) {
+  //       isIncluded = true;
+  //     }
+  //   });
+  //   return isIncluded;
+  // });
 
   const selectStyle = (id) => {
     // console.log('currProductStyleID', currProductStyle);
@@ -82,41 +83,65 @@ function RIAC(props) {
   };
 
   const clickX = (product) => {
+    console.log(localStorage);
     let idx = -1;
     // console.log('clicked ', product);
-    for (let n = 0; n < outfitList.length; n += 1) {
-      if (product.id === outfitList[n].id) {
+    for (let n = 0; n < localStorage.length; n += 1) {
+      console.log('storage key ', localStorage.key(n));
+      console.log('product key ', product.id);
+      console.log(product.id === Number(localStorage.key(n)));
+
+      if (product.id === Number(localStorage.key(n))) {
         idx = n;
       }
     }
+    console.log(idx);
     if (idx > -1) {
       // console.log('removing from idx: ', idx);
       // console.log('idxOutfit is :', idxOutfit);
-      setOutfitList([...outfitList.slice(0, idx), ...outfitList.slice(idx + 1, outfitList.length)]);
+      if (product.id === currProduct.id) {
+        setAddedCurrentToOutfit(false);
+      }
+      console.log('removing');
+      localStorage.removeItem(product.id);
+      // setOutfitList([...outfitList.slice(0, idx), ...outfitList.slice(idx + 1, outfitList.length)]);
       if (idxOutfit > idx) {
         setIdxOutfit(idxOutfit - 1);
       }
       // setOutfitList(outfitList.filter((item) => item !== undefined));
     }
+    console.log('after, ', localStorage);
   };
 
   const clickAddToOutfits = (product, style) => {
     // console.log('clicked star', product);
     // console.log('product id, ', product.id);
-    let notAlready = true;
-    outfitList.forEach((item) => {
-      // console.log('item id', item.id);
-      if (item.id === product.id) {
-        notAlready = false;
-      }
-    });
-    if (notAlready) {
-      setOutfitList([product, ...outfitList]);
-      setOutfitListStyles([style, ...outfitListStyles]);
-      if (idxOutfit > 0) {
-        setIdxOutfit(idxOutfit - 1);
-      }
+    // let notAlready = true;
+    // console.log(localStorage);
+    // outfitList.forEach((item) => {
+    //   // console.log('item id', item.id);
+    //   if (item.id === product.id) {
+    //     notAlready = false;
+    //   }
+    // });
+    // console.log('product', product);
+    // console.log('style', style);
+    if (!localStorage.getItem(product.id)) {
+      const itemObj = [product, style];
+      localStorage.setItem(product.id, JSON.stringify(itemObj));
+      setAddedCurrentToOutfit(true);
     }
+    // console.log(JSON.parse(localStorage.getItem(product.id)));
+    // console.log(localStorage);
+    //localStorage.setItem(product.id, [])
+    //localStorage.outfits.push({product[id]: [product, style]});
+    // if (notAlready) {
+    //   setOutfitList([product, ...outfitList]);
+    //   setOutfitListStyles([style, ...outfitListStyles]);
+    //   if (idxOutfit > 0) {
+    //     setIdxOutfit(idxOutfit - 1);
+    //   }
+    // }
   };
 
   const clickStar = (product) => {
@@ -127,7 +152,7 @@ function RIAC(props) {
   const recommends = [];
   for (let n = idxRecc; n < idxRecc + 4; n += 1) {
     if (reccList[n] === undefined) {
-      recommends.push(<EmptyOutfit />);
+      recommends.push(<EmptyOutfit key={-1 * n} />);
     } else if (reccList[n] === currProduct.id) {
       continue;
     } else {
@@ -146,16 +171,25 @@ function RIAC(props) {
   }
 
   // (outfitList.length < 3 ? 3 : outfitList.length)
+  useEffect(() => {
+    console.log('WAZZZZAAA');
+
+  }, [addedCurrentToOutfits]);
+
   const outfits = [];
   for (let n = idxOutfit; n < idxOutfit + 3; n += 1) {
-    if (outfitList[n] === undefined) {
-      outfits.push(<EmptyOutfit />);
+    // console.log(localStorage.key(n));
+    if (localStorage.key(n) === null) {
+      outfits.push(<EmptyOutfit key={-10 * n} />);
     } else {
+      const storageKey = localStorage.key(n);
+      const currOutfit = JSON.parse(localStorage.getItem(storageKey));
+      // console.log(currOutfit);
       outfits.push(
         <Card
-          key={outfitList[n].id}
-          products={outfitList[n]}
-          style={reccListStyles.length === 0 ? { product_id: -1 } : selectStyle(outfitList[n].id)}
+          key={storageKey}
+          products={currOutfit[0]}
+          style={currOutfit[1]}
           setCurProdId={props.setCurProdId}
           isRecc={false}
           clickX={clickX}
@@ -258,24 +292,14 @@ function RIAC(props) {
                 nextSlide={prevSlideOutfit}
               />
             )}
-          {addedCurrentOutfit ? (
-            <Card
-              key={reccProduct.id}
-              products={reccProduct}
-              isRecc
-              clickX={clickX}
-              clickStar={clickStar}
-            />
-          )
-            : (
               <AddToOutfitsCard
                 currProduct={currProduct}
                 style={selectStyleOutfits(currProduct.id)}
                 clickAddToOutfits={clickAddToOutfits}
               />
-            )}
+
           {outfits}
-          {idxOutfit >= outfitList.length - 3 ? <div style={spacer} />
+          {outfitList === null || idxOutfit >= localStorage.length - 3 ? <div style={spacer} />
             : <RightArrow idx={idxOutfit} list={outfitList} nextSlide={nextSlideOutfit} />}
         </div>
       </div>

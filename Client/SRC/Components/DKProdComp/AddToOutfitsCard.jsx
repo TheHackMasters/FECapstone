@@ -13,6 +13,8 @@ function AddToOutfitsCard(props) {
   };
   const cardStyle = {
     border: '2px solid #D3D3D3',
+    width: '235px',
+    height: '350px',
     marginRight: '36px',
   };
   const cardImgStyle = {
