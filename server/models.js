@@ -110,4 +110,15 @@ module.exports = {
 
     },
   }),
+
+  postInteractions: (obj) => axios({
+    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/interactions',
+    method: 'post',
+    data: obj,
+    headers: {
+      campus: git.tokens.campus,
+      Authorization: git.tokens.gitToken,
+
+    },
+  }),
 };
