@@ -9,6 +9,8 @@ const Reviews = (props) => {
   // const [data, setData] = useState(dummydata);
   const [reviewCount, setReviewCount] = useState(2);
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [selectSort, setSelectSort] = useState('highest_rating');
+
 
   let reviewsArray = [];
   if (props.reviews !== undefined) {
@@ -21,16 +23,33 @@ const Reviews = (props) => {
     setModalIsOpen((prev) => !prev);
   };
 
+  const handleSelectChange = (event) => {
+    const sortVal = event.target.value
+    setSelectSort(sortVal);
+
+    if (sortVal === 'highest_rating') {
+      reviewsArray.sort(function(a,b) {return b.rating - a.rating});
+    }
+    else if (sortVal === 'lowest_rating') {
+      reviewsArray.sort(function(a,b) {return a.rating - b.rating});
+    }
+  };
+
+
   return (
 
     <>
 
       <ReviewsSection>
 
-        <h1>Hello from Reviews</h1>
-
         <div className="reviews">
-          <div>248 reviews, sorted by relevance</div>
+        <div>{reviewsArray.length} reviews, sorted by {' '}
+              <select value={selectSort} onChange={handleSelectChange} >
+                  <option value="highest_rating">Highest rating</option>
+                  <option value="lowest_rating">Lowest rating</option>
+              </select>
+          </div>
+
 
           {reviewsArray.map((review, index) => (
             (index < reviewCount
@@ -75,6 +94,7 @@ grid-column: ;
 grid-row: 1 / 10;
 grid-template-rows: 50px repeat(auto, 200px) repeat(2, 50px);
 padding: 20px;
+margin-top: 30px;
 `;
 
 const MoreReviews = styled.button`
