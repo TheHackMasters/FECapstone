@@ -129,6 +129,18 @@ app.post('/cart', (req, res) => {
     });
 });
 
+app.post('/interactions', (req, res) => {
+  // console.log('sku obj', req.body);
+  models.postInteractions(req.body)
+    .then((results) => {
+      res.status(200).send(results.data);
+    })
+    .catch((error) => {
+      res.status(400).send(error);
+      console.log(error, '<-- There was an error in the get');
+    });
+});
+
 app.listen(port, () => {
   console.log(`App listening at port: ${port}`);
 });
