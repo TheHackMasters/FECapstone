@@ -36,7 +36,7 @@ function AddToOutfitsCard(props) {
     <div
       className="card"
       style={cardStyle}
-      onClick={()=> props.clickStar(props.currProduct)}
+      onClick={()=> props.clickAddToOutfits(props.currProduct, props.style)}
       >
       <div style={cardImgStyle}>
         <img style={imageStyle} src={greyPlus} alt="grey plus" />

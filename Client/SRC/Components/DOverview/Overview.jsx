@@ -53,11 +53,6 @@ class Overview extends React.Component {
       || (this.props.styles.product_id !== prevProps.styles.product_id)
     ) {
       const { data, styles } = this.props;
-<<<<<<< HEAD
-=======
-      //console.log('should update data', data);
-      //console.log('should update styles', styles);
->>>>>>> 310216eb28522a17a7dfdeec6e96cfcf2e7dd7a4
       this.setState({
         data,
         styles: styles.results,

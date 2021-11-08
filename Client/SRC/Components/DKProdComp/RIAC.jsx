@@ -17,6 +17,7 @@ function RIAC(props) {
   const [reccList, setReccList] = useState(props.relatedData);
   const [reccListStyles, setReccListStyles] = useState([]);
   const [outfitList, setOutfitList] = useState([]);
+  const [outfitListStyles, setOutfitListStyles] = useState([currProductStyle]);
 
   const [openModal, setOpenModal] = useState(false);
   const [compareProd, setCompareProd] = useState({});
@@ -67,10 +68,23 @@ function RIAC(props) {
     });
   };
 
+  const selectStyleOutfits = (id) => {
+    // console.log('currProductStyleID', currProductStyle);
+    if (id === Number(currProductStyle.product_id)) {
+      return currProductStyle;
+    }
+    return outfitListStyles.reduce((selected, item) => {
+      if (Number(item.product_id) === id) {
+        selected = item;
+      }
+      return selected;
+    });
+  };
+
   const clickX = (product) => {
     let idx = -1;
     // console.log('clicked ', product);
-    for (let n = 0; n < outfitList.length; n++) {
+    for (let n = 0; n < outfitList.length; n += 1) {
       if (product.id === outfitList[n].id) {
         idx = n;
       }
@@ -86,24 +100,28 @@ function RIAC(props) {
     }
   };
 
+  const clickAddToOutfits = (product, style) => {
+    // console.log('clicked star', product);
+    // console.log('product id, ', product.id);
+    let notAlready = true;
+    outfitList.forEach((item) => {
+      // console.log('item id', item.id);
+      if (item.id === product.id) {
+        notAlready = false;
+      }
+    });
+    if (notAlready) {
+      setOutfitList([product, ...outfitList]);
+      setOutfitListStyles([style, ...outfitListStyles]);
+      if (idxOutfit > 0) {
+        setIdxOutfit(idxOutfit - 1);
+      }
+    }
+  };
+
   const clickStar = (product) => {
     setCompareProd(product);
     setOpenModal(true);
-    // console.log('clicked star', product);
-    // console.log('product id, ', product.id);
-    // let notAlready = true;
-    // outfitList.forEach((item) => {
-    //   // console.log('item id', item.id);
-    //   if (item.id === product.id) {
-    //     notAlready = false;
-    //   }
-    // });
-    // if (notAlready) {
-    //   setOutfitList([product, ...outfitList]);
-    //   if (idxOutfit > 0) {
-    //     setIdxOutfit(idxOutfit - 1);
-    //   }
-    // }
   };
 
   const recommends = [];
@@ -252,8 +270,8 @@ function RIAC(props) {
             : (
               <AddToOutfitsCard
                 currProduct={currProduct}
-                style={currProductStyle}
-                clickStar={clickStar}
+                style={selectStyleOutfits(currProduct.id)}
+                clickAddToOutfits={clickAddToOutfits}
               />
             )}
           {outfits}

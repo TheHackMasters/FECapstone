@@ -57,7 +57,7 @@ const ComparisonModal = (props) => {
                 {allFeatures().map((feature) => {
                   return (<ModalLine>
                     <ModalText>{checkFeature(props.currProduct.features, feature)}</ModalText>
-                    <ModalText>{feature}</ModalText>
+                    <ModalTextCenter>{feature}</ModalTextCenter>
                     <ModalTextRight>{checkFeature(props.compareProd.features, feature)}</ModalTextRight>
                   </ModalLine>
                   )
@@ -109,6 +109,11 @@ const ModalContent = styled.div`
 
 const ModalText = styled.div`
   width: 110px;
+`;
+
+const ModalTextCenter = styled.div`
+width: 110px;
+text-align: center;
 `;
 
 const ModalTextRight = styled.div`
