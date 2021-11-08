@@ -52,26 +52,42 @@ margin-top: 2px;
 margin-bottom: 2px;
 `
 
-const RatingsSlider = () => {
-  const [charState, setCharState] = useState({
-    Fit: {
-      id: 206673,
-      value: '2.4000000000000000',
-    },
-    Length: {
-      id: 206674,
-      value: '2.6000000000000000',
-    },
-    Comfort: {
-      id: 206675,
-      value: '3.8000000000000000',
-    },
-    Quality: {
-      id: 206676,
-      value: '3.2000000000000000',
-    },
-  });
+const RatingsSlider = (props) => {
+  // const [charState, setCharState] = useState({
+  //   Fit: {
+  //     id: 206673,
+  //     value: '4',
+  //   },
+  //   Length: {
+  //     id: 206674,
+  //     value: '2.6000000000000000',
+  //   },
+  //   Comfort: {
+  //     id: 206675,
+  //     value: '3.8000000000000000',
+  //   },
+  //   Quality: {
+  //     id: 206676,
+  //     value: '3.2000000000000000',
+  //   },
+  // });
 
+  let fitValue;
+  let lengthValue;
+  let comfortValue;
+  let qualityValue;
+
+  if (props.meta !== undefined) {
+    const { meta } = props;
+    const { data } = meta;
+    const { characteristics } = data;
+
+    fitValue = characteristics.Fit.value
+    lengthValue = characteristics.Length.value
+    comfortValue = characteristics.Comfort.value
+    qualityValue = characteristics.Quality.value
+    // console.log(fitValue)
+  }
   // opacity={charState.Fit.value > 2 ? (charState.value / 10) : 0.1}
 
   return (
@@ -79,25 +95,25 @@ const RatingsSlider = () => {
       <TextStyles>Fit</TextStyles>
       <Styles class="rangeSlider">
         Not So Great
-        <input type="range" min={0} max={5} value={charState.Fit.value} className="slider" disabled="true" />
+        <input type="range" min={0} max={5} value={fitValue} className="slider" disabled="true" />
         Great!
       </Styles>
       Length
       <Styles>
         Not So Great
-        <input type="range" min={0} max={5} value={charState.Length.value} className="slider" disabled="true" />
+        <input type="range" min={0} max={5} value={lengthValue} className="slider" disabled="true" />
         Great!
       </Styles>
       Comfort
       <Styles>
         Not So Great
-        <input type="range" min={0} max={5} value={charState.Comfort.value} className="slider" disabled="true" />
+        <input type="range" min={0} max={5} value={comfortValue} className="slider" disabled="true" />
         Great!
       </Styles>
       Quality
       <Styles>
         Not So Great
-        <input type="range" min={0} max={5} value={charState.Quality.value} className="slider" disabled="true" />
+        <input type="range" min={0} max={5} value={qualityValue} className="slider" disabled="true" />
         Great!
       </Styles>
 

@@ -18,7 +18,7 @@ function App(props) {
   const [userCart, setUserCart] = useState(dummyOverview.dummyOverview.cart);
   const [relatedStyles, setRelatedStyles] = useState([]);
   const [qaList, setQaList] = useState();
-  const [answerList, setAnswerList] = useState([]);
+  const [answerList, setAnswerList] = useState();
   const [meta, setMeta] = useState();
   const [reviews, setReviews] = useState();
   const [user, setUser] = useState('guest');
@@ -94,9 +94,9 @@ function App(props) {
         .then((data) => setQaList(data.data))
         .catch((err) => console.log('Error! ', err));
 
-      // axios.get(`/qa/questions/${curProdId}/answers`)
-      //   .then((data) => setAnswerList(data.data))
-      //   .catch((err) => console.log(err));
+      axios.get(`/qa/questions/${curProdId}/answers`)
+        .then((data) => setAnswerList(data.data))
+        .catch((err) => console.log(err));
     }
   }, [curProdId]);
 

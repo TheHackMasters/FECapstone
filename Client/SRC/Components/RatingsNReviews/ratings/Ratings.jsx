@@ -4,13 +4,15 @@ import helper from './helper.js';
 import { StarsRating } from "stars-rating-react-hooks";
 import RatingStar from './RatingStar.jsx';
 import RatingsSlider from './RatingsSlider.jsx';
+import BarGraph from './BarGraph/BarGraph.jsx'
 
 const Ratings = (props) => {
   // const { data: { ratings, characteristics, recommended } } = meta;
-  console.log(props);
+  // console.log(props);
   // console.log(ratings);
 
   // const [ratings, setRatings] = useState();
+  const [charState, setCharState] = useState({});
 
   let recValue = 0;
 
@@ -28,6 +30,8 @@ const Ratings = (props) => {
     const { meta } = props;
     const { data } = meta;
     const { characteristics } = data;
+    // setCharState(charState = characteristics);
+    // console.log(charState);
 
     const rc = data.recommended;
     const recommended = Math.round((Number(rc.true) / (Number(rc.false) + Number(rc.true))) * 100);
@@ -43,7 +47,7 @@ const Ratings = (props) => {
         <div>
 
           <div className="ratings">
-            <div>Ratings & Reviews </div>
+            <h2>Ratings & Reviews </h2>
             <div>
               {ratingsFloat}
               {' '}
@@ -55,13 +59,9 @@ const Ratings = (props) => {
               {recValue}
               % of reviewers recommend this product
             </div>
+            <BarGraph meta={props.meta}/>
 
-            <div>5 stars ########## </div>
-            <div>4 stars ##### </div>
-            <div>3 stars ######## </div>
-            <div>2 stars ## </div>
-            <div>1 stars ### </div>
-            <RatingsSlider />
+            <RatingsSlider meta={props.meta}/>
 
           </div>
 
