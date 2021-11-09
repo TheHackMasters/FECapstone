@@ -14,15 +14,11 @@ function RIAC(props) {
   const [currProductStyle, setCurrProductStyle] = useState(props.overviewStyles);
   const [reccList, setReccList] = useState(props.relatedData);
   const [reccListStyles, setReccListStyles] = useState([]);
-  const [outfitList, setOutfitList] = useState([]);
-  const [outfitListStyles, setOutfitListStyles] = useState([currProductStyle]);
   const [addedCurrentToOutfits, setAddedCurrentToOutfit] =
   useState(!!localStorage.getItem(currProduct.id));
 
   const [openModal, setOpenModal] = useState(false);
   const [compareProd, setCompareProd] = useState({});
-
-  const [preMount, setPreMount] = useState({ product_id: -1 });
 
   const cleanData = (data) => {
     // console.log('before, ', data);
@@ -208,7 +204,7 @@ function RIAC(props) {
   };
 
   const nextSlideOutfit = () => {
-    setIdxOutfit(idxOutfit + 2 >= outfitList.length - 1 ? idxOutfit : idxOutfit + 1);
+    setIdxOutfit(idxOutfit + 2 >= localStorage.length - 1 ? idxOutfit : idxOutfit + 1);
   };
 
   const prevSlideRecc = () => {
@@ -292,7 +288,6 @@ function RIAC(props) {
             : (
               <LeftArrow
                 idx={idxOutfit}
-                list={outfitList}
                 nextSlide={prevSlideOutfit}
               />
             )}
@@ -303,8 +298,8 @@ function RIAC(props) {
               />
 
           {outfits}
-          {outfitList === null || idxOutfit >= localStorage.length - 3 ? <div style={spacer} />
-            : <RightArrow idx={idxOutfit} list={outfitList} nextSlide={nextSlideOutfit} />}
+          { idxOutfit >= localStorage.length - 3 ? <div style={spacer} />
+            : <RightArrow idx={idxOutfit} nextSlide={nextSlideOutfit} />}
         </div>
       </div>
     </div>
