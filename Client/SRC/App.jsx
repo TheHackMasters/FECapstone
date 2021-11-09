@@ -118,14 +118,15 @@ function App(props) {
   }, [curProdId]);
 
   const clickTracker = (event) => {
-    console.log('clicked ID', event.target.id);
-    console.log('clicked className', event.target.className);
+    const we = event.target.dataset.trackingid.split(' ');
+    // console.log('clicked ID', we);
+    // console.log('clicked className', event.target.className);
     const clickData = {
-      element: '',
-      widget: '',
+      element: we[1],
+      widget: we[0],
       time: Date(),
     };
-    console.log('You have clicked', clickData);
+    // console.log('You have clicked', clickData);
     axios.post('/interactions', clickData)
       .then((data) => {
         console.log('success!', data);

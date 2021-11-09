@@ -128,7 +128,7 @@ class ImageBuilder extends React.Component {
         <div id="imagebuilder" style={ProdImage}>
           <StyledButton />
           <StyledLeftA
-            className="Overview ImageGallery"
+            data-trackingid="Overview ImageGallery"
             onClick={(event) => {
               clickTracker(event);
             }}
