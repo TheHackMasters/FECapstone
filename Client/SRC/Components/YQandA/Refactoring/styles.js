@@ -14,11 +14,6 @@ const ListButton =styled.button`
   margin-top: -50px;
 `
 
-// const.add-question {
-//   grid-column: 2;
-//   grid-row: 2;
-//   margin-top: 6px;
-// }
 
 const QTitle=styled.div`
   margin-top: 25px;
@@ -52,14 +47,6 @@ const QAListD = styled.div`
   grid-column: 2/3;
 `
 
-// ::-webkit-scrollbar {
-//   display: none;
-// }
-
-// cons
-// .emptyDiv {
-//   height: 50px;
-// }
 
 const QModal =styled.div`
   position: fixed;
@@ -93,45 +80,11 @@ const QModalContent =styled.div`
     border: none;
 `
 
-// .nameText {
-//   grid-column: 2;
-//   margin-left: 15px;
-//   grid-row: 2;
-//   color: red;
-//   font-style: italic;
-// }
-
-// .emailText {
-//   grid-column: 2;
-//   margin-left: 15px;
-//   grid-row: 3;
-//   color: red;
-//   font-style: italic;
-// }
-
-// .qWarningText {
-//   margin-left: 15px;
-//   grid-row: 1;
-//   grid-column: 2;
-//   color: red;
-//   font-style: italic;
-// }
-
 const Warning =styled.div`
   font-size: small;
   font-style: italic;
   margin-top: 1%;
 `
-
-// label {
-//   font-size: 20px;
-//   margin-top: -10px;
-// }
-
-// .email-text-box {
-//   width: 230px;
-//   margin-left: 15px;
-// }
 
 const SearchGrid =styled.div`
   display:grid;
@@ -149,33 +102,6 @@ const SearchTextBox =styled.input`
   width: 90%;
   grid-column: 2/3;
 `
-
-// .question-form {
-//   height: 100%;
-//   display: grid;
-//   grid-template-rows: 50% 25% 25%;
-// }
-
-// .question-grid {
-//   display: grid;
-//   grid-template-rows: 20% auto;
-//   grid-template-columns: 187px 280px;
-// }
-
-
-// .q-label {
-//   margin-top: 64px;
-//   grid-row: 1;
-//   font-size: 18px;
-// }
-
-// .modal-text-box {
-//   height: 50%;
-//   width: 177px;
-//   grid-row: 1/3;
-//   resize: none;
-//   margin-top: 30px;
-// }
 
 const QButton =styled.button`
   border-style: solid;
