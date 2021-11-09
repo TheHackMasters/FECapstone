@@ -182,7 +182,7 @@ function RIAC(props) {
       outfits.push(<EmptyOutfit key={-10 * n} />);
     } else {
       const storageKey = localStorage.key(n);
-      console.log(JSON.parse(localStorage.getItem(storageKey)));
+      // console.log(JSON.parse(localStorage.getItem(storageKey)));
       const currOutfit = JSON.parse(localStorage.getItem(storageKey));
       // console.log(currOutfit);
       outfits.push(
