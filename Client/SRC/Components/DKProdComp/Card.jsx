@@ -66,7 +66,7 @@ function Card(props) {
     position: 'absolute',
     top: '3%',
     right: '3%',
-    color: 'pink',
+    color: 'white',
     fontSize: '12px',
     fontWeight: 'bold',
   };

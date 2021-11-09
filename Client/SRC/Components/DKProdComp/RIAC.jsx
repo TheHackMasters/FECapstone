@@ -99,10 +99,11 @@ function RIAC(props) {
       // console.log('removing from idx: ', idx);
       // console.log('idxOutfit is :', idxOutfit);
       if (product.id === currProduct.id) {
-        setAddedCurrentToOutfit(false);
+        setAddedCurrentToOutfit(!addedCurrentToOutfits);
       }
       //console.log('removing');
       localStorage.removeItem(product.id);
+      setAddedCurrentToOutfit(!addedCurrentToOutfits);
       // setOutfitList([...outfitList.slice(0, idx), ...outfitList.slice(idx + 1, outfitList.length)]);
       if (idxOutfit > idx) {
         setIdxOutfit(idxOutfit - 1);
@@ -251,6 +252,14 @@ function RIAC(props) {
                 nextSlide={prevSlideRecc}
               />
             )}
+            {openModal ? (
+            <ComparisonModal
+              openModal={openModal}
+              setOpenModal={setOpenModal}
+              currProduct={currProduct}
+              compareProd={compareProd}
+            />
+          ) : null}
           {/* {reccList.slice(idxRecc, idxRecc + 4).map((reccProduct) => (
             <Card
               key={reccProduct.id}
@@ -263,14 +272,6 @@ function RIAC(props) {
             />
           ))} */}
           {recommends}
-          {openModal ? (
-            <ComparisonModal
-              openModal={openModal}
-              setOpenModal={setOpenModal}
-              currProduct={currProduct}
-              compareProd={compareProd}
-            />
-          ) : null}
           {idxRecc === reccList.length - 4 ? <div style={spacer} />
             : (
               <RightArrow
