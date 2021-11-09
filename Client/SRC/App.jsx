@@ -24,6 +24,7 @@ function App(props) {
 
   const [meta, setMeta] = useState();
   const [reviews, setReviews] = useState();
+  const [user, setUser] = useState('guest');
 
   // Get the initial featured product and update app state
   useEffect(() => {
@@ -33,6 +34,10 @@ function App(props) {
       })
       .catch((err) => console.log(err));
   }, []);
+
+  // useEffect(() => {
+  //   setUser(prompt('Please Enter Your Username'));
+  // }, []);
 
   // Update the styles and related products when the currently selected
   // product changes
@@ -74,17 +79,10 @@ function App(props) {
 
   useEffect(() => {
     if (curProdId !== 0) {
-      // console.log('related prods', relatedData);
       const tempRelatedStyles = [];
       relatedData.forEach((prod) => {
         tempRelatedStyles.push(axios.get(`/products/${prod.id}/styles`)
           .then((result) => (result.data))
-          // .then((products) => products.results.reduce((defaultStyle, item) => {
-          //   if (item['default?']) {
-          //     defaultStyle = item;
-          //   }
-          //   return defaultStyle;
-          // }))
           .catch((err) => console.log(err)));
       });
       Promise.all(tempRelatedStyles)

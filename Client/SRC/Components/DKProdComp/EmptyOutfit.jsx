@@ -17,6 +17,7 @@ function EmptyOutfit() {
     border: '2px solid #D3D3D3',
     marginRight: '36px',
     width: '235px',
+    height: '350px',
     backgroundColor: 'grey',
   };
 
