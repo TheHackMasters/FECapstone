@@ -5,7 +5,8 @@ import Parse from '../Parse.js';
 import RatingsNReviews from './Components/RatingsNReviews/RatingsNReviews.jsx';
 import Overview from './Components/DOverview/Overview.jsx';
 import RIAC from './Components/DKProdComp/RIAC.jsx';
-import QAMain from './Components/YQandA/QAMain.jsx';
+import Questions from './Components/YQandA/Refactoring/Questions.jsx';
+import { ContextObj } from './Components/YQandA/Refactoring/ContextObj.jsx';
 import Navbar from './Navbar.jsx';
 
 import dummyOverview from './Components/DOverview/dummydata.js';
@@ -18,8 +19,9 @@ function App(props) {
   const [relatedData, setRelatedData] = useState([]);
   const [userCart, setUserCart] = useState(dummyOverview.dummyOverview.cart);
   const [relatedStyles, setRelatedStyles] = useState([]);
-  const [qaList, setQaList] = useState();
-  const [answerList, setAnswerList] = useState();
+  const [productId, setProductId] = useState(61575);
+  const [productInfo, setProductInfo] = useState({});
+
   const [meta, setMeta] = useState();
   const [reviews, setReviews] = useState();
   const [user, setUser] = useState('guest');
@@ -89,17 +91,17 @@ function App(props) {
     }
   }, [relatedData]);
 
-  useEffect(() => {
-    if (curProdId !== 0) {
-      axios.get(`/qa/questions/${curProdId}`)
-        .then((data) => setQaList(data.data))
-        .catch((err) => console.log('Error! ', err));
+  // useEffect(() => {
+  //   if (curProdId !== 0) {
+  //     axios.get(`/qa/questions/${curProdId}`)
+  //       .then((data) => setQaList(data.data))
+  //       .catch((err) => console.log('Error! ', err));
 
-      axios.get(`/qa/questions/${curProdId}/answers`)
-        .then((data) => setAnswerList(data.data))
-        .catch((err) => console.log(err));
-    }
-  }, [curProdId]);
+  //     axios.get(`/qa/questions/${curProdId}/answers`)
+  //       .then((data) => setAnswerList(data.data))
+  //       .catch((err) => console.log(err));
+  //   }
+  // }, [curProdId]);
 
   useEffect(() => {
     if (curProdId !== 0) {
@@ -114,14 +116,15 @@ function App(props) {
   }, [curProdId]);
 
   const clickTracker = (event) => {
-    console.log('clicked ID', event.target.id);
-    console.log('clicked className', event.target.className);
+    const we = event.target.dataset.trackingid.split(' ');
+    // console.log('clicked ID', we);
+    // console.log('clicked className', event.target.className);
     const clickData = {
-      element: '',
-      widget: '',
+      element: we[1],
+      widget: we[0],
       time: Date(),
     };
-    console.log('You have clicked', clickData);
+    // console.log('You have clicked', clickData);
     axios.post('/interactions', clickData)
       .then((data) => {
         console.log('success!', data);
@@ -145,7 +148,9 @@ function App(props) {
         overviewStyles={overviewStyles}
         setCurProdId={setCurProdId}
       />
-      <QAMain qaList={qaList} answerList={answerList} />
+      <ContextObj.Provider value={{ productId, setProductId, productInfo }}>
+        <Questions />
+      </ContextObj.Provider>
 
       <a name="Ratings" />
       <RatingsNReviews
