@@ -53,6 +53,7 @@ margin-bottom: 2px;
 `
 
 const RatingsSlider = (props) => {
+  // console.log(props)
   // const [charState, setCharState] = useState({
   //   Fit: {
   //     id: 206673,
@@ -76,24 +77,49 @@ const RatingsSlider = (props) => {
   let lengthValue;
   let comfortValue;
   let qualityValue;
+  let sizeValue;
+  let widthValue;
 
   if (props.meta !== undefined) {
     const { meta } = props;
     const { data } = meta;
     const { characteristics } = data;
 
-    fitValue = characteristics.Fit.value
-    lengthValue = characteristics.Length.value
-    comfortValue = characteristics.Comfort.value
-    qualityValue = characteristics.Quality.value
+    if (characteristics.Fit !== undefined) {
+      fitValue = characteristics.Fit.value
+    }
+    if (characteristics.Size !== undefined) {
+      sizeValue = characteristics.Size.value
+    }
+    if (characteristics.Width !== undefined) {
+      widthValue = characteristics.Width.value
+    }
+    if (characteristics.Length !== undefined) {
+      lengthValue = characteristics.Length.value
+    }
+    if (characteristics.Comfort !== undefined) {
+      comfortValue = characteristics.Comfort.value
+    }
+    if (characteristics.Quality !== undefined) {
+      qualityValue = characteristics.Quality.value
+    }
+
+
+    // fitValue = characteristics.Fit.value
+    // sizeValue = characteristics.Size.value
+    // widthValue = characteristics.Width.value
+    // lengthValue = characteristics.Length.value
+    // comfortValue = characteristics.Comfort.value
+    // qualityValue = characteristics.Quality.value
     // console.log(fitValue)
   }
   // opacity={charState.Fit.value > 2 ? (charState.value / 10) : 0.1}
 
+
   return (
     <>
       <TextStyles>Fit</TextStyles>
-      <Styles class="rangeSlider">
+      <Styles className="rangeSlider">
         Not So Great
         <input type="range" min={0} max={5} value={fitValue} className="slider" disabled="true" />
         Great!

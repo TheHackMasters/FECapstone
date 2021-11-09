@@ -52,10 +52,10 @@ const QAList = (props) => {
       <QAListD>
         {listHandler(questionList).map((question, index) => (<QAListEntry query={props.query} question={question} key={index} />))}
       </QAListD>
-      <div>
+      <EmptyListButton>
         {props.addQuestion}
         {listButton}
-      </div>
+      </EmptyListButton>
     </QAListGrid>
   );
 };

@@ -74,18 +74,23 @@ const QModal =styled.div`
 `
 
 const QModalContent =styled.div`
-  display: grid;
-  height: 70%;
-  width: 40%;
-  background-color:rgb(195, 214, 241);
-  box-shadow: 10px 25px 50px 10px rgba(71, 71, 70, 0.424), 0 12px 25px 0 rgba(0, 0, 0, 0.19);
-  justify-content: center;
-  border-style: unset;
-  overflow-y: auto;
-  overflow-x:inherit;
-  grid-template-rows: 25% 60% 15%;
-  border-radius: 10%;
-  z-index: 1000;
+  position: absolute;
+  width: 60%;
+  background-color:rgb(207, 203, 197);
+  left: 10%;
+  right: 20%;
+  top: 15%;
+  padding: 20px;
+
+  p {
+    margin-bottom: 1rem;
+  }
+
+  button {
+    padding: 10px 24px;
+    background: #141414;
+    color: #fff;
+    border: none;
 `
 
 // .nameText {
@@ -132,15 +137,15 @@ const SearchGrid =styled.div`
   display:grid;
   grid-template-rows: 17% auto;
   grid-template-columns: 10% auto 10%;
-  grid-column: 1/4;
-  grid-row: 1/3;
+  grid-column: 1/2;
+  grid-row: 1/2;
   margin-bottom: 10px;
 `
 
 const SearchTextBox =styled.input`
   justify-self: center;
-  font-size: 25px;
-  height: 50px;
+  font-size: 20px;
+  height: 40px;
   width: 90%;
   grid-column: 2/3;
 `
@@ -210,26 +215,14 @@ const QEntry = styled.div`
   grid-template-columns: 5% auto;
 `
 
-// .aEntry {
-//   display: grid;
-//   padding-top: 10px;
-//   padding-bottom: 10px;
-//   grid-template-columns: 5% auto;
-//   grid-template-rows: 70% 30%;
-//   border: 1px solid rgb(148, 182, 245, 0.5);
-//   border-top: blanchedalmond;
-//   border-left: blanchedalmond;
-//   border-right: blanchedalmond;
-// }
-
 const QLetter = styled.span`
-  font-size: 25px;
+  font-size: 20px;
 `
 
 const QText = styled.span`
-  margin-top: 4px;
-  margin-left: 10px;
-  font-size: 20px;
+  margin-top: 2px;
+  margin-left: 5px;
+  font-size: 18px;
 `
 
 const SellerSig =styled.div`
@@ -256,10 +249,10 @@ const AModalTitle =styled.h2`
   grid-row: 1;
 `
 
-// .a-modal-subtitle {
-//   margin-top: 25px;
-//   justify-self: center;
-// }
+const AModalSubtitle =styled.h4`
+  margin-top: 25px;
+  justify-self: center;
+`
 
 const AModalHeader =styled.div`
   display: grid;
@@ -353,11 +346,6 @@ const EmptyListButton =styled.div`
   margin-left: 48px
 `
 
-/* .empty-list-button {
-  margin-top: 40px;
-  margin-left: 48px
-} */
-
 const Highlight = styled.span`
   background-color: yellow;
 `
@@ -397,5 +385,6 @@ export {
   QAListD,
   EmptyListButton,
   AnswerList,
-  AButton
+  AButton,
+  AModalSubtitle,
 };

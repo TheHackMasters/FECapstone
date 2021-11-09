@@ -3,6 +3,8 @@
 import React, {useState, useEffect, useContext} from 'react';
 import {ContextObj} from './ContextObj.jsx';
 import {formatDate, putServer} from '../helpers/helpers.js';
+import {Link, QText, QLetter} from './styles.js';
+
 
 const AnswerEntry = (props) => {
 
@@ -40,7 +42,7 @@ const AnswerEntry = (props) => {
       <span>by</span> <span style={{fontWeight: 'bold'}}> {props.answer.answerer_name}</span>
       <span>, {formatDate(props.answer.date)}  |  </span>
       <span>Helpful?</span>
-      <span className="link" onClick={updateAnswerHelp}> Yes({answerHelpfulness})</span>  <span>| </span>
+      <Link onClick={updateAnswerHelp}> Yes({answerHelpfulness})</Link>  <span>| </span>
       {report}
     </div>;
   } else {
@@ -49,17 +51,17 @@ const AnswerEntry = (props) => {
       <span>by {props.answer.answerer_name}</span>
       <span>, {formatDate(props.answer.date)}  |  </span>
       <span>Helpful?</span>
-      <span className="link" onClick={updateAnswerHelp}> Yes({answerHelpfulness})</span>  <span>| </span>
+      <Link onClick={updateAnswerHelp}> Yes({answerHelpfulness})</Link>  <span>| </span>
       {report}
     </div>;
   }
 
   return (
-    <div className="aEntry">
-      <span className="qLetter">A:</span>
-      <div className="qText">
+    <div>
+      <QLetter>A:</QLetter>
+      <QText>
         {props.answer.body}
-      </div>
+      </QText>
       {seller}
     </div>
   );

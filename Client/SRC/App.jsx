@@ -7,6 +7,7 @@ import Overview from './Components/DOverview/Overview.jsx';
 import RIAC from './Components/DKProdComp/RIAC.jsx';
 import Questions from './Components/YQandA/Refactoring/Questions.jsx';
 import { ContextObj } from './Components/YQandA/Refactoring/ContextObj.jsx';
+import Navbar from './Navbar.jsx';
 
 import dummyOverview from './Components/DOverview/dummydata.js';
 
@@ -48,7 +49,7 @@ function App(props) {
           const arr = [];
           const set = new Set(result.data);
           const arrSet = Array.from(set);
-          const filter = arrSet.filter((item) => (item.id !== curProdId))
+          const filter = arrSet.filter((item) => (item.id !== curProdId));
           filter.forEach((id) => {
             arr.push(axios.get(`/products/${id}`)
               .then((reply) => (reply.data))
@@ -116,13 +117,30 @@ function App(props) {
     }
   }, [curProdId]);
 
+  const clickTracker = (event) => {
+    console.log('clicked ID', event.target.id);
+    console.log('clicked className', event.target.className);
+    const clickData = {
+      element: '',
+      widget: '',
+      time: Date(),
+    };
+    console.log('You have clicked', clickData);
+    axios.post('/interactions', clickData)
+      .then((data) => {
+        console.log('success!', data);
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <div>
-      <div>Hello World</div>
+      <Navbar />
       <Overview
         data={overviewData}
         styles={overviewStyles}
         cart={userCart}
+        clickTracker={clickTracker}
       />
       <RIAC
         relatedData={relatedData}

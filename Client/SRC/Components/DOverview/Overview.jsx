@@ -9,7 +9,7 @@ import ProductInfo from './ProductInfo.jsx';
 
 // Add in a min width(300) with an auto max width
 const ComponentWrapper = styled.section`
-  border: solid
+  border: none
 `;
 
 const ComponentOrientation = styled.section`
@@ -20,6 +20,10 @@ padding-bottom: 1em;
 
 const SubComponentOrientation = styled.section`
 padding-left: 1em;
+`;
+
+const StyledBanner = styled.div`
+text-align: center;
 `;
 
 class Overview extends React.Component {
@@ -77,13 +81,29 @@ class Overview extends React.Component {
     const {
       data, styles, styleItem, prodId, styleId,
     } = this.state;
+    const { clickTracker } = this.props;
     // console.log('s', styles);
     // console.log('state', this.state);
     return (
       <ComponentWrapper id="overview">
-        <div className="overview">Hello World from the Overview</div>
+        <StyledBanner className="overview">
+          <span>
+            <i>SITE-WIDE ANNOUNCEMENT MESSAGE!</i>
+            {' '}
+            ⎯⎯ SALE/DISCOUNT
+            {' '}
+            <b>OFFER</b>
+            {' '}
+            ⎯⎯
+            {' '}
+            <u>NEW PRODUCT HIGHLIGHT</u>
+          </span>
+        </StyledBanner>
         <ComponentOrientation id="componentorient">
-          <ImageBuilder selection={styles[styleItem]} />
+          <ImageBuilder
+            selection={styles[styleItem]}
+            clickTracker={clickTracker}
+          />
           <div>
             <SubComponentOrientation id="ratingname">
               <RatingName

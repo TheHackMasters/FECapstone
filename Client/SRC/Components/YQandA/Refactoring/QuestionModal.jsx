@@ -4,9 +4,7 @@ import React, {useState} from 'react';
 import { postServer, validateEmail } from '../helpers/helpers.js';
 import {
   AWarningText, ANameText, AEmailText, QModal, QModalContent, AModalHeader, AModalTitle,
-  QuestionSub, AModalFooter, Warning, AModalBody, AText, AEmailBox, ANameBox, ALabel, ATextArea, QButton
-
-} from './styles.js'
+  QuestionSub, AModalFooter, Warning, AModalBody, AText, AEmailBox, ANameBox, ALabel, ATextArea, QButton} from './styles.js'
 
 
 const QuestionModal = (props) => {
@@ -47,34 +45,12 @@ const QuestionModal = (props) => {
   if (!props.show) {
     return null;
   }
-  var qWarning;
-  var nWarning;
-  var eWarning;
-
-  if (qModalBody.length > 0) {
-    qWarning = null;
-  } else {
-    qWarning = <AWarningText>Please ask a question</AWarningText>;
-  }
-
-  if (qModalName.length > 0) {
-    nWarning = null;
-  } else {
-    nWarning = <ANameText>Please enter your nickname</ANameText>;
-  }
-
-
-  if (validateEmail(qModalEmail)) {
-    eWarning = null;
-  } else {
-    eWarning = <AEmailText>Please enter a valid email</AEmailText>;
-  }
 
   return (
     <QModal onClick={props.onClose}>
       <QModalContent onClick={e => e.stopPropagation()}>
         <AModalHeader>
-          <AModalTitle>Ask Your Question about the... </AModalTitle>
+          <AModalTitle>Ask Your Question </AModalTitle>
           <QuestionSub> {props.name}</QuestionSub>
         </AModalHeader>
         <AModalBody>
@@ -86,7 +62,7 @@ const QuestionModal = (props) => {
           </AText>
           <AText>
             <ALabel>
-              * What is your nickname?
+              * What is your name?
               <ANameBox
                 maxLength={60}
                 onChange={qModalNameHandler}
@@ -120,7 +96,6 @@ const QuestionModal = (props) => {
           >
           Submit
           </QButton>
-          {qWarning} {nWarning} {eWarning}
         </AModalFooter>
       </QModalContent>
     </QModal>
