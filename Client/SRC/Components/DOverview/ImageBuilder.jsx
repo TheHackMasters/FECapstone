@@ -84,6 +84,7 @@ class ImageBuilder extends React.Component {
       photos: selection.photos,
     };
     this.switchDisplay = this.switchDisplay.bind(this);
+    // console.log('IB', this.props);
   }
 
   componentDidUpdate(prevProps) {
@@ -107,6 +108,7 @@ class ImageBuilder extends React.Component {
 
   render() {
     const { photos, curPhoto } = this.state;
+    const { clickTracker } = this.props;
     const ProdImage = {
       position: 'relative',
       display: 'flex',
@@ -125,7 +127,15 @@ class ImageBuilder extends React.Component {
       <div>
         <div id="imagebuilder" style={ProdImage}>
           <StyledButton />
-          <StyledLeftA>🡸</StyledLeftA>
+          <StyledLeftA
+            className="Overview ImageGallery"
+            onClick={(event) => {
+              clickTracker(event);
+            }}
+          >
+            🡸
+
+          </StyledLeftA>
           <StyledRightA>🡺</StyledRightA>
           <UpDownWrapper>
             <StyledUpDownA>˄</StyledUpDownA>

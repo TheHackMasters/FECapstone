@@ -6,6 +6,7 @@ import RatingsNReviews from './Components/RatingsNReviews/RatingsNReviews.jsx';
 import Overview from './Components/DOverview/Overview.jsx';
 import RIAC from './Components/DKProdComp/RIAC.jsx';
 import QAMain from './Components/YQandA/QAMain.jsx';
+import Navbar from './Navbar.jsx';
 
 import dummyOverview from './Components/DOverview/dummydata.js';
 
@@ -112,13 +113,30 @@ function App(props) {
     }
   }, [curProdId]);
 
+  const clickTracker = (event) => {
+    console.log('clicked ID', event.target.id);
+    console.log('clicked className', event.target.className);
+    const clickData = {
+      element: '',
+      widget: '',
+      time: Date(),
+    };
+    console.log('You have clicked', clickData);
+    axios.post('/interactions', clickData)
+      .then((data) => {
+        console.log('success!', data);
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <div>
-      <div>Hello World</div>
+      <Navbar />
       <Overview
         data={overviewData}
         styles={overviewStyles}
         cart={userCart}
+        clickTracker={clickTracker}
       />
       <RIAC
         relatedData={relatedData}
