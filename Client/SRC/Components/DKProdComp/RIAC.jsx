@@ -71,38 +71,41 @@ function RIAC(props) {
 
   const selectStyleOutfits = (id) => {
     // console.log('currProductStyleID', currProductStyle);
+    // if (localStorage.getItem(id)) {
+    //   return (JSON.parse(localStorage.getItem(id))[1]);
+    // }
     if (id === Number(currProductStyle.product_id)) {
       return currProductStyle;
     }
-    return outfitListStyles.reduce((selected, item) => {
-      if (Number(item.product_id) === id) {
-        selected = item;
-      }
-      return selected;
-    });
+    // return outfitListStyles.reduce((selected, item) => {
+    //   if (Number(item.product_id) === id) {
+    //     selected = item;
+    //   }
+    //   return selected;
+    // });
   };
 
   const clickX = (product) => {
-    console.log(localStorage);
+    //console.log(localStorage);
     let idx = -1;
     // console.log('clicked ', product);
     for (let n = 0; n < localStorage.length; n += 1) {
-      console.log('storage key ', localStorage.key(n));
-      console.log('product key ', product.id);
-      console.log(product.id === Number(localStorage.key(n)));
+      // console.log('storage key ', localStorage.key(n));
+      // console.log('product key ', product.id);
+      // console.log(product.id === Number(localStorage.key(n)));
 
       if (product.id === Number(localStorage.key(n))) {
         idx = n;
       }
     }
-    console.log(idx);
+    //console.log(idx);
     if (idx > -1) {
       // console.log('removing from idx: ', idx);
       // console.log('idxOutfit is :', idxOutfit);
       if (product.id === currProduct.id) {
         setAddedCurrentToOutfit(false);
       }
-      console.log('removing');
+      //console.log('removing');
       localStorage.removeItem(product.id);
       // setOutfitList([...outfitList.slice(0, idx), ...outfitList.slice(idx + 1, outfitList.length)]);
       if (idxOutfit > idx) {
@@ -110,7 +113,7 @@ function RIAC(props) {
       }
       // setOutfitList(outfitList.filter((item) => item !== undefined));
     }
-    console.log('after, ', localStorage);
+    //console.log('after, ', localStorage);
   };
 
   const clickAddToOutfits = (product, style) => {
@@ -171,10 +174,10 @@ function RIAC(props) {
   }
 
   // (outfitList.length < 3 ? 3 : outfitList.length)
-  useEffect(() => {
-    console.log('WAZZZZAAA');
+  // useEffect(() => {
+  //   console.log('WAZZZZAAA');
 
-  }, [addedCurrentToOutfits]);
+  // }, [addedCurrentToOutfits]);
 
   const outfits = [];
   for (let n = idxOutfit; n < idxOutfit + 3; n += 1) {
@@ -183,6 +186,7 @@ function RIAC(props) {
       outfits.push(<EmptyOutfit key={-10 * n} />);
     } else {
       const storageKey = localStorage.key(n);
+      console.log(JSON.parse(localStorage.getItem(storageKey)));
       const currOutfit = JSON.parse(localStorage.getItem(storageKey));
       // console.log(currOutfit);
       outfits.push(
