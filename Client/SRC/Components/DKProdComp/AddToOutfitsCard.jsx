@@ -13,6 +13,8 @@ function AddToOutfitsCard(props) {
   };
   const cardStyle = {
     border: '2px solid #D3D3D3',
+    width: '235px',
+    height: '350px',
     marginRight: '36px',
   };
   const cardImgStyle = {
@@ -36,7 +38,7 @@ function AddToOutfitsCard(props) {
     <div
       className="card"
       style={cardStyle}
-      onClick={()=> props.clickStar(props.currProduct)}
+      onClick={()=> props.clickAddToOutfits(props.currProduct, props.style)}
       >
       <div style={cardImgStyle}>
         <img style={imageStyle} src={greyPlus} alt="grey plus" />

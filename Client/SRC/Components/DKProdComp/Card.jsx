@@ -66,7 +66,7 @@ function Card(props) {
     position: 'absolute',
     top: '3%',
     right: '3%',
-    color: 'pink',
+    color: 'white',
     fontSize: '12px',
     fontWeight: 'bold',
   };
@@ -75,15 +75,14 @@ function Card(props) {
     if (id === Number(props.style.product_id) && props.style.results[0].photos[0].thumbnail_url) {
       return props.style.results[0].photos[0].thumbnail_url;
     }
-    else {
-      return ('https://images.unsplash.com/photo-1614332287897-cdc485fa562d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80')
-      }
-    };
+    return ('https://images.unsplash.com/photo-1614332287897-cdc485fa562d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80');
+  };
 
   return (
     <div className="card" style={cardStyle}>
       <div style={cardImgStyle}>
-        <img style={imageStyle} src={imgCheck(product.id)} alt={product.imgAlt} onClick={() => (props.setCurProdId(product.id))}/>
+        <img style={imageStyle} src={imgCheck(product.id)} alt={product.imgAlt}
+        onClick={() => (props.setCurProdId(product.id))}/>
         {topRightClicked
         ? <button type="submit"
         onClick={() => {
