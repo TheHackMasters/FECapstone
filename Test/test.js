@@ -8,11 +8,9 @@ import OverviewTest from '../Client/SRC/Components/DOverview/Overview.Test.js';
 import QATest from '../Client/SRC/Components/YQandA/test/QA.test.js';
 import RIACTest from '../Client/SRC/Components/DKProdComp/test/ProdCompTest.js';
 import RatingsNReviewsTest from '../Client/SRC/Components/RatingsNReviews/tests/RatingsNReviews.Test.js';
-import ReviewCardTest from "../Client/SRC/Components/RatingsNReviews/tests/ReviewCard.Test.js";
-import RatingsTest from "../Client/SRC/Components/RatingsNReviews/tests/Ratings.Test.js";
-import ReviewsTest from "../Client/SRC/Components/RatingsNReviews/tests/Reviews.Test.js";
-
-
+import ReviewCardTest from '../Client/SRC/Components/RatingsNReviews/tests/ReviewCard.Test.js';
+import RatingsTest from '../Client/SRC/Components/RatingsNReviews/tests/Ratings.Test.js';
+import ReviewsTest from '../Client/SRC/Components/RatingsNReviews/tests/Reviews.Test.js';
 
 const AppTest = () => {
   it('should display initial UI', () => {
@@ -36,8 +34,3 @@ ReviewCardTest();
 RatingsNReviewsTest();
 RatingsTest();
 ReviewsTest();
-
-// update with your testing function call
-// OverviewTest();
-// OverviewTest();
-// OverviewTest();

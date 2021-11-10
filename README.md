@@ -19,6 +19,10 @@ are our Product Overview, Related Products, Questions and Answers, and Ratings a
 
 ### Installation
 If you are interested in installing our product, you can follow our simple installation instructions below:
+1. Fork the repository or copy the clone link
+2. Navigate to your desired installation folder in your terminal
+3. Run `git clone https://github.com/TheHackMasters/FECapstone.git` from the terminal, or using the link from your forked repo
+4. Run `code .`
 
 ### Use Cases
 This product was not designed for the purposes of monetary gain, therefore we provide an open license to use our code
