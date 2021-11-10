@@ -36,7 +36,7 @@ const cardtest = () => {
         key={1}
         products={testProduct}
         style={testStyle}
-        setCurProdId={RIAC.props.setCurProdID}
+        setCurProdId={props.setCurProdID}
         isRecc={false}
         clickX={RIAC.clickX}
         clickStar={RIAC.clickStar}

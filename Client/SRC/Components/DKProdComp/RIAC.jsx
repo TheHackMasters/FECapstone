@@ -26,8 +26,8 @@ function RIAC(props) {
     return filter;
   };
 
-  console.log('curr', currProduct);
-  console.log('comp', compareProd);
+  //console.log('curr', currProduct);
+  //console.log('comp', compareProd);
 
   useEffect(() => {
     setCurrProduct(props.overviewData);
@@ -38,6 +38,8 @@ function RIAC(props) {
     setIdxRecc(0);
     setIdxOutfit(0);
   }, [props]);
+
+  // console.log(props.relatedStyles);
 
   const selectStyle = (id) => {
     if (id === Number(currProductStyle.product_id)) {
