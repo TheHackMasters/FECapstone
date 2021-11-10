@@ -9,15 +9,17 @@ import { ContextObj } from './Components/YQandA/Refactoring/ContextObj.jsx';
 import Navbar from './Navbar.jsx';
 
 import dummyOverview from './Components/DOverview/dummydata.js';
+import dummyRelatedData from './Components/DKProdComp/dummyRelatedData.js';
+import dummyRelatedStyles from './Components/DKProdComp/dummyRelatedStylesData.js';
 
 function App(props) {
   // example of using a hook for state
   const [overviewData, setOverviewData] = useState(dummyOverview.dummyOverview.data);
   const [overviewStyles, setOverviewStyles] = useState(dummyOverview.dummyOverview.styles);
   const [curProdId, setCurProdId] = useState(0);
-  const [relatedData, setRelatedData] = useState([]);
+  const [relatedData, setRelatedData] = useState(dummyRelatedData.dummyRelatedData);
   const [userCart, setUserCart] = useState(dummyOverview.dummyOverview.cart);
-  const [relatedStyles, setRelatedStyles] = useState([]);
+  const [relatedStyles, setRelatedStyles] = useState(dummyRelatedStyles.styles);
   const [productId, setProductId] = useState(61575);
   const [productInfo, setProductInfo] = useState({});
 
