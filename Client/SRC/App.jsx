@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Parse from '../Parse.js';
 
 import RatingsNReviews from './Components/RatingsNReviews/RatingsNReviews.jsx';
 import Overview from './Components/DOverview/Overview.jsx';

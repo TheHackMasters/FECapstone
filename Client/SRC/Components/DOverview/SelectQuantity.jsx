@@ -43,7 +43,11 @@ function SelectQuantity(props) {
 
   // console.log(quantityArr);
   return (
-    <StyledSelectQ onChange={handleChange}>
+    <StyledSelectQ
+      onChange={handleChange}
+      data-trackingid="Overview CartQuantity"
+      data-testid="QuantitySelect"
+    >
       <StyledOption id="-" key="-" value="invalid">-</StyledOption>
       {quantityBuild.map((q) => (
         <StyledOption id={q} key={q} value={q}>{q}</StyledOption>

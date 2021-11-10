@@ -25,7 +25,11 @@ function SelectSize(props) {
   }, [props]);
   // console.log(skuArr);
   return (
-    <StyledSelectS onChange={handleChange}>
+    <StyledSelectS
+      onChange={handleChange}
+      data-trackingid="Overview CartSize"
+      data-testid="SizeSelect"
+    >
       <StyledOption id="0" value="invalid">Select Size</StyledOption>
       {skuArr.map((sku) => (
         <StyledOption id={sku} key={sku} value={newskus[`${sku}`].size}>{newskus[`${sku}`].size}</StyledOption>
