@@ -4,7 +4,8 @@ import { test, expect } from '@jest/globals';
 import { render, fireEvent, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../../../App.jsx';
-import QAMain from '../QAMain.jsx';
+import Questions from '../Refactoring/Questions.jsx';
+import QuestionSearch from '../Refactoring/QuestionSearch.jsx';
 
 const QATest = () => {
   it('should render the QATest', () => {
@@ -13,9 +14,13 @@ const QATest = () => {
   });
 
   it('should display initial UI', () => {
-    render(<QAMain />);
+    render(<Questions />);
     expect(screen.getByDisplayValue('Questions & Answers')).toBeInTheDocument();
-    expect(screen.getByDisplayValue('Find answers in Q&As')).toBeInTheDocument();
+  });
+
+  it('should display Search element', () => {
+    render(<QuestionSearch />);
+    expect(screen.getByPlaceholderText('HAVE A QUESTION? SEARCH FOR ANSWERS')).toBeVisible();
   });
 };
 
