@@ -28,6 +28,7 @@ function StyleSelector(props) {
           style={style}
           key={style.style_id}
           id={index}
+          data-testid={`${style.style_id}`}
           switchStyle={switchStyle}
         />
       ))}
