@@ -5,23 +5,22 @@ import { render, fireEvent, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../../../App.jsx';
 import RIAC from '../RIAC.jsx';
+import cardtest from './CardTest.jsx';
 
 const RIACTest = () => {
   it('should render RECOMMENDED', () => {
     render(<App />);
+    render(<RIAC />);
     expect(screen.getByText('RECOMMENDED', {exact: false}));
   });
 
   it('should render OUTFITS', () => {
     render(<App />);
+    render(<RIAC />);
     expect(screen.getByText('OUTFITS', {exact: false}));
   });
-
-  it('should display initial UI', () => {
-    render(<RIAC />);
-    expect(screen.getByDisplayValue('First')).toBeInTheDocument();
-    expect(screen.getByDisplayValue('Second')).toBeInTheDocument();
-  });
 };
+
+cardtest();
 
 export default RIACTest;

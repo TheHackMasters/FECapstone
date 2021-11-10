@@ -5,7 +5,7 @@ function Card(props) {
 
   const [topRightIcon, setTopRightIcon] = useState(props.isRecc ? '☆' : 'X');
   const [topRightClicked, setTopRightClicked] = useState(props.isRecc);
-  //console.log(props);
+  // console.log(props);
   const cardStyle = {
     border: '2px solid #D3D3D3',
     marginRight: '36px',
@@ -72,6 +72,7 @@ function Card(props) {
   };
 
   const imgCheck = (id) => {
+    // console.log('style', props.style);
     if (id === Number(props.style.product_id) && props.style.results[0].photos[0].thumbnail_url) {
       return props.style.results[0].photos[0].thumbnail_url;
     }
@@ -81,23 +82,37 @@ function Card(props) {
   return (
     <div className="card" style={cardStyle}>
       <div style={cardImgStyle}>
-        <img style={imageStyle} src={imgCheck(product.id)} alt={product.imgAlt}
-        onClick={() => (props.setCurProdId(product.id))}/>
+        <img
+          style={imageStyle}
+          src={imgCheck(product.id)}
+          alt={product.imgAlt}
+          onClick={() => (props.setCurProdId(product.id))}
+        />
         {topRightClicked
-        ? <button type="submit"
-        onClick={() => {
-          setTopRightClicked(!topRightClicked)
-          props.clickStar(product);
-        }
-      }
-        style={buttonStyleDefault} >{topRightIcon}</button>
-        : <button type="submit"
-        onClick={(e, id) => {
-          setTopRightClicked(!topRightClicked)
-          props.clickX(product);
-        }
-      }
-        style={buttonStyleClicked} >{topRightIcon}</button>}
+          ? (
+            <button
+              type="submit"
+              onClick={() => {
+                setTopRightClicked(!topRightClicked);
+                props.clickStar(product);
+              }}
+              style={buttonStyleDefault}
+            >
+              {topRightIcon}
+            </button>
+          )
+          : (
+            <button
+              type="submit"
+              onClick={(e, id) => {
+                setTopRightClicked(!topRightClicked);
+                props.clickX(product);
+              }}
+              style={buttonStyleClicked}
+            >
+              {topRightIcon}
+            </button>
+          )}
       </div>
       <div style={cardInfo}>
         <div style={cardT2}>{product.category}</div>
