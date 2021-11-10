@@ -32,7 +32,11 @@ const QuestionSearch = (props) => {
 
   return (
     <SearchGrid>
-      <SearchTextBox type="text" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." onChange={searchHandler}></SearchTextBox>
+      <SearchTextBox 
+        type="text" 
+        placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." 
+        onChange={searchHandler}>
+      </SearchTextBox>
       <QAList query={query} addQuestion={props.addQuestion} questions={filterQuestions(props.questions.results)}/>
     </SearchGrid>
   );
