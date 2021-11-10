@@ -12,17 +12,11 @@ import RatingsNReviewsTest from '../Client/SRC/Components/RatingsNReviews/Rating
 const AppTest = () => {
   it('should display initial UI', () => {
     render(<App />);
-    expect(screen.getByLabelText('Hello')).toBeInTheDocument();
-    expect(screen.getByLabelText('Hello')).toBeInTheDocument();
-    expect(screen.getByLabelText('Hello')).toBeInTheDocument();
-    expect(screen.getByLabelText('Hello')).toBeInTheDocument();
-  });
-
-  it('should do stuff', () => {
-    render(<App />);
-    const itemInput = screen.getByLabelText('Hello');
-    userEvent.type(itemInput, 'apple');
-    expect(screen.getByDisplayValue('apple')).toBeInTheDocument();
+    expect(screen.getByText('Soliloquy')).toBeInTheDocument();
+    expect(screen.getByText('OFFER')).toBeInTheDocument();
+    expect(screen.getByText('RECOMMENDED')).toBeInTheDocument();
+    expect(screen.getByText('Questions & Answers')).toBeInTheDocument();
+    expect(screen.getByText('Ratings & Reviews')).toBeInTheDocument();
   });
 };
 
@@ -32,7 +26,3 @@ OverviewTest();
 QATest();
 RatingsNReviewsTest();
 RIACTest();
-// update with your testing function call
-// OverviewTest();
-// OverviewTest();
-// OverviewTest();

@@ -125,7 +125,11 @@ class ImageBuilder extends React.Component {
 
     return (
       <div>
-        <div id="imagebuilder" style={ProdImage}>
+        <div
+          id="imagebuilder"
+          style={ProdImage}
+          data-testid="MainImage"
+        >
           <StyledButton />
           <StyledLeftA
             data-trackingid="Overview ImageGallery"
@@ -148,6 +152,7 @@ class ImageBuilder extends React.Component {
                   style={style}
                   key={tempKey}
                   id={index}
+                  data-testid={`photo${index}`}
                   switchDisplay={this.switchDisplay}
                 />
               );
