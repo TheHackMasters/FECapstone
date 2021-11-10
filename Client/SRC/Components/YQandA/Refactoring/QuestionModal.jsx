@@ -92,8 +92,7 @@ const QuestionModal = (props) => {
         </AModalBody>
         <AModalFooter>
           <QButton
-            onClick={() => submitQuestion(qModalBody, qModalName, qModalEmail, props.productId)}
-          >
+            onClick={() => submitQuestion(qModalBody, qModalName, qModalEmail, props.productId)}>
           Submit
           </QButton>
         </AModalFooter>
