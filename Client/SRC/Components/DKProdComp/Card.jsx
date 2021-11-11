@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 
 function Card(props) {
   const [product, setProduct] = useState(props.products);
@@ -6,39 +7,6 @@ function Card(props) {
   const [topRightIcon, setTopRightIcon] = useState(props.isRecc ? '☆' : 'X');
   const [topRightClicked, setTopRightClicked] = useState(props.isRecc);
   // console.log(props);
-  const cardStyle = {
-    border: '2px solid #D3D3D3',
-    marginRight: '36px',
-    width: '235px',
-    height: '350px',
-  };
-
-  const cardImgStyle = {
-    position: 'relative',
-    width: '235px',
-    height: '240px',
-    objectFit: 'cover',
-  };
-
-  const cardT2 = {
-    color: 'grey',
-    fontSize: '12px',
-    fontWeight: 'light',
-    paddingTop: '4px',
-    paddingBotton: '4px',
-  };
-
-  const cardT1 = {
-    color: 'black',
-    fontSize: '16px',
-    fontWeight: 'bold',
-    paddingTop: '4px',
-    paddingBotton: '4px',
-  };
-
-  const cardInfo = {
-    padding: '8px 8px 8px 8px',
-  };
 
   const imageStyle = {
     display: 'flex',
@@ -80,8 +48,8 @@ function Card(props) {
   };
 
   return (
-    <div className="card" style={cardStyle}>
-      <div style={cardImgStyle}>
+    <CardStyle>
+      <CardImgStyle>
         <img
           style={imageStyle}
           src={imgCheck(product.id)}
@@ -113,15 +81,50 @@ function Card(props) {
               {topRightIcon}
             </button>
           )}
-      </div>
-      <div style={cardInfo}>
-        <div style={cardT2}>{product.category}</div>
-        <div style={cardT1} onClick={() => (props.setCurProdId(product.id))}>{product.name}</div>
-        <div style={cardT2}>{product.default_price}</div>
+      </CardImgStyle>
+      <CardInfo>
+        <div className="T2">{product.category}</div>
+        <div className="T1"onClick={() => (props.setCurProdId(product.id))}>{product.name}</div>
+        <div className="T2">{product.default_price}</div>
         <div>☆☆☆☆☆</div>
-      </div>
-    </div>
+      </CardInfo>
+    </CardStyle>
   );
 }
 
 export default Card;
+
+const CardStyle = styled.div`
+  border: 2px solid #D3D3D3;
+  margin-right: 36px;
+  width: 14.6em;
+  height: 350px;
+`;
+
+const CardImgStyle = styled.div`
+  position: relative;
+  width: 14.6em;
+  height: 15.1em;
+  object-fit: cover;
+`;
+
+const CardT2 = styled.div`
+  color: grey;
+  font-size: 12px;
+  font-weight: light;
+  padding-top: 4px;
+  padding-botton: 4px;
+`;
+
+const CardT1 = styled.div`
+  color: black;
+  font-size: 16px;
+  font-weight: bold;
+  padding-top: 4px;
+  padding-botton: 4px;
+`;
+
+const CardInfo = styled.div`
+  padding: 8px 8px 8px 8px;
+  background-color: #FFFFFF;
+`;

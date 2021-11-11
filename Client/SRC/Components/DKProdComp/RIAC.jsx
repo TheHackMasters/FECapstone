@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 import Card from './Card.jsx';
 import AddToOutfitsCard from './AddToOutfitsCard.jsx';
 import EmptyOutfit from './EmptyOutfit.jsx';
@@ -151,35 +152,13 @@ function RIAC(props) {
     setIdxOutfit(idxOutfit === 0 ? 0 : idxOutfit - 1);
   };
 
-  const setMiddle = {
-    margin: 'auto',
-    width: '65%',
-  };
-
-  const carouselStyle = {
-    display: 'flex',
-    flexDirection: 'row',
-  };
-
-  const title1 = {
-    fontWeight: 'light',
-    size: '24px',
-    color: 'grey',
-    padding: '32px 0px 8px 0px',
-    marginLeft: '75px',
-  };
-
-  const spacer = {
-    width: '50px',
-    padding: '48px',
-  };
-
   return (
-    <div style={setMiddle}>
+    <SetMiddle>
+      <ComponentSpace />
       <div className="recommended">
-        <div style={title1}>RECOMMENDED</div>
-        <div style={carouselStyle}>
-          {idxRecc === 0 ? <div style={spacer} />
+        <h2>RECOMMENDED</h2>
+        <CarouselStyle>
+          {idxRecc === 0 ? <Spacer />
             : (
               <LeftArrow
                 idx={idxRecc}
@@ -196,7 +175,7 @@ function RIAC(props) {
               compareProd={compareProd}
             />
           ) : null}
-          {idxRecc === reccList.length - 4 ? <div style={spacer} />
+          {idxRecc === reccList.length - 4 ? <Spacer />
             : (
               <RightArrow
                 idx={idxRecc}
@@ -204,12 +183,12 @@ function RIAC(props) {
                 nextSlide={nextSlideRecc}
               />
             )}
-        </div>
+        </CarouselStyle>
       </div>
       <div className="outfits">
-        <div style={title1}>OUTFITS</div>
-        <div style={carouselStyle}>
-          {idxOutfit === 0 ? <div style={spacer} />
+        <h2>OUTFITS</h2>
+        <CarouselStyle>
+          {idxOutfit === 0 ? <Spacer />
             : (
               <LeftArrow
                 idx={idxOutfit}
@@ -223,12 +202,40 @@ function RIAC(props) {
           />
 
           {outfits}
-          { idxOutfit >= localStorage.length - 3 ? <div style={spacer} />
+          { idxOutfit >= localStorage.length - 3 ? <Spacer />
             : <RightArrow idx={idxOutfit} nextSlide={nextSlideOutfit} />}
-        </div>
+        </CarouselStyle>
       </div>
-    </div>
+      <ComponentSpace />
+    </SetMiddle>
   );
 }
 
 export default RIAC;
+
+const SetMiddle = styled.div`
+  margin: auto;
+  width: 65%;
+`;
+
+const CarouselStyle = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+// const Title1 = styled.div`
+//   font-weight: light;
+//   size: 24px;
+//   color: grey;
+//   padding: 32px 0px 8px 0px;
+//   margin-left: 100px;
+// `;
+
+const Spacer = styled.div`
+  width: 50px;
+  padding: 48px;
+`;
+
+const ComponentSpace = styled.div`
+  height: 4em;
+`;
