@@ -12,10 +12,11 @@ position: relative;
 `;
 
 const Logo = styled.span`
+font-family: 'Allison', cursive;
 text-align: left;
 left: 20px;
 font-weight: bolder;
-fonst-style: italic;
+font-style: italic;
 text-decoration: underline;
 `;
 
