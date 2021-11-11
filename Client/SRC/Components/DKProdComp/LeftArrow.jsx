@@ -4,8 +4,8 @@ function LeftArrow(props) {
   const leftArrow = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTesrDH4a-wiZIORdQTA2BC93Uj_WHCBf0gB9eKJnCjhHmsMw9dhkWM7p2KRLnzSlqBHrg&usqp=CAU';
 
   const arrowLeftStyle = {
-    width: '55px',
-    height: '55px',
+    width: '3.4em',
+    height: '3.4em',
     objectFit: 'cover',
     margin: 'auto',
     marginRight: '25px',

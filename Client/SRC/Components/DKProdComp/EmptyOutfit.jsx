@@ -1,33 +1,34 @@
 import React from 'react';
+import styled from 'styled-components';
 
 function EmptyOutfit() {
-  const cardT2 = {
-    textAlign: 'center',
-    color: 'white',
-    fontSize: '16px',
-    fontWeight: 'bold',
-    paddingTop: '160px',
-    paddingBotton: '4px',
-    position: 'relative',
-    width: '235px',
-    margin: 'auto',
-  };
-
-  const cardStyle = {
-    border: '2px solid #D3D3D3',
-    marginRight: '36px',
-    width: '235px',
-    height: '350px',
-    backgroundColor: 'grey',
-  };
-
   return (
-    <div className="card" style={cardStyle}>
+    <CardStyle>
       <div>
-        <div style={cardT2}>Select Your Outfits</div>
+        <CardT2>Select Your Outfits</CardT2>
       </div>
-    </div>
+    </CardStyle>
   );
 }
 
 export default EmptyOutfit;
+
+const CardT2 = styled.div`
+  text-align: center;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  padding-top: 160px;
+  padding-botton: 4px;
+  position: relative;
+  width: 235px;
+  margin: auto;
+`;
+
+const CardStyle = styled.div`
+  border: 2px solid #D3D3D3;
+  margin-right: 36px;
+  width: 235px;
+  height: 350px;
+  background-color: grey;
+`;
