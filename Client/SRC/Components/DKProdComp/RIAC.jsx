@@ -215,12 +215,12 @@ export default RIAC;
 
 const SetMiddle = styled.div`
   margin: auto;
-  width: 65%;
 `;
 
 const CarouselStyle = styled.div`
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 `;
 
 // const Title1 = styled.div`
@@ -232,8 +232,8 @@ const CarouselStyle = styled.div`
 // `;
 
 const Spacer = styled.div`
-  width: 50px;
-  padding: 48px;
+  width: 2em;
+  padding: 2em;
 `;
 
 const ComponentSpace = styled.div`

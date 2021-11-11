@@ -1,4 +1,11 @@
+body {
+  background-color: #F2FFFD;
+
+}
+
 #app {
+  margin: auto;
+  width: 70%;
   font-family: 'Zen Kaku Gothic Antique', sans-serif;
   background-color: #F2FFFD;
   position: relative;
