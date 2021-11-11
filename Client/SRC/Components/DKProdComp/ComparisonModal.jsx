@@ -115,6 +115,7 @@ const ModalText = styled.div`
 const ModalTextCenter = styled.div`
 width: 110px;
 text-align: center;
+font-weight: 800;
 `;
 
 const ModalTextRight = styled.div`

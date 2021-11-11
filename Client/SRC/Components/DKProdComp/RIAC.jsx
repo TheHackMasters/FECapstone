@@ -221,6 +221,7 @@ const CarouselStyle = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  align-content: stretch;
 `;
 
 // const Title1 = styled.div`

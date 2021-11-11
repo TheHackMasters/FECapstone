@@ -1,6 +1,5 @@
 body {
   background-color: #F2FFFD;
-
 }
 
 #app {
@@ -51,7 +50,7 @@ h2 {
   font-weight: 300;
   size: 18px;
   color: grey;
-  padding: 32px 0px 8px 0px;
+  padding: 2em 0em 0em 0em;
   margin-left: 100px;
 }
 
@@ -68,4 +67,9 @@ h2 {
   font-size: 12px;
   font-weight: bold;
   padding-top: .1em;
+}
+
+::placeholder {
+  color: #808080;
+  opacity: 1;
 }

@@ -19,24 +19,26 @@ function Card(props) {
 
   const buttonStyleDefault = {
     backgroundColor: 'transparent',
-    borderColor: 'transparent',
+    borderColor: 'white',
     position: 'absolute',
     top: '3%',
     right: '3%',
     color: 'white',
     fontSize: '12px',
     fontWeight: 'bold',
+    borderRadius: '12px',
   };
 
   const buttonStyleClicked = {
     backgroundColor: 'transparent',
-    borderColor: 'transparent',
+    borderColor: 'white',
     position: 'absolute',
     top: '3%',
     right: '3%',
     color: 'white',
     fontSize: '12px',
     fontWeight: 'bold',
+    borderRadius: '12px',
   };
 
   const imgCheck = (id) => {

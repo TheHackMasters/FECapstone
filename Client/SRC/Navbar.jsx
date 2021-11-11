@@ -3,12 +3,13 @@ import SearchIcon from '@mui/icons-material/Search';
 import styled from 'styled-components';
 
 const NavStyle = styled.section`
-background-color: black;
-color: green;
+background-color: #808080;
+color: #2affed;
 display:flex;
 flex-direction:row;
-padding: 1em;
+padding: 2em;
 position: relative;
+margin-bottom: 2em;
 `;
 
 const Logo = styled.span`
@@ -17,10 +18,11 @@ left: 20px;
 font-weight: bolder;
 fonst-style: italic;
 text-decoration: underline;
+font-size: 24px;
 `;
 
 const Input = styled.input`
-  background-color: black;
+  background-color: #808080;
   color: white;
   font-size: 1em;
   position: relative;
@@ -28,10 +30,11 @@ const Input = styled.input`
   width: 20%;
   padding: 1px;
   border: bottom;
+  border-color: transparent;
 `;
 const Container = styled.div`
   text-align: right;
-  border: 1px solid black;
+  // border: 1px solid black;
   width: 790px;
   height: 29px;
   position: absolute;
@@ -41,14 +44,14 @@ const Container = styled.div`
 function Navbar(props) {
   return (
     <NavStyle>
-      <Logo> Soliloquy</Logo>
+      <Logo>Techxtile</Logo>
       <Container>
         <Input
           type="text"
           placeholder="Search the site..."
         />
         <SearchIcon
-          style={{ color: '#6495ed' }}
+          style={{ color: '#2affed' }}
         />
       </Container>
     </NavStyle>
