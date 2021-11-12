@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { StarsRating } from 'stars-rating-react-hooks';
 import ReviewCard from './ReviewCard.jsx';
 import ReviewModal from './ReviewModal.jsx';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
