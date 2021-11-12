@@ -33,7 +33,7 @@ const Questions = (props) => {
           questions={questions}
           addQuestion={<QButton
           onClick={() => setShowQuestions(true)}>
-          Add A Question</QButton>}/>
+          ADD A QUESTION</QButton>}/>
         <QuestionModal
           setNewQuestion={setNewQuestion}
           onClose={() => setShowQuestions(false)}

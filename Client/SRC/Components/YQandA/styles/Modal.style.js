@@ -20,6 +20,7 @@ const ModalContent = styled.div`
   position: absolute;
   width: 60%;
   background: #ffffff;
+  color: black;
   left: 10%;
   right: 20%;
   top: 15%;

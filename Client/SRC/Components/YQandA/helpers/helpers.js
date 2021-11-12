@@ -1,13 +1,14 @@
 /*eslint-disable */
 
 import axios from 'axios';
+const git = require('../../../../../expressconfig.js');
 
 const server = 'http://localhost:3000';
 const getServer = (endpoint) => {
   return new Promise((resolve, reject) => {
     axios.get(server + endpoint, {
       headers: {
-        Authorization: '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'
+        Authorization: git.tokens.gitToken,
       }
     })
       .then((result) => {
@@ -43,18 +44,6 @@ const postServer = (endpoint, data) => {
   });
 };
 
-const grabReviewScore = (ratingsObj) => {
-  var rating = 0;
-  var total = 0;
-
-  for (var key in ratingsObj) {
-    rating += Number(key) * Number(ratingsObj[key]);
-    total += Number(ratingsObj[key]);
-  }
-
-  return [Number(Math.round((rating / total) + 'e1') + 'e-1'), total];
-};
-
 const formatDate = (date) => {
   var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   var formattedDate = new Date(date);
@@ -72,7 +61,6 @@ const validateEmail = (mail) => {
 
 export {
   getServer,
-  grabReviewScore,
   formatDate,
   putServer,
   postServer,
