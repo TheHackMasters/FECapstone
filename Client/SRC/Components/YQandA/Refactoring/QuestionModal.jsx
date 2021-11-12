@@ -70,9 +70,6 @@ const QuestionModal = (props) => {
                 placeholder="Example: jackson11!">
               </ANameBox>
             </ALabel>
-            <Warning>
-              For privacy reasons, do not use your full name or email address
-            </Warning>
           </AText>
           <div>
             <ALabel>
@@ -84,10 +81,6 @@ const QuestionModal = (props) => {
                 placeholder="Why did you like the product or not?">
               </AEmailBox>
             </ALabel>
-            <Warning>
-                For authentication reasons you will not be emailed
-            </Warning>
-            <Warning>* Indicates a required field</Warning>
           </div>
         </AModalBody>
         <AModalFooter>

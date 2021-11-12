@@ -68,7 +68,6 @@ const AnswerModal = (props) => {
               </ANameBox>
             </ALabel>
             <Warning>
-                For privacy reasons, do not use your full name or email address
             </Warning>
           </div>
           <div>
@@ -80,7 +79,6 @@ const AnswerModal = (props) => {
                 placeholder="Example: jack@email.com">
               </AEmailBox>
               <Warning>
-                  For authentication reasons you will not be emailed
               </Warning>
             </ALabel>
           </div>

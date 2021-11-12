@@ -3,7 +3,9 @@
 import React, {useState, useEffect, useContext} from 'react';
 import {ContextObj} from './ContextObj.jsx';
 import QAList from './QAList.jsx';
-import {SearchGrid, SearchTextBox} from './styles.js'
+import {SearchGrid, SearchTextBox} from './styles.js';
+import SearchIcon from '@mui/icons-material/Search';
+
 
 const QuestionSearch = (props) => {
   const [filteredList, setFilteredList] = useState(props.questions.results);
@@ -32,9 +34,9 @@ const QuestionSearch = (props) => {
 
   return (
     <SearchGrid>
-      <SearchTextBox 
-        type="text" 
-        placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." 
+      <SearchTextBox
+        type="text"
+        placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..."
         onChange={searchHandler}>
       </SearchTextBox>
       <QAList query={query} addQuestion={props.addQuestion} questions={filterQuestions(props.questions.results)}/>
