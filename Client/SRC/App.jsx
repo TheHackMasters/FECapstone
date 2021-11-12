@@ -141,6 +141,7 @@ function App(props) {
         styles={overviewStyles}
         cart={userCart}
         clickTracker={clickTracker}
+        meta={meta}
       />
       <RIAC
         relatedData={relatedData}
