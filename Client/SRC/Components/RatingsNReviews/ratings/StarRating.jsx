@@ -19,7 +19,7 @@ function StarRating(props) {
     selectedValue,
   } = useStars(config);
 
-  return <StarsRating config={config} />;
+  return <StarsRating isDisabled={true} config={config} />;
 }
 
 export default StarRating;
