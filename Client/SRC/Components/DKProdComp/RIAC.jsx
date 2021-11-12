@@ -218,12 +218,13 @@ const SetMiddle = styled.div`
   margin: auto;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
+  min-width: 30em;
 `;
 
 const CarouselStyle = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: start;
   flex-direction: row;
   flex-wrap: wrap;
   align-content: stretch;
@@ -238,7 +239,7 @@ const CarouselStyle = styled.div`
 // `;
 
 const Spacer = styled.div`
-  width: 2em;
+  width: 1.7em;
   padding: 1.7em;
 `;
 

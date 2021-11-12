@@ -10,15 +10,12 @@ flex-direction:row;
 padding: 2em;
 position: relative;
 margin-bottom: 2em;
-width: 65em;
 `;
 
 const Logo = styled.span`
-font-family: 'Allison', cursive;
 text-align: left;
 left: 20px;
 font-weight: bolder;
-font-style: italic;
 text-decoration: underline;
 font-size: 24px;
 `;

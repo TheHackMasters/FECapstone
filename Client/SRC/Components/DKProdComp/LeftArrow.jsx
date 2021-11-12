@@ -6,7 +6,7 @@ function LeftArrow(props) {
   const leftArrow = 'https://freepngimg.com/thumb/web_design/24703-6-right-arrow-image.png';
 
   const arrowLeftStyle = {
-    width: '4em',
+    width: '2.4em',
     height: '3.4em',
     objectFit: 'cover',
     margin: 'auto',
