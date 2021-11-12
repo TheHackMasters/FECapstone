@@ -9,13 +9,15 @@ display:flex;
 flex-direction:row;
 padding: 1em;
 position: relative;
+width: 65em;
 `;
 
 const Logo = styled.span`
+font-family: 'Allison', cursive;
 text-align: left;
 left: 20px;
 font-weight: bolder;
-fonst-style: italic;
+font-style: italic;
 text-decoration: underline;
 `;
 
@@ -27,13 +29,10 @@ const Input = styled.input`
   bottom: 5px;
   width: 20%;
   padding: 1px;
-  border: bottom;
 `;
 const Container = styled.div`
   text-align: right;
-  border: 1px solid black;
-  width: 790px;
-  height: 29px;
+  width: 40em;
   position: absolute;
   right: 20px;
 `;

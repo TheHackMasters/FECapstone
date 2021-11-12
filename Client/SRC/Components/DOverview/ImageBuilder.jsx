@@ -29,36 +29,6 @@ cursor:pointer;
 overflow: hidden;
 `;
 
-const StyledLeftA = styled.button`
-position: absolute;
-top: 50%;
-left: 25%;
-padding: 5px;
-background-color: Transparent;
-background-repeat:no-repeat;
-border: none;
-cursor:pointer;
-overflow: hidden;
-color: black;
-font-size: 1.5em;
-font-weight: 900;
-`;
-
-const StyledRightA = styled.button`
-position: absolute;
-top: 50%;
-right: 5%;
-padding: 5px;
-background-color: Transparent;
-background-repeat:no-repeat;
-border: none;
-cursor:pointer;
-overflow: hidden;
-color: black;
-font-size: 1.5em;
-font-weight: 900;
-`;
-
 const StyledUpDownA = styled.button`
 position: absolute;
 top: 50%;
@@ -117,51 +87,39 @@ class ImageBuilder extends React.Component {
       backgroundImage: `url(${photos[curPhoto].url})`,
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat',
-      width: '40em',
+      minWidth: '40em',
       height: '40em',
     };
 
     let tempKey = 0;
 
     return (
-      <div>
-        <div
-          id="imagebuilder"
-          style={ProdImage}
-          data-testid="MainImage"
-        >
-          <StyledButton />
-          <StyledLeftA
-            data-trackingid="Overview ImageGallery"
-            onClick={(event) => {
-              clickTracker(event);
-            }}
-          >
-            🡸
-
-          </StyledLeftA>
-          <StyledRightA>🡺</StyledRightA>
-          <UpDownWrapper>
-            <StyledUpDownA>˄</StyledUpDownA>
-          </UpDownWrapper>
-          <ScrollWrapper>
-            {photos.map((style, index) => {
-              tempKey += 1;
-              return (
-                <MiniImageBuilder
-                  style={style}
-                  key={tempKey}
-                  id={index}
-                  data-testid={`photo${index}`}
-                  switchDisplay={this.switchDisplay}
-                />
-              );
-            })}
-          </ScrollWrapper>
-          <UpDownWrapper>
-            <StyledUpDownA>˅</StyledUpDownA>
-          </UpDownWrapper>
-        </div>
+      <div
+        id="imagebuilder"
+        style={ProdImage}
+        data-testid="MainImage"
+      >
+        <StyledButton />
+        <UpDownWrapper>
+          <StyledUpDownA />
+        </UpDownWrapper>
+        <ScrollWrapper>
+          {photos.map((style, index) => {
+            tempKey += 1;
+            return (
+              <MiniImageBuilder
+                style={style}
+                key={tempKey}
+                id={index}
+                data-testid={`photo${index}`}
+                switchDisplay={this.switchDisplay}
+              />
+            );
+          })}
+        </ScrollWrapper>
+        <UpDownWrapper>
+          <StyledUpDownA />
+        </UpDownWrapper>
       </div>
     );
   }
