@@ -22,6 +22,7 @@ margin: 15px;
 `;
 
 const BoxAlt = styled.div`
+background-color: #ffffff;
 border: solid;
 padding: 10px;
 margin: 5px;
@@ -29,6 +30,7 @@ cursor:pointer;
 `;
 
 const BoxStar = styled.div`
+background-color: #ffffff;
 border: solid;
 padding: 15px;
 margin: 5px;
@@ -40,24 +42,6 @@ const StyledPlus = styled.span`
 font-size: 1em;
 font-weight: bolder;
 margin-left: 5em;
-`;
-
-const StyledSelectS = styled.select`
-padding: 10px;
-border: solid;
-width: 13rem;
-cursor:pointer;
-`;
-
-const StyledSelectQ = styled.select`
-padding: 10px;
-border: solid;
-width: 5rem;
-cursor:pointer;
-`;
-
-const StyledOption = styled.option`
-width: 10fr;
 `;
 
 class CartBuilder extends React.Component {

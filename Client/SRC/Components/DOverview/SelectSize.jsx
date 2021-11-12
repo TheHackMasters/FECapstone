@@ -6,6 +6,7 @@ width: 10fr;
 `;
 
 const StyledSelectS = styled.select`
+background-color: #ffffff;
 padding: 10px;
 border: solid;
 width: 13rem;
