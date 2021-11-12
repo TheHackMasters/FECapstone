@@ -32,4 +32,5 @@ const CardStyle = styled.div`
   width: 14.3em;
   height: 21.8em;
   background-color: grey;
+  margin-bottom: 2em;
 `;

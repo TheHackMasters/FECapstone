@@ -43,6 +43,7 @@ const CardStyle = styled.div`
   margin-right: 1em;
   margin-left: 1em;
   background-color: white;
+  margin-bottom: 2em;
   `;
 
 const CardImgStyle = styled.div`

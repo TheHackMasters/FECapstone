@@ -22,7 +22,7 @@ function Card(props) {
         if (meta !== undefined) {
           // const { data } = meta;
           // const { ratings } = data;
-          setRatingsFloat((Math.round(helper.averageRating(meta.ratings) * 10) / 10).toFixed(1));
+          setRatingsFloat(Number((Math.round(helper.averageRating(meta.ratings) * 10) / 10).toFixed(1)));
         }
       })
       .catch((err) => console.log(err));
@@ -130,6 +130,7 @@ const CardStyle = styled.div`
   margin-right: 1em;
   width: 14.3em;
   height: 21.8em;
+  margin-bottom: 2em;
 `;
 
 const CardImgStyle = styled.div`
