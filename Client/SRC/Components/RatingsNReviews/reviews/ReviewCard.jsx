@@ -29,8 +29,8 @@ const ReviewCard = ({ review, index }) => {
         <StarRatingComponent
                 name="myRating"
                 editing={false}
-                renderStarIcon={() => <span><StarIcon /></span>}
-                renderStarIconHalf={() => <span><HalfStar /></span>}
+                renderStarIcon={() => <span fontSize='small'><StarIcon fontSize='small'/></span>}
+                renderStarIconHalf={() => <span fontSize='small'><HalfStar fontSize='small'/></span>}
                 starCount={5}
                 value={rating}
                 starColor={"black"}

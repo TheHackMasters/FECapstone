@@ -56,14 +56,14 @@ const Ratings = (props) => {
             <RatingsHeader>Ratings & Reviews </RatingsHeader>
           <div className="ratings">
             <div>
-              {floatState}
+              <FloatSize>{floatState}</FloatSize>
               {' '}
               <br />
               <StarRatingComponent
                 name="myRating"
                 editing={false}
-                renderStarIcon={() => <span><StarIcon /></span>}
-                renderStarIconHalf={() => <span><HalfStar /></span>}
+                renderStarIcon={() => <span fontSize='small'><StarIcon fontSize='small'/></span>}
+                renderStarIconHalf={() => <span fontSize='small'><HalfStar fontSize='small'/></span>}
                 starCount={5}
                 value={floatState}
                 starColor={"black"}
@@ -113,4 +113,16 @@ const RatingsHeader = styled.h3`
   color: grey;
   padding: 2em 0em 0em 0em;
 
+`
+
+const FloatSize = styled.h3`
+
+font-weight: 900;
+font-size: 46px;
+margin-top: -30px;
+margin-bottom: -30px;
+`
+
+const Stars = styled(StarRatingComponent)`
+margin-left: 30px;
 `
