@@ -1,5 +1,3 @@
-/*eslint-disable */
-
 import styled from 'styled-components';
 
 const Question =styled.div`
@@ -18,7 +16,9 @@ const ListButton =styled.button`
 const QTitle=styled.div`
   margin-top: 25px;
   font-size: 20px;
-  grid-column: 2;
+  color: grey;
+  font-size: 25px;
+  width: 100%;
 `
 
 const QContainer=styled.div`
@@ -31,9 +31,8 @@ const QContainer=styled.div`
 `
 
 const QListGrid=styled.div`
-  margin-top: 25px;
   font-size: 25px;
-  grid-column: 2;
+  /* grid-column: 2; */
 `
 const QAListGrid=styled.div`
   grid-row: 2;
@@ -63,16 +62,15 @@ const QModal =styled.div`
 const QModalContent =styled.div`
   position: absolute;
   width: 60%;
-  background-color:rgb(207, 203, 197);
+  color: black;
+  background-color:rgb(184,184,184);
   left: 10%;
   right: 20%;
   top: 15%;
   padding: 20px;
-
   p {
     margin-bottom: 1rem;
   }
-
   button {
     padding: 10px 24px;
     background: #141414;
@@ -88,8 +86,8 @@ const Warning =styled.div`
 
 const SearchGrid =styled.div`
   display:grid;
-  grid-template-rows: 17% auto;
-  grid-template-columns: 10% auto 10%;
+  grid-template-rows: 25% auto;
+  grid-template-columns: 5% auto 5%;
   grid-column: 1/2;
   grid-row: 1/2;
   margin-bottom: 10px;
@@ -97,6 +95,7 @@ const SearchGrid =styled.div`
 
 const SearchTextBox =styled.input`
   justify-self: center;
+  margin-bottom: 30px;
   font-size: 20px;
   height: 40px;
   width: 90%;
@@ -105,15 +104,15 @@ const SearchTextBox =styled.input`
 
 const QButton =styled.button`
   border-style: solid;
-  background-color: rgb(139, 192, 241);
+  grid-column: 1/3;
+  justify-self: center;
+  background-color: #f5f5f5;
   height: 50px;
   width: 150px;
-  font-weight: 600;
   border-width: thin;
   border-color: rgb(0, 0, 0);
   cursor: pointer;
   color:black;
-
   &:hover {
     opacity: 0.7;
     transform: scale(0.98)
@@ -123,7 +122,6 @@ const QButton =styled.button`
 const Link = styled.span`
   text-decoration:underline;
   cursor: pointer;
-
   &:hover {
     font-weight: bold;
   }
@@ -131,13 +129,15 @@ const Link = styled.span`
 
 const QEntry = styled.div`
   display: grid;
-  border-top: blanchedalmond;
+  /* border-top: blanchedalmond;
   border-left: blanchedalmond;
   border-right: blanchedalmond;
-  border-bottom: 4px rgb(148, 182, 245, 0.5);
-  border-style: solid;
-  padding-bottom: 10px;
-  padding-top: 10px;
+  border-bottom: 1px black; */
+  border: solid 1px black;
+  /* border-style: solid; */
+  padding-bottom: 8px;
+  padding-top: 7px;
+  padding-left: 10px;
   grid-template-columns: 5% auto;
 `
 
@@ -173,6 +173,7 @@ const AnswerList =styled.div`
 const AModalTitle =styled.h2`
   justify-self: center;
   grid-row: 1;
+  color:black;
 `
 
 const AModalSubtitle =styled.h4`
@@ -208,7 +209,8 @@ const ALabel = styled.label`
 `
 
 const ANameBox =styled.input`
-  margin-left: 23px;
+  grid-column: 3/3;
+  justify-self: center;
 `
 
 const AEmailBox =styled.input`
@@ -234,7 +236,6 @@ const AButton=styled.button`
   border-color: rgb(0, 0, 0);
   cursor: pointer;
   color: black;
-
   &:hover {
    background-color: rgb(34, 117, 212);
   }
