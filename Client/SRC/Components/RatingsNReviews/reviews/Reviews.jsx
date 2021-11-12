@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { StarsRating } from 'stars-rating-react-hooks';
 import ReviewCard from './ReviewCard.jsx';
 import ReviewModal from './ReviewModal.jsx';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 
 const Reviews = (props) => {
@@ -44,10 +45,10 @@ const Reviews = (props) => {
 
         <div className="reviews">
         <div>{reviewsArray.length} reviews, sorted by {' '}
-              <select value={selectSort} onChange={handleSelectChange} >
+              <Select value={selectSort} onChange={handleSelectChange} >
                   <option value="highest_rating">Highest rating</option>
                   <option value="lowest_rating">Lowest rating</option>
-              </select>
+              </Select>
           </div>
 
 
@@ -68,9 +69,9 @@ const Reviews = (props) => {
             <MoreReviews
               onClick={() => { setReviewCount(reviewCount + 2); }}
             >
-              MORE REVIEWS
+              More Reviews
             </MoreReviews>
-            <AddReview onClick={openModal}>ADD A REVIEW +</AddReview>
+            <AddReview onClick={openModal}>Add a Review +</AddReview>
             <ReviewModal
               modalIsOpen={modalIsOpen}
               setModalIsOpen={setModalIsOpen}
@@ -86,9 +87,18 @@ const Reviews = (props) => {
 
 export default Reviews;
 
+const Select = styled.select`
+background-image: './ExpandMoreIcon'
+appearance: none;
+border: 1px solid #C4C4C4
+weight: 1px;
+border-color: #C4C4C4;
+background-color: #F2F2F2;
+`
+
 const ReviewsSection = styled.section`
 display: grid;
-background-color: white;
+background-color: #F2FFFD;
 width: 100%;
 grid-column: ;
 grid-row: 1 / 10;
@@ -100,13 +110,19 @@ margin-top: 30px;
 const MoreReviews = styled.button`
 grid-column: 1 / 4;
 width: 130px;
-height: 70px;
+height: 30px;
 margin: 2%;
+border: 1px solid;
+border-color: #C4C4C4;
+weight: 1px;
+fill: #F2F2F2;
 `;
 
 const AddReview = styled.button`
 grid-column: 4 / 4;
 width: 130px;
-height: 70px;
+height: 30px;
 margin: 2%;
+border: 1px solid;
+border-color: #C4C4C4;
 `;
