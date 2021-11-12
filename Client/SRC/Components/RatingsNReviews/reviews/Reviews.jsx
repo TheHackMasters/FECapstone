@@ -102,7 +102,7 @@ grid-column: ;
 grid-row: 1 / 10;
 grid-template-rows: 50px repeat(auto, 200px) repeat(2, 50px);
 padding: 20px;
-margin-top: 30px;
+margin-top: 117px;
 `;
 
 const MoreReviews = styled.button`
