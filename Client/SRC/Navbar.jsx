@@ -3,51 +3,54 @@ import SearchIcon from '@mui/icons-material/Search';
 import styled from 'styled-components';
 
 const NavStyle = styled.section`
-background-color: black;
-color: green;
+background-color: #808080;
+color: white;
 display:flex;
 flex-direction:row;
-padding: 1em;
+padding: 2em;
 position: relative;
-width: 65em;
+margin-bottom: 2em;
 `;
 
 const Logo = styled.span`
-font-family: 'Allison', cursive;
 text-align: left;
 left: 20px;
 font-weight: bolder;
-font-style: italic;
 text-decoration: underline;
+font-size: 24px;
 `;
 
 const Input = styled.input`
-  background-color: black;
+  background-color: #808080;
   color: white;
   font-size: 1em;
   position: relative;
   bottom: 5px;
   width: 20%;
   padding: 1px;
+  border: bottom;
+  border-color: transparent;
 `;
+
 const Container = styled.div`
   text-align: right;
   width: 40em;
-  position: absolute;
+  height: 29px;
   right: 20px;
+  position: absolute;
 `;
 
 function Navbar(props) {
   return (
     <NavStyle>
-      <Logo> Soliloquy</Logo>
+      <Logo>Soliloquy</Logo>
       <Container>
         <Input
           type="text"
           placeholder="Search the site..."
         />
         <SearchIcon
-          style={{ color: '#6495ed' }}
+          style={{ color: '#FFFFFF' }}
         />
       </Container>
     </NavStyle>

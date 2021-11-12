@@ -4,8 +4,8 @@ function RightArrow(props) {
   const rightArrow = 'https://freepngimg.com/thumb/web_design/24703-6-right-arrow-image.png';
 
   const arrowRightStyle = {
-    width: '55px',
-    height: '55px',
+    width: '2.4em',
+    height: '3.4em',
     objectFit: 'cover',
     margin: 'auto',
     marginLeft: '5px',
@@ -20,6 +20,7 @@ function RightArrow(props) {
     <>
       <button style={arrowButtonStyle}>
         <img
+        loading="lazy"
           style={arrowRightStyle}
           alt="right arrow"
           src={rightArrow}
