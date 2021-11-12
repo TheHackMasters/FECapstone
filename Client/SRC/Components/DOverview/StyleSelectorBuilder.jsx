@@ -10,8 +10,7 @@ padding: 1em;
 `;
 
 function StyleSelectorBuilder(props) {
-  const { style, switchStyle, id } = props;
-  // console.log('SSB', style);
+  const { style, switchStyle, id, styleItem } = props;
 
   const CircledStyles = {
     border: 'solid',
@@ -27,7 +26,7 @@ function StyleSelectorBuilder(props) {
 
   return (
     <StylesWrapper>
-      <Checkbox />
+      <Checkbox styleItem={styleItem} id={id} />
       <div
         style={CircledStyles}
         id={id}

@@ -20,6 +20,7 @@ function MiniImageBuilder(props) {
     border: 'solid',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
+    cursor: 'pointer',
   };
 
   return (

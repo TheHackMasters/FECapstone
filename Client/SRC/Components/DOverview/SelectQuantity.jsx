@@ -6,6 +6,7 @@ padding: 10px;
 border: solid;
 width: 5rem;
 cursor:pointer;
+background-color: #ffffff;
 `;
 
 const StyledOption = styled.option`

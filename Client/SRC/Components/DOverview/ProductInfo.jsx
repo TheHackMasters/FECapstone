@@ -5,6 +5,7 @@ const ProdInfoOrient = styled.section`
 display:flex;
 flex-direction:row;
 padding-bottom: 1em;
+min-width: 73em;
 `;
 
 const Seperator1 = styled.div`

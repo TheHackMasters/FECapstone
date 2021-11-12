@@ -19,6 +19,8 @@ padding-bottom: 1em;
 `;
 
 const SubComponentOrientation = styled.section`
+min-width: 30em;
+max-width: 30em;
 padding-left: 1em;
 `;
 
@@ -116,6 +118,7 @@ class Overview extends React.Component {
                 styles={styles}
                 selection={styles[styleItem]}
                 switchStyle={this.switchStyle}
+                styleItem={styleItem}
               />
             </SubComponentOrientation>
             <SubComponentOrientation id="cartbuilder">

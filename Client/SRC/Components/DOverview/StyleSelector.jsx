@@ -16,7 +16,7 @@ padding-right: 1em;
 `;
 
 function StyleSelector(props) {
-  const { styles, selection, switchStyle } = props;
+  const { styles, selection, switchStyle, styleItem } = props;
   // console.log('ss', switchStyle);
   return (
     <div>
@@ -30,6 +30,7 @@ function StyleSelector(props) {
           id={index}
           data-testid={`${style.style_id}`}
           switchStyle={switchStyle}
+          styleItem={styleItem}
         />
       ))}
     </StyleOrientation>
