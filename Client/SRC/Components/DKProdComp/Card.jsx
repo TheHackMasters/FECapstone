@@ -54,6 +54,7 @@ function Card(props) {
       <CardImgStyle>
         <img
           style={imageStyle}
+          loading="lazy"
           src={imgCheck(product.id)}
           alt={product.imgAlt}
           onClick={() => (props.setCurProdId(product.id))}

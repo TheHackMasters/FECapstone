@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const NavStyle = styled.section`
 background-color: #808080;
-color: #2affed;
+color: white;
 display:flex;
 flex-direction:row;
 padding: 2em;
@@ -44,14 +44,14 @@ const Container = styled.div`
 function Navbar(props) {
   return (
     <NavStyle>
-      <Logo>Techxtile</Logo>
+      <Logo>Soliloquy</Logo>
       <Container>
         <Input
           type="text"
           placeholder="Search the site..."
         />
         <SearchIcon
-          style={{ color: '#2affed' }}
+          style={{ color: '#FFFFFF' }}
         />
       </Container>
     </NavStyle>

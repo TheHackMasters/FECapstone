@@ -20,6 +20,7 @@ function RightArrow(props) {
     <>
       <button style={arrowButtonStyle}>
         <img
+        loading="lazy"
           style={arrowRightStyle}
           alt="right arrow"
           src={rightArrow}

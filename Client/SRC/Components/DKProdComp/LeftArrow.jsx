@@ -24,6 +24,7 @@ function LeftArrow(props) {
       <button style={arrowButtonStyle}>
         <img
           style={arrowLeftStyle}
+          loading="lazy"
           alt="Left arrow"
           src={leftArrow}
           onClick={props.nextSlide}

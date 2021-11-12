@@ -183,6 +183,7 @@ function RIAC(props) {
                 nextSlide={nextSlideRecc}
               />
             )}
+
         </CarouselStyle>
       </div>
       <div className="outfits">

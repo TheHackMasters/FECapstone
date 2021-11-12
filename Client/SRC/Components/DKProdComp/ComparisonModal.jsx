@@ -98,6 +98,8 @@ const ModalWrapper = styled.div`
   grid-template-columns: 1fr 1fr;
   position: absolute;
   left: -870px;
+  // margin: auto;
+
   z-index: 10;
   border-radius: 10px;
 `;
