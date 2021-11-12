@@ -98,7 +98,6 @@ background-color: #F2F2F2;
 
 const ReviewsSection = styled.section`
 display: grid;
-background-color: #F2FFFD;
 width: 100%;
 grid-column: ;
 grid-row: 1 / 10;
