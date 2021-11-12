@@ -52,7 +52,6 @@ function RatingName(props) {
 
       const modR = (Math.round(helper.averageRating(ratings) * 10) / 10).toFixed(1);
       setRatingsFloat(Number(modR));
-      console.log(typeof (ratingsFloat), ratingsFloat);
     }
   }, [props]);
 
