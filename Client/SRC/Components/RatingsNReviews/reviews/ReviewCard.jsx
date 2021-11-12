@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import Moment from 'react-moment';
 import styled from 'styled-components'
 import StarRatingComponent from 'react-star-rating-component';
+import StarHalfIcon from '@mui/icons-material/StarHalf';
+import StarIcon from '@mui/icons-material/Star';
+
 
 const ReviewCard = ({ review, index }) => {
   const {
@@ -24,13 +27,15 @@ const ReviewCard = ({ review, index }) => {
         {/* <div>*****</div> */}
         {/* <StarRating rating={rating}/> */}
         <StarRatingComponent
-          name="myRating"
-          renderStarIcon={() => <span>★</span>}
-          starCount={5}
-          value={rating}
-          starColor={"black"}
-          emptyStarColor={"#C4C4C4"}
-        />
+                name="myRating"
+                editing={false}
+                renderStarIcon={() => <span><StarIcon /></span>}
+                renderStarIconHalf={() => <span><HalfStar /></span>}
+                starCount={5}
+                value={rating}
+                starColor={"black"}
+                emptyStarColor={"#C4C4C4"}
+              />
         {/* <div>{rating}</div> */}
         <h3>{summary}</h3>
         <p>
