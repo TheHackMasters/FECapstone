@@ -10,13 +10,15 @@ flex-direction:row;
 padding: 2em;
 position: relative;
 margin-bottom: 2em;
+width: 65em;
 `;
 
 const Logo = styled.span`
+font-family: 'Allison', cursive;
 text-align: left;
 left: 20px;
 font-weight: bolder;
-fonst-style: italic;
+font-style: italic;
 text-decoration: underline;
 font-size: 24px;
 `;
@@ -32,13 +34,13 @@ const Input = styled.input`
   border: bottom;
   border-color: transparent;
 `;
+
 const Container = styled.div`
   text-align: right;
-  // border: 1px solid black;
-  width: 790px;
+  width: 40em;
   height: 29px;
-  position: absolute;
   right: 20px;
+  position: absolute;
 `;
 
 function Navbar(props) {

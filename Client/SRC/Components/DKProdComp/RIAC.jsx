@@ -167,14 +167,6 @@ function RIAC(props) {
               />
             )}
           {recommends}
-          {openModal ? (
-            <ComparisonModal
-              openModal={openModal}
-              setOpenModal={setOpenModal}
-              currProduct={currProduct}
-              compareProd={compareProd}
-            />
-          ) : null}
           {idxRecc === reccList.length - 4 ? <Spacer />
             : (
               <RightArrow
@@ -185,6 +177,14 @@ function RIAC(props) {
             )}
 
         </CarouselStyle>
+        {openModal ? (
+            <ComparisonModal
+              openModal={openModal}
+              setOpenModal={setOpenModal}
+              currProduct={currProduct}
+              compareProd={compareProd}
+            />
+          ) : null}
       </div>
       <div className="outfits">
         <h2>OUTFITS</h2>
@@ -216,10 +216,14 @@ export default RIAC;
 
 const SetMiddle = styled.div`
   margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 
 const CarouselStyle = styled.div`
   display: flex;
+  justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
   align-content: stretch;
@@ -235,7 +239,7 @@ const CarouselStyle = styled.div`
 
 const Spacer = styled.div`
   width: 2em;
-  padding: 2em;
+  padding: 1.7em;
 `;
 
 const ComponentSpace = styled.div`

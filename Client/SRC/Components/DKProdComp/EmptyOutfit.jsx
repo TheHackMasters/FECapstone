@@ -27,7 +27,8 @@ const CardT2 = styled.div`
 
 const CardStyle = styled.div`
   border: 2px solid #D3D3D3;
-  margin-right: 36px;
+  margin-right: 1em;
+  margin-left: 1em;
   width: 235px;
   height: 350px;
   background-color: grey;

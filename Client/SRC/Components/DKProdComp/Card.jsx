@@ -99,7 +99,8 @@ export default Card;
 
 const CardStyle = styled.div`
   border: 2px solid #D3D3D3;
-  margin-right: 36px;
+  margin-left: 1em;
+  margin-right: 1em;
   width: 14.6em;
   height: 350px;
 `;

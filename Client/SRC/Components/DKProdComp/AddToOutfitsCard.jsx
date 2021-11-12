@@ -40,7 +40,8 @@ const CardStyle = styled.div`
   border: 2px solid #D3D3D3;
   width: 14.6em;
   height: 21.8em;
-  margin-right: 36px;
+  margin-right: 1em;
+  margin-left: 1em;
   background-color: white;
   `;
 

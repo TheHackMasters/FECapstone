@@ -1,5 +1,5 @@
 body {
-  background-color: #F2FFFD;
+  background-color: #FFFFFF;
 }
 
 #app {
@@ -10,12 +10,21 @@ body {
   position: relative;
 }
 
+.recommended {
+  margin: auto;
+}
+
+.outfits {
+  margin: auto;
+}
+
 /* Card Styles */
 .card {
   border: 2px solid #D3D3D3;
   width: 14.6em;
   height: 21.8em;
-  margin-right: 2em;
+  margin-right: 1em;
+  margin-left: 1em;
   background-color: white;
 }
 
