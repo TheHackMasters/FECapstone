@@ -41,9 +41,7 @@ const Ratings = (props) => {
     // console.log(recValue);
   }
 
-  const HalfStar = styled(StarHalfIcon)`
-  color: black;
-  `
+
 
   return (
 
@@ -100,3 +98,7 @@ padding: 20px;
 margin-left: 30px;
 
 `;
+
+const HalfStar = styled(StarHalfIcon)`
+color: black;
+`

@@ -121,25 +121,25 @@ const RatingsSlider = (props) => {
       <TextStyles>Fit</TextStyles>
       <Styles className="rangeSlider">
         Not So Great
-        <input type="range" min={0} max={5} value={fitValue} className="slider" disabled="true" />
+        <input type="range" min={0} max={5} value={fitValue} className="slider" disabled={true} />
         Great!
       </Styles>
       Length
       <Styles>
         Not So Great
-        <input type="range" min={0} max={5} value={lengthValue} className="slider" disabled="true" />
+        <input type="range" min={0} max={5} value={lengthValue} className="slider" disabled={true} />
         Great!
       </Styles>
       Comfort
       <Styles>
         Not So Great
-        <input type="range" min={0} max={5} value={comfortValue} className="slider" disabled="true" />
+        <input type="range" min={0} max={5} value={comfortValue} className="slider" disabled={true} />
         Great!
       </Styles>
       Quality
       <Styles>
         Not So Great
-        <input type="range" min={0} max={5} value={qualityValue} className="slider" disabled="true" />
+        <input type="range" min={0} max={5} value={qualityValue} className="slider" disabled={true} />
         Great!
       </Styles>
 
