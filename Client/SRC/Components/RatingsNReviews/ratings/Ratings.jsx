@@ -77,7 +77,7 @@ export default Ratings;
 
 const RatingsDiv = styled.div`
 display: grid;
-background-color: white;
+background-color: #F2FFFD;
 width: 100%;
 grid-column: 1;
 grid-row: 1/6;
