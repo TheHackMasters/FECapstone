@@ -29,7 +29,9 @@ const Input = styled.input`
   width: 20%;
   padding: 1px;
   border: bottom;
-  border-color: transparent;
+  outline: 0;
+  border-width: 0 0 2px;
+  border-color: white;
 `;
 
 const Container = styled.div`

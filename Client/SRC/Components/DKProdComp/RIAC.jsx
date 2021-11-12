@@ -156,7 +156,7 @@ function RIAC(props) {
     <SetMiddle>
       <ComponentSpace />
       <div className="recommended">
-        <h2>RECOMMENDED</h2>
+        <HeaderCarousel>RECOMMENDED PRODUCTS</HeaderCarousel>
         <CarouselStyle>
           {idxRecc === 0 ? <Spacer />
             : (
@@ -187,7 +187,7 @@ function RIAC(props) {
           ) : null}
       </div>
       <div className="outfits">
-        <h2>OUTFITS</h2>
+        <HeaderCarousel>YOUR OUTFIT</HeaderCarousel>
         <CarouselStyle>
           {idxOutfit === 0 ? <Spacer />
             : (
@@ -245,4 +245,14 @@ const Spacer = styled.div`
 
 const ComponentSpace = styled.div`
   height: 4em;
+`;
+
+const HeaderCarousel = styled.div`
+  justify-content: start;
+  font-weight: 300;
+  font-size: 20px;
+  color: grey;
+  padding: 2em 0em 0em 0em;
+  margin-left: 100px;
+  margin-bottom: 1em;
 `;
