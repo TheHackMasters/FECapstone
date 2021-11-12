@@ -83,7 +83,7 @@ class Overview extends React.Component {
     const {
       data, styles, styleItem, prodId, styleId,
     } = this.state;
-    const { clickTracker } = this.props;
+    const { clickTracker, meta } = this.props;
     // console.log('s', styles);
     // console.log('state', this.state);
     return (
@@ -111,6 +111,7 @@ class Overview extends React.Component {
               <RatingName
                 data={data}
                 style={styles[styleItem]}
+                meta={meta}
               />
             </SubComponentOrientation>
             <SubComponentOrientation id="styleselector">

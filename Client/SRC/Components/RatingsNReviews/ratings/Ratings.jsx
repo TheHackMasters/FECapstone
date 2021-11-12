@@ -4,6 +4,8 @@ import helper from './helper.js';
 import RatingsSlider from './RatingsSlider.jsx';
 import BarGraph from './BarGraph/BarGraph.jsx';
 import StarRatingComponent from 'react-star-rating-component';
+import StarHalfIcon from '@mui/icons-material/StarHalf';
+import StarIcon from '@mui/icons-material/Star';
 
 
 const Ratings = (props) => {
@@ -39,6 +41,8 @@ const Ratings = (props) => {
     // console.log(recValue);
   }
 
+
+
   return (
 
     <>
@@ -51,15 +55,17 @@ const Ratings = (props) => {
             <div>
               {ratingsFloat}
               {' '}
-              <br/>
+              <br />
               <StarRatingComponent
-          name="myRating"
-          renderStarIcon={() => <span>★</span>}
-          starCount={5}
-          value={ratingsFloat}
-          starColor={"black"}
-          emptyStarColor={"#C4C4C4"}
-        />
+                name="myRating"
+                editing={false}
+                renderStarIcon={() => <span><StarIcon /></span>}
+                renderStarIconHalf={() => <span><HalfStar /></span>}
+                starCount={5}
+                value={ratingsFloat}
+                starColor={"black"}
+                emptyStarColor={"#C4C4C4"}
+              />
             </div>
             <span> </span>
             <div>
@@ -67,9 +73,9 @@ const Ratings = (props) => {
               {recValue}
               % of reviewers recommend this product
             </div>
-            <BarGraph meta={props.meta}/>
+            <BarGraph meta={props.meta} />
 
-            <RatingsSlider meta={props.meta}/>
+            <RatingsSlider meta={props.meta} />
 
           </div>
 
@@ -92,3 +98,7 @@ padding: 20px;
 margin-left: 30px;
 
 `;
+
+const HalfStar = styled(StarHalfIcon)`
+color: black;
+`

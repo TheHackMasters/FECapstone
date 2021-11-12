@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import StarRatingComponent from 'react-star-rating-component';
+import StarHalfIcon from '@mui/icons-material/StarHalf';
+import StarIcon from '@mui/icons-material/Star';
+import StarBorderIcon from '@mui/icons-material/StarBorder';
 import styled from 'styled-components';
+
+import helper from '../RatingsNReviews/ratings/helper.js';
 
 const StyleOrientation = styled.section`
 display:flex;
@@ -12,6 +18,10 @@ font-size: 2em;
 font-weight: bolder;
 `;
 
+const HalfStar = styled(StarHalfIcon)`
+  color: black;
+  `;
+
 function RatingName(props) {
   // console.log('RnN', props);
   const { data, style } = props;
@@ -23,6 +33,7 @@ function RatingName(props) {
   const [styleSalePriceStyle, setStyleSalePriceStyle] = useState({
     color: 'red',
   });
+  const [ratingsFloat, setRatingsFloat] = useState(0);
 
   useEffect(() => {
     setProdName(data.name);
@@ -35,12 +46,29 @@ function RatingName(props) {
       setStyleSalePrice(`$${style.sale_price}`);
       setStylePriceStyle({ textDecorationLine: 'line-through' });
     }
+    if (props.meta !== undefined) {
+      const { data } = props.meta;
+      const { ratings } = data;
+
+      const modR = (Math.round(helper.averageRating(ratings) * 10) / 10).toFixed(1);
+      setRatingsFloat(Number(modR));
+    }
   }, [props]);
 
   return (
     <div>
       <div>
-        <span>☆☆☆☆☆</span>
+        <StarRatingComponent
+          name="myRating"
+          editing={false}
+          renderStarIcon={() => <span><StarIcon /></span>}
+          renderStarIconHalf={() => <span><HalfStar /></span>}
+          starCount={5}
+          value={ratingsFloat}
+          starColor="black"
+          emptyStarColor="#C4C4C4"
+        />
+
         <a href="#Ratings">Read All Reviews</a>
       </div>
       <StyleOrientation>
