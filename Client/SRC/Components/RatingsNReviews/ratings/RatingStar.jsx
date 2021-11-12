@@ -5,7 +5,7 @@ import { StarsRating, useStars } from 'stars-rating-react-hooks';
 function RatingStar(props) {
   let ratingsFloat;
   if (props.ratingsFloat) {
-    console.log(props.ratingsFloat)
+    // console.log(props.ratingsFloat)
     ratingsFloat = props.ratingsFloat
 
   }
