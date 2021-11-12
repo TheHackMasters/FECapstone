@@ -48,8 +48,8 @@ const AnswerModal = (props) => {
     <QModal onClick={props.onClose}>
       <QModalContent onClick={e => e.stopPropagation()}>
         <AModalHeader>
-          <AModalTitle>Submit Your Answer:</AModalTitle>
-          <AModalSubtitle>{props.name}: {props.question}</AModalSubtitle>
+          <AModalTitle>Submit Your Answer</AModalTitle>
+
         </AModalHeader>
         <AModalBody>
           <AText>
@@ -58,7 +58,7 @@ const AnswerModal = (props) => {
             </ALabel>
             <ATextArea maxLength={1000} onChange={aModalBodyHandler}></ATextArea>
           </AText>
-          <div className="a-name">
+          {/* <div className="a-name">
             <ALabel>
               *What is your name?
               <ANameBox
@@ -67,8 +67,7 @@ const AnswerModal = (props) => {
                 placeholder="Example: jack543!">
               </ANameBox>
             </ALabel>
-            <Warning>
-            </Warning>
+
           </div>
           <div>
             <ALabel>
@@ -81,7 +80,7 @@ const AnswerModal = (props) => {
               <Warning>
               </Warning>
             </ALabel>
-          </div>
+          </div> */}
         </AModalBody>
         <AModalFooter>
           <div>

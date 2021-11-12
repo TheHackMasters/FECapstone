@@ -60,7 +60,7 @@ const QuestionModal = (props) => {
             </ALabel>
             <ATextArea type="text" maxLength={1000} onChange={qModalBodyHandler}></ATextArea>
           </AText>
-          <AText>
+          {/* <AText>
             <ALabel>
               * What is your name?
               <ANameBox
@@ -81,7 +81,7 @@ const QuestionModal = (props) => {
                 placeholder="Why did you like the product or not?">
               </AEmailBox>
             </ALabel>
-          </div>
+          </div> */}
         </AModalBody>
         <AModalFooter>
           <QButton
