@@ -107,8 +107,8 @@ const QButton =styled.button`
   grid-column: 1/3;
   justify-self: center;
   background-color: #f5f5f5;
-  height: 50px;
-  width: 150px;
+  height: 40px;
+  width: 170px;
   border-width: thin;
   border-color: rgb(0, 0, 0);
   cursor: pointer;
@@ -199,7 +199,7 @@ const AText =styled.div`
 `
 
 const ATextArea = styled.textarea`
-  height: 50px;
+  height: 20px;
   resize: none;
 `
 
@@ -225,19 +225,20 @@ const AModalFooter =styled.div`
 `
 
 const AButton=styled.button`
-  grid-column: 1;
-  grid-row: 1;
   border-style: solid;
-  background-color: rgb(139, 192, 241);
-  height: 50px;
+  grid-column: 1/3;
+  justify-self: center;
+  background-color: #f5f5f5;
+  height: 40px;
   width: 150px;
-  font-weight: 600;
+  margin-bottom: 10px
   border-width: thin;
   border-color: rgb(0, 0, 0);
   cursor: pointer;
-  color: black;
+  color:black;
   &:hover {
-   background-color: rgb(34, 117, 212);
+    opacity: 0.7;
+    transform: scale(0.98)
   }
 `
 
