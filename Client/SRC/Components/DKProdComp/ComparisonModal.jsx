@@ -97,7 +97,9 @@ const ModalWrapper = styled.div`
   color: #000;
   grid-template-columns: 1fr 1fr;
   position: absolute;
-  left: -870px;
+  margin: auto;
+  transform: translate(50%, -100%);
+
   z-index: 10;
   border-radius: 10px;
 `;
@@ -115,6 +117,7 @@ const ModalText = styled.div`
 const ModalTextCenter = styled.div`
 width: 110px;
 text-align: center;
+font-weight: 800;
 `;
 
 const ModalTextRight = styled.div`
