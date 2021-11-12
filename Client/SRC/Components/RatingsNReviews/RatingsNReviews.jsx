@@ -24,7 +24,6 @@ export default RatingsNReviews;
 
 const MainSection = styled.section`
 display: grid;
-background-color: white;
 overflow: auto;
 grid-template-columns: 1fr 2.5fr;
 grid-template-rows: repeat(8, 100px);
