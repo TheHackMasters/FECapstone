@@ -15,31 +15,34 @@ const Ratings = (props) => {
 
   // const [ratings, setRatings] = useState();
   const [charState, setCharState] = useState({});
+  const [floatState, setFloatState] = useState(0);
 
   let recValue = 0;
 
-  let ratingsFloat = 0;
-
   if (props.meta !== undefined) {
-    const { data } = props.meta;
-    const { ratings } = data;
 
-    ratingsFloat = (Math.round(helper.averageRating(ratings) * 10) / 10).toFixed(1);
-  }
-
-  if (props.meta !== undefined) {
-    // console.log(meta);
     const { meta } = props;
     const { data } = meta;
     const { characteristics } = data;
-    // setCharState(charState = characteristics);
-    // console.log(charState);
 
     const rc = data.recommended;
     const recommended = Math.round((Number(rc.true) / (Number(rc.false) + Number(rc.true))) * 100);
     recValue = recommended;
     // console.log(recValue);
   }
+  useEffect(() => {
+
+    if (props.meta !== undefined) {
+      const { data } = props.meta;
+      const { ratings } = data;
+
+      let ratingsFloat = (Math.round(helper.averageRating(ratings) * 10) / 10).toFixed(1);
+      setFloatState(Number(ratingsFloat))
+    }
+
+
+  }, [props]);
+
 
 
 
@@ -50,10 +53,10 @@ const Ratings = (props) => {
 
         <div>
 
+            <RatingsHeader>Ratings & Reviews </RatingsHeader>
           <div className="ratings">
-            <h2>Ratings & Reviews </h2>
             <div>
-              {ratingsFloat}
+              {floatState}
               {' '}
               <br />
               <StarRatingComponent
@@ -62,7 +65,7 @@ const Ratings = (props) => {
                 renderStarIcon={() => <span><StarIcon /></span>}
                 renderStarIconHalf={() => <span><HalfStar /></span>}
                 starCount={5}
-                value={ratingsFloat}
+                value={floatState}
                 starColor={"black"}
                 emptyStarColor={"#C4C4C4"}
               />
@@ -101,4 +104,13 @@ margin-left: 30px;
 
 const HalfStar = styled(StarHalfIcon)`
 color: black;
+`
+
+const RatingsHeader = styled.h3`
+  justify-content: start;
+  font-weight: 300;
+  size: 18px;
+  color: grey;
+  padding: 2em 0em 0em 0em;
+
 `
