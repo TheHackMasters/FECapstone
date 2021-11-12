@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import helper from './helper.js';
-import { StarsRating } from "stars-rating-react-hooks";
-import RatingStar from './RatingStar.jsx';
 import RatingsSlider from './RatingsSlider.jsx';
-import BarGraph from './BarGraph/BarGraph.jsx'
+import BarGraph from './BarGraph/BarGraph.jsx';
+import StarRatingComponent from 'react-star-rating-component';
+
 
 const Ratings = (props) => {
   // const { data: { ratings, characteristics, recommended } } = meta;
@@ -51,7 +51,15 @@ const Ratings = (props) => {
             <div>
               {ratingsFloat}
               {' '}
-              <RatingStar ratingsFloat={ratingsFloat} />
+              <br/>
+              <StarRatingComponent
+          name="myRating"
+          renderStarIcon={() => <span>★</span>}
+          starCount={5}
+          value={ratingsFloat}
+          starColor={"black"}
+          emptyStarColor={"#C4C4C4"}
+        />
             </div>
             <span> </span>
             <div>

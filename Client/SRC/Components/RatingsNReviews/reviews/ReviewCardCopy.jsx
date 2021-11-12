@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import StarRating from '../ratings/StarRating.jsx';
 import Moment from 'react-moment';
 import styled from 'styled-components'
-import StarRatingComponent from 'react-star-rating-component';
 
 const ReviewCard = ({ review, index }) => {
   const {
@@ -22,15 +22,7 @@ const ReviewCard = ({ review, index }) => {
 
       <div>
         {/* <div>*****</div> */}
-        {/* <StarRating rating={rating}/> */}
-        <StarRatingComponent
-          name="myRating"
-          renderStarIcon={() => <span>★</span>}
-          starCount={5}
-          value={rating}
-          starColor={"black"}
-          emptyStarColor={"#C4C4C4"}
-        />
+        <StarRating rating={rating}/>
         {/* <div>{rating}</div> */}
         <h3>{summary}</h3>
         <p>
