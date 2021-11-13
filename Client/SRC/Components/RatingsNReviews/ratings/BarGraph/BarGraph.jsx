@@ -35,7 +35,7 @@ const BarGraph = (props) => {
 
   return (
     <div className="graph-wrapper">
-      <Graph className="graph">
+      <Graph >
         <BarTextContent />
         <div>
           <Bar percent={bar5 * 10} />
