@@ -106,7 +106,7 @@ const HalfStar = styled(StarHalfIcon)`
 color: black;
 `
 
-const RatingsHeader = styled.h3`
+const RatingsHeader = styled.div`
   justify-content: start;
   font-weight: 300;
   size: 18px;
@@ -115,12 +115,13 @@ const RatingsHeader = styled.h3`
 
 `
 
-const FloatSize = styled.h3`
+const FloatSize = styled.div`
 
 font-weight: 900;
 font-size: 46px;
-margin-top: -30px;
+margin-top: -15px;
 margin-bottom: -30px;
+
 `
 
 const Stars = styled(StarRatingComponent)`
