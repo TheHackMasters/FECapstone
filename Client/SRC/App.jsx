@@ -101,14 +101,11 @@ function App(props) {
 
   const clickTracker = (event) => {
     const we = event.target.dataset.trackingid.split(' ');
-    // console.log('clicked ID', we);
-    // console.log('clicked className', event.target.className);
     const clickData = {
       element: we[1],
       widget: we[0],
       time: Date(),
     };
-    // console.log('You have clicked', clickData);
     axios.post('/interactions', clickData)
       .then((data) => {
         console.log('success!', data);
