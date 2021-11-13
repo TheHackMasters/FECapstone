@@ -13,9 +13,11 @@ const StyledOption = styled.option`
 width: 10fr;
 `;
 
+// creates the select logic for the quantity drop down
 function SelectQuantity(props) {
   const { handleChange, quantity } = props;
   const [quantityBuild, setQuantityBuild] = useState([]);
+  // function to build out the options in the drop down
   const quantityArr = (num) => {
     const newArr = [];
     let max = num;
@@ -32,6 +34,7 @@ function SelectQuantity(props) {
   };
 
   useEffect(() => {
+    // provides the input to build the drop down based on the selected sku
     if (quantity.curSku !== '') {
       if (quantity.curSku === '0') {
         setQuantityBuild([]);

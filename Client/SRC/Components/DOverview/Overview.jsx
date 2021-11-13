@@ -7,7 +7,7 @@ import StyleSelector from './StyleSelector.jsx';
 import CartBuilder from './CartBuilder.jsx';
 import ProductInfo from './ProductInfo.jsx';
 
-// Add in a min width(300) with an auto max width
+// lock in section to prevent bleed-over
 const ComponentWrapper = styled.section`
   border: none
 `;
@@ -18,6 +18,7 @@ flex-direction:row;
 padding-bottom: 1em;
 `;
 
+// minimum and maximum width need to be locked in place to maintain consistent flex display
 const SubComponentOrientation = styled.section`
 min-width: 30em;
 max-width: 30em;
@@ -27,7 +28,7 @@ padding-left: 1em;
 const StyledBanner = styled.div`
 text-align: center;
 `;
-
+// the main hub, the core state management happens here to change between products and styles
 class Overview extends React.Component {
   constructor(props) {
     super(props);
@@ -42,6 +43,7 @@ class Overview extends React.Component {
     this.switchStyle = this.switchStyle.bind(this);
   }
 
+  // spin up the overview with data from the first server call
   componentDidMount() {
     const { data, styles } = this.props;
     this.setState({
@@ -51,9 +53,9 @@ class Overview extends React.Component {
       prodId: data.id,
       styleId: styles.results[0].style_id,
     });
-    console.log('Mounted overview');
   }
 
+  // update the  overview live as the input product and styles change
   componentDidUpdate(prevProps) {
     if (
       (this.props.data.id !== prevProps.data.id)
@@ -67,10 +69,10 @@ class Overview extends React.Component {
         prodId: data.id,
         styleId: styles.results[0].style_id,
       });
-      // console.log('Update needed', this.state);
     }
   }
 
+  // simple event to update state when a different style is clicked
   switchStyle(event) {
     // console.log(event.target.id);
     this.setState({
@@ -79,13 +81,10 @@ class Overview extends React.Component {
   }
 
   render() {
-    // console.log('should change', this.props);
-    const {
-      data, styles, styleItem, prodId, styleId,
-    } = this.state;
+    // use object spread to grab necessary passthrough items and clarify elements
+    const { data, styles, styleItem } = this.state;
     const { clickTracker, meta } = this.props;
-    // console.log('s', styles);
-    // console.log('state', this.state);
+
     return (
       <ComponentWrapper id="overview">
         <StyledBanner className="overview">

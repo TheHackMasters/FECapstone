@@ -22,10 +22,9 @@ const HalfStar = styled(StarHalfIcon)`
   color: black;
   `;
 
+// dynamically updates product name, price, and sale price and styles accordingly
 function RatingName(props) {
-  // console.log('RnN', props);
   const { data, style } = props;
-  // console.log('RnN', style);
   const [prodName, setProdName] = useState(data.name);
   const [stylePrice, setStylePrice] = useState(data.default_price);
   const [styleSalePrice, setStyleSalePrice] = useState(null);
@@ -37,6 +36,8 @@ function RatingName(props) {
 
   useEffect(() => {
     setProdName(data.name);
+    // updates the display of the price depending on if it is on sale
+    // restores to original price if sale is null
     if (style.sale_price === null) {
       setStyleSalePrice(null);
       setStylePrice(`$${style.original_price}`);
@@ -46,6 +47,7 @@ function RatingName(props) {
       setStyleSalePrice(`$${style.sale_price}`);
       setStylePriceStyle({ textDecorationLine: 'line-through' });
     }
+    // updates the rating based on selected product
     if (props.meta !== undefined) {
       const { data } = props.meta;
       const { ratings } = data;
@@ -61,8 +63,8 @@ function RatingName(props) {
         <StarRatingComponent
           name="myRating"
           editing={false}
-          renderStarIcon={() => <span><StarIcon /></span>}
-          renderStarIconHalf={() => <span><HalfStar /></span>}
+          renderStarIcon={() => <span fontSize="small"><StarIcon fontSize="small" /></span>}
+          renderStarIconHalf={() => <span fontSize="small"><HalfStar fontSize="small" /></span>}
           starCount={5}
           value={ratingsFloat}
           starColor="black"

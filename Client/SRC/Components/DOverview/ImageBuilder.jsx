@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import MiniImageBuilder from './MiniImageBuilder.jsx';
 
+// creates the scrollable feature of the image gallery and orients it
 const ScrollWrapper = styled.div`
 position: relative,
 display: flex,
@@ -10,6 +11,8 @@ height: 30em;
 overflow: auto;
 `;
 
+// serves as a buffer to keep the image gallery oriented
+// could be adjusted/renamed/removed in later update
 const UpDownWrapper = styled.div`
 position: relative;
 height: 30px;
@@ -17,6 +20,7 @@ width: 100px;
 margin: 1em;
 `;
 
+// I REALLY wanted time to get this button working...
 const StyledButton = styled.button`
 position: absolute;
 top: 10px;
@@ -29,6 +33,7 @@ cursor:pointer;
 overflow: hidden;
 `;
 
+// I will need to test removing this later...
 const StyledUpDownA = styled.button`
 position: absolute;
 top: 50%;
@@ -45,6 +50,7 @@ font-weight: 900;
 width: 100px;
 `;
 
+// only state management it needs to handle is swapping the local image gallery
 class ImageBuilder extends React.Component {
   constructor(props) {
     super(props);
@@ -54,23 +60,21 @@ class ImageBuilder extends React.Component {
       photos: selection.photos,
     };
     this.switchDisplay = this.switchDisplay.bind(this);
-    // console.log('IB', this.props);
   }
 
+  // updates the gallery based on the selected photo passed from the Overview
   componentDidUpdate(prevProps) {
     const { selection } = this.props;
-    // console.log('prev', prevProps);
     if (selection.style_id !== prevProps.selection.style_id) {
       this.setState({
         curPhoto: 0,
         photos: selection.photos,
       });
-      // console.log('Update needed', this.state);
     }
   }
 
+  // simple event to switch the selected background photo
   switchDisplay(event) {
-    // console.log(event.target.id);
     this.setState({
       curPhoto: event.target.id,
     });
@@ -78,7 +82,10 @@ class ImageBuilder extends React.Component {
 
   render() {
     const { photos, curPhoto } = this.state;
+    // Example implementation of click tracking - the not working resize button!
     const { clickTracker } = this.props;
+    // Dynamic styling to change the background image based on inputs
+    // allows for other elements to easily be placed on top of the image
     const ProdImage = {
       position: 'relative',
       display: 'flex',
@@ -99,7 +106,12 @@ class ImageBuilder extends React.Component {
         style={ProdImage}
         data-testid="MainImage"
       >
-        <StyledButton />
+        <StyledButton
+          data-trackingid="Overview ImageResize"
+          onClick={(event) => {
+            clickTracker(event);
+          }}
+        />
         <UpDownWrapper>
           <StyledUpDownA />
         </UpDownWrapper>
