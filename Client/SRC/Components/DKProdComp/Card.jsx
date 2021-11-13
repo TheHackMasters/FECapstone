@@ -128,7 +128,7 @@ const CardStyle = styled.div`
   border: 2px solid #D3D3D3;
   margin-left: 1em;
   margin-right: 1em;
-  width: 14.3em;
+  width: 14.2em;
   height: 21.8em;
   margin-bottom: 2em;
 `;
@@ -157,7 +157,7 @@ const CardT1 = styled.div`
 `;
 
 const CardInfo = styled.div`
-  padding: 8px 8px 0px 8px;
+  padding: 8px 6px 0px 8px;
   background-color: #FFFFFF;
 `;
 
