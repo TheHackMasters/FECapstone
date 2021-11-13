@@ -6,6 +6,7 @@ import EmptyOutfit from './EmptyOutfit.jsx';
 import RightArrow from './RightArrow.jsx';
 import LeftArrow from './LeftArrow.jsx';
 import ComparisonModal from './ComparisonModal.jsx';
+import { SetMiddle, CarouselStyle, Spacer, ComponentSpace, HeaderCarousel } from './styles/RiacStyles.js';
 
 function RIAC(props) {
   const [idxRecc, setIdxRecc] = useState(0);
@@ -20,6 +21,7 @@ function RIAC(props) {
   const [openModal, setOpenModal] = useState(false);
   const [compareProd, setCompareProd] = useState({});
 
+  // removes duplicates, and stops items from recommending themselves
   const cleanData = (data) => {
     const set = new Set(data);
     const arr = Array.from(set);
@@ -27,9 +29,7 @@ function RIAC(props) {
     return filter;
   };
 
-  //console.log('curr', currProduct);
-  //console.log('comp', compareProd);
-
+  // state updates
   useEffect(() => {
     setCurrProduct(props.overviewData);
     setReccList(cleanData(props.relatedData));
@@ -40,8 +40,7 @@ function RIAC(props) {
     setIdxOutfit(0);
   }, [props]);
 
-  // console.log(props.relatedStyles);
-
+  // uses ID to select default style - first one of the list
   const selectStyle = (id) => {
     if (id === Number(currProductStyle.product_id)) {
       return currProductStyle;
@@ -54,14 +53,19 @@ function RIAC(props) {
     });
   };
 
+  // returns current product style
   const selectStyleOutfits = (id) => {
     if (id === Number(currProductStyle.product_id)) {
       return currProductStyle;
     }
   };
 
+  // removes item from localstorage/outfitlist
   const clickX = (product) => {
     let idx = -1;
+    // Using a regular for loop to make use of the index,
+    // the index is used later to collapse outfit list index
+    // to avoid out of bounds errors when deleting item
     for (let n = 0; n < localStorage.length; n += 1) {
       if (product.id === Number(localStorage.key(n))) {
         idx = n;
@@ -79,6 +83,7 @@ function RIAC(props) {
     }
   };
 
+  // adds item to localstorage/outfitlist
   const clickAddToOutfits = (product, style) => {
     if (!localStorage.getItem(product.id)) {
       const itemObj = [product, style];
@@ -87,11 +92,13 @@ function RIAC(props) {
     }
   };
 
+  // opens modal and compares features of current prod and clicked prod
   const clickStar = (product) => {
     setCompareProd(product);
     setOpenModal(true);
   };
 
+  // draws out recommended cards
   const recommends = [];
   for (let n = idxRecc; n < idxRecc + 4; n += 1) {
     if (reccList[n] === undefined) {
@@ -99,8 +106,6 @@ function RIAC(props) {
     } else if (reccList[n] === currProduct.id) {
       continue;
     } else {
-      // console.log('product', reccList[n]);
-      // console.log('style', reccListStyles.length === 0 ? { product_id: -1 } : selectStyle(reccList[n].id));
       recommends.push(
         <Card
           key={reccList[n].id}
@@ -115,6 +120,7 @@ function RIAC(props) {
     }
   }
 
+  // out outfit cards from localstorage
   const outfits = [];
   for (let n = idxOutfit; n < idxOutfit + 3; n += 1) {
     if (localStorage.key(n) === null) {
@@ -213,46 +219,3 @@ function RIAC(props) {
 }
 
 export default RIAC;
-
-const SetMiddle = styled.div`
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  min-width: 30em;
-`;
-
-const CarouselStyle = styled.div`
-  display: flex;
-  justify-content: start;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-content: stretch;
-`;
-
-// const Title1 = styled.div`
-//   font-weight: light;
-//   size: 24px;
-//   color: grey;
-//   padding: 32px 0px 8px 0px;
-//   margin-left: 100px;
-// `;
-
-const Spacer = styled.div`
-  width: 1.7em;
-  padding: 1.7em;
-`;
-
-const ComponentSpace = styled.div`
-  height: 4em;
-`;
-
-const HeaderCarousel = styled.div`
-  justify-content: start;
-  font-weight: 300;
-  font-size: 20px;
-  color: grey;
-  padding: 2em 0em 0em 0em;
-  margin-left: 100px;
-  margin-bottom: 1em;
-`;
