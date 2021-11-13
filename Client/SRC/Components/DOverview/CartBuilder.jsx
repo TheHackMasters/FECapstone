@@ -44,11 +44,11 @@ font-weight: bolder;
 margin-left: 5em;
 `;
 
+// another core state-manager to build a cart and add items to it
 class CartBuilder extends React.Component {
   constructor(props) {
     super(props);
     const { skus } = this.props;
-    // console.log('CB', this.props);
     this.state = {
       curSize: 'Select Size',
       curQuantity: '-',
@@ -93,6 +93,7 @@ class CartBuilder extends React.Component {
     }
   }
 
+  // tracking event to update the cart when the selected size(sku) changes
   onSizeChange(event) {
     const index = event.target.selectedIndex;
     const el = event.target.childNodes[index];
@@ -103,6 +104,7 @@ class CartBuilder extends React.Component {
     });
   }
 
+  // tracking event to update selected quantity
   onQuantityChange(event) {
     this.setState({
       curQuantity: event.target.value,

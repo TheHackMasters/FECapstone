@@ -14,7 +14,7 @@ cursor:pointer;
 `;
 
 function SelectSize(props) {
-  // console.log(props);
+  // takes input skus and builds size dropdown from them
   const { handleChange, skus } = props;
   const [skuArr, setSkuArr] = useState(Object.keys(skus));
   const [newskus, setSkus] = useState(skus);
@@ -24,7 +24,7 @@ function SelectSize(props) {
     setSkuArr(Object.keys(skus));
     setSkus(skus);
   }, [props]);
-  // console.log(skuArr);
+  // the map had an interesting issue, resolved by making the variables output as a string
   return (
     <StyledSelectS
       onChange={handleChange}
