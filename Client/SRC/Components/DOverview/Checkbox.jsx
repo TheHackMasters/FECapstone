@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import React from 'react';
 
+// shockingly complicated system to add a check mark
+// to a selected style, and hide it if not selected
 class Checkbox extends React.Component {
   constructor(props) {
     super(props);

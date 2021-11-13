@@ -10,8 +10,8 @@ padding: 1em;
 
 function MiniImageBuilder(props) {
   const { style, switchDisplay, id } = props;
-  // console.log('MIB', style);
 
+  // allows dynamically changing backgrounds based on any inputted library
   const MiniImage = {
     backgroundImage: `url(${style.thumbnail_url})`,
     backgroundSize: 'cover',

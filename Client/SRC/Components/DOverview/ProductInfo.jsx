@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
+// min and max width to maintain alignment of component
 const ProdInfoOrient = styled.section`
 display:flex;
 flex-direction:row;
 padding-bottom: 1em;
 min-width: 73em;
+max-width: 73em;
 `;
 
 const Seperator1 = styled.div`
@@ -31,12 +33,12 @@ padding: 5px;
 padding-left: 10px;
 `;
 
+// take product details based on selected product and displays them
 function ProductInfo(props) {
   const { details } = props;
   let {
     id, slogan, description, features,
   } = details;
-  // console.log(id);
 
   return (
     <ProdInfoOrient id="prodinfo">

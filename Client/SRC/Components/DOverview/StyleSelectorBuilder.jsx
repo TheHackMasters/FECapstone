@@ -9,6 +9,7 @@ width: 5em;
 padding: 1em;
 `;
 
+// builds each individual style and assigns it the switch style click event
 function StyleSelectorBuilder(props) {
   const { style, switchStyle, id, styleItem } = props;
 

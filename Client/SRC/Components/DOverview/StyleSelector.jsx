@@ -15,9 +15,9 @@ font-weight: bolder;
 padding-right: 1em;
 `;
 
+// controller to build styles for display
 function StyleSelector(props) {
   const { styles, selection, switchStyle, styleItem } = props;
-  // console.log('ss', switchStyle);
   return (
     <div>
       <StyledSpan> STYLE 🡆 </StyledSpan>
