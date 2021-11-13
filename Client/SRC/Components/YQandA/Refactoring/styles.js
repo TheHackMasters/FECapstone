@@ -13,12 +13,13 @@ const ListButton =styled.button`
 `
 
 
-const QTitle=styled.div`
-  margin-top: 25px;
-  font-size: 20px;
+const QTitle=styled.h3`
+  margin-bottom: 10px;
+  justify-content: start;
+  font-weight: 300;
+  font-size: 24px;
   color: grey;
-  font-size: 25px;
-  width: 100%;
+  padding: 1em 0em 0em 0em;
 `
 
 const QContainer=styled.div`
@@ -66,7 +67,7 @@ const QModalContent =styled.div`
   background-color:rgb(184,184,184);
   left: 10%;
   right: 20%;
-  top: 15%;
+  top: 10%;
   padding: 20px;
   p {
     margin-bottom: 1rem;
@@ -172,6 +173,7 @@ const AnswerList =styled.div`
 
 const AModalTitle =styled.h2`
   justify-self: center;
+  margin-right: 100px;
   grid-row: 1;
   color:black;
 `

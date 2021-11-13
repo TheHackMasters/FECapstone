@@ -51,7 +51,7 @@ const QuestionModal = (props) => {
       <QModalContent onClick={e => e.stopPropagation()}>
         <AModalHeader>
           <AModalTitle>Ask Your Question </AModalTitle>
-          <QuestionSub> {props.name}</QuestionSub>
+          {/* <QuestionSub> {props.name}</QuestionSub> */}
         </AModalHeader>
         <AModalBody>
           <AText>
