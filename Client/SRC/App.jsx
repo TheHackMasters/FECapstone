@@ -25,7 +25,6 @@ function App(props) {
 
   const [meta, setMeta] = useState();
   const [reviews, setReviews] = useState();
-  const [user, setUser] = useState('guest');
 
   // Get the initial featured product and update app state
   useEffect(() => {
@@ -35,10 +34,6 @@ function App(props) {
       })
       .catch((err) => console.log(err));
   }, []);
-
-  // useEffect(() => {
-  //   setUser(prompt('Please Enter Your Username'));
-  // }, []);
 
   // Update the styles and related products when the currently selected
   // product changes
@@ -92,18 +87,6 @@ function App(props) {
     }
   }, [relatedData]);
 
-  // useEffect(() => {
-  //   if (curProdId !== 0) {
-  //     axios.get(`/qa/questions/${curProdId}`)
-  //       .then((data) => setQaList(data.data))
-  //       .catch((err) => console.log('Error! ', err));
-
-  //     axios.get(`/qa/questions/${curProdId}/answers`)
-  //       .then((data) => setAnswerList(data.data))
-  //       .catch((err) => console.log(err));
-  //   }
-  // }, [curProdId]);
-
   useEffect(() => {
     if (curProdId !== 0) {
       axios.get(`/reviews/meta/${curProdId}`)
@@ -118,14 +101,11 @@ function App(props) {
 
   const clickTracker = (event) => {
     const we = event.target.dataset.trackingid.split(' ');
-    // console.log('clicked ID', we);
-    // console.log('clicked className', event.target.className);
     const clickData = {
       element: we[1],
       widget: we[0],
       time: Date(),
     };
-    // console.log('You have clicked', clickData);
     axios.post('/interactions', clickData)
       .then((data) => {
         console.log('success!', data);

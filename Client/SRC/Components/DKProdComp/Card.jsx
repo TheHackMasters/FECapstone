@@ -140,22 +140,6 @@ const CardImgStyle = styled.div`
   object-fit: cover;
 `;
 
-const CardT2 = styled.div`
-  color: grey;
-  font-size: 12px;
-  font-weight: light;
-  padding-top: 4px;
-  padding-botton: 4px;
-`;
-
-const CardT1 = styled.div`
-  color: black;
-  font-size: 16px;
-  font-weight: bold;
-  padding-top: 4px;
-  padding-botton: 4px;
-`;
-
 const CardInfo = styled.div`
   padding: 8px 6px 0px 8px;
   background-color: #FFFFFF;
