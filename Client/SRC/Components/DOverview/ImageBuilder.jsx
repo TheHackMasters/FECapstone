@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+
 import MiniImageBuilder from './MiniImageBuilder.jsx';
 
 // creates the scrollable feature of the image gallery and orients it
