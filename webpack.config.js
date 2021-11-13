@@ -1,6 +1,6 @@
 module.exports = {
   mode: 'development',
-  entry: `${__dirname}/Client/SRC/Index.jsx`,
+  entry: `${__dirname}/Client/Index.jsx`,
   module: {
     rules: [
       {

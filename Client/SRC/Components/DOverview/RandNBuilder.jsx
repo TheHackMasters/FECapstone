@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 import StarRatingComponent from 'react-star-rating-component';
 import StarHalfIcon from '@mui/icons-material/StarHalf';
 import StarIcon from '@mui/icons-material/Star';
-import StarBorderIcon from '@mui/icons-material/StarBorder';
-import styled from 'styled-components';
 
 import helper from '../RatingsNReviews/ratings/helper.js';
 
