@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+
 import StyleSelectorBuilder from './StyleSelectorBuilder.jsx';
-import Checkbox from './Checkbox.jsx';
 
 const StyleOrientation = styled.div`
 display:flex;
