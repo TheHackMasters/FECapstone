@@ -23,14 +23,14 @@ const AppTest = () => {
   });
 };
 
-AppTest();
+// AppTest();
 
 OverviewTest();
-QATest();
+// QATest();
 
-RIACTest();
+// RIACTest();
 
-ReviewCardTest();
-RatingsNReviewsTest();
-RatingsTest();
-ReviewsTest();
+// ReviewCardTest();
+// RatingsNReviewsTest();
+// RatingsTest();
+// ReviewsTest();
