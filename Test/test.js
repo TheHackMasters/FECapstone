@@ -23,11 +23,10 @@ const AppTest = () => {
   });
 };
 
-AppTest();
+// AppTest();
 
 OverviewTest();
 QATest();
-
 RIACTest();
 
 ReviewCardTest();
