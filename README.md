@@ -13,7 +13,7 @@ are our Product Overview, Related Products, Questions and Answers, and Ratings a
 
 * Cycle through different photos of the same style using the carousel
 * Click thumbnails to view different styles of the same product
-* Click on image to zoom with highlight box
+* Dynamic dropdowns that reflect the sizes and quantities of the selected product/style
 
 ### Related Products
 
